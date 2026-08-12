@@ -1,0 +1,83 @@
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>درباره ما</h3>
+                    <p>شرکت حمل و نقل بین المللی تکسیز یکی از بهترین شرکت‌های فعال در حوزه حمل و نقل بین المللی در ایران می‌باشد. این شرکت با تکیه بر تخصص و تجربه، بهترین خدمات را در زمینه صادرات، واردات، ترخیص و لجستیک کالا ارائه می‌دهد.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <div class="logo">
+                        <span>TAKSEEZ</span>
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone-alt"></i> ۰۲۱-۵۸۷۷۶</li>
+                        <li><i class="fas fa-envelope"></i> info@takseez.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> تهران، خیابان مطهری، خیابان منصور، پلاک ۶۹، ساختمان تکسیز</li>
+                        <li><i class="fab fa-instagram"></i> takseez</li>
+                    </ul>
+                    <div class="footer-socials">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <!-- This column is relatively empty in the screenshot, used as spacing -->
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; ۱۴۰۵ کلیه حقوق محفوظ است - تکسیز</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Logic
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+            // Toggle mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('open');
+    });
+
+    // در موبایل، با کلیک روی آیتم‌های دارای زیرمنو، زیرمنو باز/بسته شود
+    document.querySelectorAll('.nav-menu > li').forEach(item => {
+        const link = item.querySelector('a');
+        const dropdown = item.querySelector('.dropdown');
+        if (dropdown) {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    item.classList.toggle('active-dropdown');
+                }
+            });
+        }
+    });
+
+    // بستن منو با کلیک روی لینک‌های داخل زیرمنو (موبایل)
+    document.querySelectorAll('.dropdown a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('open');
+                // بستن همه زیرمنوهای باز
+                document.querySelectorAll('.nav-menu > li').forEach(li => {
+                    li.classList.remove('active-dropdown');
+                });
+            }
+        });
+    });
+
+    console.log('منوی جدید تکسیز با موفقیت بارگذاری شد ✅');
+    </script>
