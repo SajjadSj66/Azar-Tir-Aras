@@ -1,26 +1,472 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
-{% include 'header.html' %}
 
 {% block content %}
-<p>
+<style>
+  /* استایل‌های سفارشی برای جذابیت بیشتر */
+  .service-hero {
+    background: linear-gradient(135deg, #0b2a4a 0%, #1a4b6d 100%);
+    color: #fff;
+    padding: 4rem 0;
+    border-radius: 0 0 50px 50px;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-hero::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .service-hero h1 {
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  .service-hero .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+  }
+  .service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    height: 100%;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  }
+  .service-card .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #e8f0fe, #d4e2f7);
+    color: #1a4b6d;
+    border-radius: 50%;
+    margin: 0 auto 1.2rem;
+    transition: 0.3s;
+  }
+  .service-card:hover .icon-wrapper {
+    background: linear-gradient(135deg, #1a4b6d, #0b2a4a);
+    color: #fff;
+    transform: scale(1.05);
+  }
+  .service-card h5 {
+    font-weight: 700;
+    color: #1a2a3a;
+    margin-bottom: 0.5rem;
+  }
+  .service-card p {
+    color: #6c7a8a;
+    font-size: 0.95rem;
+  }
+  .section-title {
+    font-weight: 800;
+    color: #0b2a4a;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #1a4b6d, #4a90d9);
+    border-radius: 4px;
+  }
+  .value-badge {
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin: 0.3rem;
+    background: #eef3f8;
+    color: #1a4b6d;
+    transition: 0.3s;
+  }
+  .value-badge:hover {
+    background: #1a4b6d;
+    color: #fff;
+    transform: scale(1.05);
+  }
+  .consultation-wrapper {
+    background: linear-gradient(135deg, #f8fcff, #e9f2fa);
+    border-radius: 40px;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+  }
+  .consultation-card {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .consult-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .consult-logo i {
+    font-size: 2.8rem;
+    color: #1a4b6d;
+    background: #fff;
+    padding: 0.7rem;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  }
+  .consult-logo h2 {
+    font-weight: 800;
+    color: #0b2a4a;
+    margin: 0;
+    font-size: 2rem;
+  }
+  .consult-logo h2 span {
+    display: block;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #4a6a8a;
+    letter-spacing: 2px;
+  }
+  .consult-subtitle {
+    color: #1a4b6d;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  .consult-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0b2a4a;
+    margin-bottom: 1rem;
+  }
+  .consult-text {
+    font-size: 1.05rem;
+    color: #3a4a5a;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .attention-box {
+    background: #fff8e7;
+    border-right: 6px solid #f5b342;
+    padding: 1.2rem 1.8rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    text-align: right;
+  }
+  .attention-title {
+    font-weight: 700;
+    color: #b87a1a;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+  .consult-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+  }
+  .consult-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+    border: none;
+    font-size: 0.95rem;
+  }
+  .consult-btn i {
+    font-size: 1.2rem;
+  }
+  .btn-primary-consult {
+    background: #1a4b6d;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(26,75,109,0.25);
+  }
+  .btn-primary-consult:hover {
+    background: #0b2a4a;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(26,75,109,0.35);
+  }
+  .btn-secondary-consult {
+    background: #e9f2fa;
+    color: #1a4b6d;
+  }
+  .btn-secondary-consult:hover {
+    background: #d4e2f7;
+    color: #0b2a4a;
+    transform: translateY(-2px);
+  }
+  .ltr {
+    direction: ltr;
+    display: inline-block;
+  }
+  @media (max-width: 576px) {
+    .consult-logo h2 {
+      font-size: 1.5rem;
+    }
+    .consult-title {
+      font-size: 1.5rem;
+    }
+    .consult-buttons .consult-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
 
-حمل و نقل بین المللی آذر تیر ارس یک شرکت حملونقل بینالمللی با تمرکز بر ارائه خدمات حرفهای و مطمئن در حوزه
-حملونقل جادهای و زنجیره تأمین بینالمللی میباشد. هدف ما ایجاد راهکارهای سریع، ایمن و مقرونبهصرفه برای جابهجایی کالا در مسیرهای بینالمللی و پاسخگویی به نیازهای متنوع مشتریان است.
-با بهرهگیری از شبکهای گسترده از شرکای حملونقل، تجربه تخصصی و تیمی متعهد، خدمات حمل کالا را از مبدأ تا مقصد با دقت و نظارت مستمر مدیریت میکنیم. ما تلاش میکنیم با برنامهریزی دقیق، انتخاب مسیر مناسب و پیگیری مستمر محموله، فرآیند حمل را برای مشتریان ساده، شفاف و قابل اعتماد کنیم.
-خدمات ما
-حملونقل بینالمللی جادهای   حمل ترانزیتی کالا  
-حمل فولتراک و خردهبار   حمل کانتینری  
-خدمات فورواردری و لجستیکی     هماهنگی امور گمرکی و اسنادی   برنامهریزی و مدیریت زنجیره تأمین  
-رهگیری و پیگیری محموله از مبدأ تا مقصد   ترخیص کالا  
-چشمانداز ما
-چشمانداز ما تبدیل شدن به یکی از شرکتهای قابل اعتماد و پیشرو در حوزه حملونقل بینالمللی و ارائه راهکارهای نوین لجستیکی در مسیرهای منطقهای و بینالمللی است.
-ارزشهای ما
-اعتماد، سرعت، ایمنی، شفافیت و تعهد پایههای اصلی فعالیت ما هستند. ما باور داریم که در حملونقل بینالمللی، یک محموله فقط یک کالا نیست؛ بلکه بخشی از کسبوکار و اعتماد مشتری است که باید با بالاترین سطح مسئولیتپذیری به مقصد برسد.
-از مبدأ تا مقصد، همراه مطمئن مسیر شما هستیم.
-</p>
+<!-- بخش هدر زیبا -->
+<div class="service-hero">
+  <div class="container text-center">
+    <h1>
+      {% if LANGUAGE_CODE == 'fa' %}
+        خدمات حمل‌ونقل بین‌المللی آذر تیر ارس
+      {% else %}
+        Azar Tir Aras International Transport Services
+      {% endif %}
+    </h1>
+    <p class="subtitle">
+      {% if LANGUAGE_CODE == 'fa' %}
+        همراه مطمئن از مبدأ تا مقصد
+      {% else %}
+        Your Reliable Partner from Origin to Destination
+      {% endif %}
+    </p>
+  </div>
+</div>
+
+<!-- بخش درباره ما -->
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="p-4" style="background: #fff; border-radius: 30px; box-shadow: 0 8px 30px rgba(0,0,0,0.04);">
+        <h2 class="section-title text-center d-block">
+          {% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}
+        </h2>
+        <p style="line-height: 2; text-align: justify; font-size: 1.05rem; color: #2a3a4a;">
+          {% if LANGUAGE_CODE == 'fa' %}
+            حمل و نقل بین المللی آذر تیر ارس یک شرکت حملونقل بینالمللی با تمرکز بر ارائه خدمات حرفهای و مطمئن در حوزه حملونقل جادهای و زنجیره تأمین بینالمللی میباشد. هدف ما ایجاد راهکارهای سریع، ایمن و مقرونبهصرفه برای جابهجایی کالا در مسیرهای بینالمللی و پاسخگویی به نیازهای متنوع مشتریان است.
+          {% else %}
+            Azar Tir Aras International Transportation is a company focused on providing professional and reliable services in road transport and international supply chain. Our goal is to offer fast, safe, and cost-effective solutions for moving goods on international routes and meeting diverse customer needs.
+          {% endif %}
+        </p>
+        <p style="line-height: 2; text-align: justify; font-size: 1.05rem; color: #2a3a4a;">
+          {% if LANGUAGE_CODE == 'fa' %}
+            با بهرهگیری از شبکهای گسترده از شرکای حملونقل، تجربه تخصصی و تیمی متعهد، خدمات حمل کالا را از مبدأ تا مقصد با دقت و نظارت مستمر مدیریت میکنیم. ما تلاش میکنیم با برنامهریزی دقیق، انتخاب مسیر مناسب و پیگیری مستمر محموله، فرآیند حمل را برای مشتریان ساده، شفاف و قابل اعتماد کنیم.
+          {% else %}
+            Leveraging an extensive network of transport partners, specialized experience, and a committed team, we manage cargo transportation from origin to destination with precision and continuous monitoring. We strive to make the transport process simple, transparent, and reliable through careful planning, optimal route selection, and constant shipment tracking.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- بخش خدمات با کارت‌های مدرن -->
+<div class="container mb-5">
+  <div class="text-center">
+    <h2 class="section-title">
+      {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
+    </h2>
+  </div>
+  <div class="row g-4">
+    <!-- ۹ خدمت با آیکون -->
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-road"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}حملونقل بین‌المللی جادهای{% else %}International Road Transport{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}ارسال کالا به مقاصد بین‌المللی با ناوگان مدرن{% else %}Shipping goods to international destinations with modern fleet{% endif %}</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-exchange-alt"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}حمل ترانزیتی کالا{% else %}Transit Cargo Transport{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}حمل کالاهای ترانزیتی با هماهنگی کامل گمرکی{% else %}Transit cargo with full customs coordination{% endif %}</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-boxes"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}حمل فولتراک و خردهبار{% else %}Full Truck &amp; Less-than-Truckload{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}حمل بارهای کامل و خردهبار با انعطاف‌پذیری بالا{% else %}Full and partial loads with high flexibility{% endif %}</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-ship"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}حمل کانتینری{% else %}Container Shipping{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}حمل کالا با کانتینرهای استاندارد و ایمن{% else %}Transporting goods in standard and secure containers{% endif %}</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-cogs"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}خدمات فورواردری و لجستیکی{% else %}Freight Forwarding &amp; Logistics{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}مدیریت کامل زنجیره تأمین و هماهنگی لجستیک{% else %}Full supply chain management and logistics coordination{% endif %}</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-file-signature"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}هماهنگی امور گمرکی و اسنادی{% else %}Customs &amp; Documentation Services{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}انجام تشریفات گمرکی و تنظیم اسناد حمل{% else %}Customs clearance and transport document preparation{% endif %}</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}برنامه‌ریزی و مدیریت زنجیره تأمین{% else %}Supply Chain Planning &amp; Management{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}بهینه‌سازی فرآیندهای لجستیکی و کاهش هزینه‌ها{% else %}Optimizing logistics processes and reducing costs{% endif %}</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-map-marked-alt"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}رهگیری و پیگیری محموله{% else %}Shipment Tracking &amp; Monitoring{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}پیگیری لحظه‌ای محموله از مبدأ تا مقصد{% else %}Real-time tracking from origin to destination{% endif %}</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="service-card">
+        <div class="icon-wrapper"><i class="fas fa-passport"></i></div>
+        <h5>{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا{% else %}Customs Clearance{% endif %}</h5>
+        <p>{% if LANGUAGE_CODE == 'fa' %}ترخیص سریع کالا با همکاری کارشناسان گمرکی{% else %}Fast clearance with expert customs cooperation{% endif %}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- بخش چشم‌انداز و ارزش‌ها -->
+<div class="container mb-5">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="p-4" style="background: #f0f6fe; border-radius: 30px; height: 100%;">
+        <h3 class="h4 fw-bold" style="color: #0b2a4a;">
+          <i class="fas fa-eye me-2" style="color: #1a4b6d;"></i>
+          {% if LANGUAGE_CODE == 'fa' %}چشم‌انداز ما{% else %}Our Vision{% endif %}
+        </h3>
+        <p style="line-height: 1.9; color: #2a3a4a; font-size: 1.05rem;">
+          {% if LANGUAGE_CODE == 'fa' %}
+            چشمانداز ما تبدیل شدن به یکی از شرکتهای قابل اعتماد و پیشرو در حوزه حملونقل بینالمللی و ارائه راهکارهای نوین لجستیکی در مسیرهای منطقهای و بینالمللی است.
+          {% else %}
+            Our vision is to become one of the most trusted and leading companies in international transport, offering innovative logistics solutions on regional and international routes.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-4" style="background: #fef9f0; border-radius: 30px; height: 100%;">
+        <h3 class="h4 fw-bold" style="color: #0b2a4a;">
+          <i class="fas fa-handshake me-2" style="color: #1a4b6d;"></i>
+          {% if LANGUAGE_CODE == 'fa' %}ارزش‌های ما{% else %}Our Values{% endif %}
+        </h3>
+        <p style="line-height: 1.9; color: #2a3a4a; font-size: 1.05rem;">
+          {% if LANGUAGE_CODE == 'fa' %}
+            اعتماد، سرعت، ایمنی، شفافیت و تعهد پایه‌های اصلی فعالیت ما هستند. ما باور داریم که در حملونقل بینالمللی، یک محموله فقط یک کالا نیست؛ بلکه بخشی از کسب‌وکار و اعتماد مشتری است که باید با بالاترین سطح مسئولیت‌پذیری به مقصد برسد.
+          {% else %}
+            Trust, speed, safety, transparency, and commitment are the core pillars of our activity. We believe that in international transport, a shipment is not just cargo; it is part of your business and trust, which must be delivered with the highest level of responsibility.
+          {% endif %}
+        </p>
+        <div class="mt-2 text-center">
+          <span class="value-badge">{% if LANGUAGE_CODE == 'fa' %}اعتماد{% else %}Trust{% endif %}</span>
+          <span class="value-badge">{% if LANGUAGE_CODE == 'fa' %}سرعت{% else %}Speed{% endif %}</span>
+          <span class="value-badge">{% if LANGUAGE_CODE == 'fa' %}ایمنی{% else %}Safety{% endif %}</span>
+          <span class="value-badge">{% if LANGUAGE_CODE == 'fa' %}شفافیت{% else %}Transparency{% endif %}</span>
+          <span class="value-badge">{% if LANGUAGE_CODE == 'fa' %}تعهد{% else %}Commitment{% endif %}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- بخش مشاوره (مطابق نمونه شما) -->
+<section class="consultation-wrapper">
+  <div class="consultation-card">
+    <div class="consult-logo">
+      <i class="fas fa-plane-departure"></i>
+      <h2>
+        {% if LANGUAGE_CODE == 'fa' %}آذر تیر ارس{% else %}Azar Tir Aras{% endif %}
+        <span>{% if LANGUAGE_CODE == 'fa' %}Azar Tir Aras{% else %}آذر تیر ارس{% endif %}</span>
+      </h2>
+    </div>
+    <div class="consult-subtitle">
+      {% if LANGUAGE_CODE == 'fa' %}مشاوره و محاسبه هزینه{% else %}Consultation &amp; Cost Estimate{% endif %}
+    </div>
+    <div class="consult-title">
+      {% if LANGUAGE_CODE == 'fa' %}به مشاوره نیاز دارید؟{% else %}Need Consultation?{% endif %}
+    </div>
+    <p class="consult-text">
+      {% if LANGUAGE_CODE == 'fa' %}
+        کارشناسان حرفه‌ای و متخصص شرکت حمل و نقل بین‌المللی آذر تیر ارس آماده راهنمایی شما عزیزان به‌صورت کاملاً رایگان (استعلام رایگان) می‌باشند.
+      {% else %}
+        The professional and expert consultants of Azar Tir Aras International Transportation Company are ready to assist you completely free of charge (free inquiry).
+      {% endif %}
+    </p>
+    <div class="attention-box">
+      <div class="attention-title">{% if LANGUAGE_CODE == 'fa' %}توجه{% else %}Note{% endif %}</div>
+      <p>
+        {% if LANGUAGE_CODE == 'fa' %}
+          برای تسریع در استعلام قیمت، لطفاً نام و نام‌خانوادگی، شماره تماس، نوع بار، وزن، مبدأ و مقصد خود را در سایت وارد کنید.
+        {% else %}
+          To speed up your price inquiry, please enter your full name, phone number, cargo type, weight, origin, and destination on the site.
+        {% endif %}
+      </p>
+    </div>
+    <div class="consult-buttons">
+      <a href="tel:+982188479151" class="consult-btn btn-primary-consult">
+        <i class="fas fa-phone-alt"></i> <span class="ltr">021-88479151</span>
+      </a>
+      <a href="mailto:info@azartiraras.com" class="consult-btn btn-primary-consult">
+        <i class="fas fa-comment-dots"></i> {% if LANGUAGE_CODE == 'fa' %}ارسال پیام از طریق ایمیل{% else %}Message via Email{% endif %}
+      </a>
+      <a href="#" class="consult-btn btn-primary-consult">
+        <i class="fab fa-whatsapp"></i> {% if LANGUAGE_CODE == 'fa' %}ارسال پیام از طریق واتساپ{% else %}Message via WhatsApp{% endif %}
+      </a>
+      <a href="#" class="consult-btn btn-secondary-consult">
+        <i class="fab fa-telegram-plane"></i> {% if LANGUAGE_CODE == 'fa' %}ارسال پیام از طریق تلگرام{% else %}Message via Telegram{% endif %}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- متن پایانی با استایل خاص -->
+<div class="container my-5">
+  <div class="text-center p-4" style="background: linear-gradient(135deg, #f8fcff, #e9f2fa); border-radius: 40px;">
+    <p class="fs-4 fw-bold" style="color: #0b2a4a;">
+      <i class="fas fa-arrow-right me-2" style="color: #1a4b6d;"></i>
+      {% if LANGUAGE_CODE == 'fa' %}
+        از مبدأ تا مقصد، همراه مطمئن مسیر شما هستیم.
+      {% else %}
+        From Origin to Destination, We Are Your Trusted Companion.
+      {% endif %}
+      <i class="fas fa-arrow-left ms-2" style="color: #1a4b6d;"></i>
+    </p>
+  </div>
+</div>
 
 {% endblock %}
-
-{% include 'footer.html' %}

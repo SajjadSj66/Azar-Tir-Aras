@@ -4,22 +4,401 @@
 {% include 'header.html' %}
 
 {% block content %}
-<p>
+{% get_current_language as LANGUAGE_CODE %}
 
-حمل و نقل بین المللی آذر تیر ارس یک شرکت حملونقل بینالمللی با تمرکز بر ارائه خدمات حرفهای و مطمئن در حوزه
-حملونقل جادهای و زنجیره تأمین بینالمللی میباشد. هدف ما ایجاد راهکارهای سریع، ایمن و مقرونبهصرفه برای جابهجایی کالا در مسیرهای بینالمللی و پاسخگویی به نیازهای متنوع مشتریان است.
-با بهرهگیری از شبکهای گسترده از شرکای حملونقل، تجربه تخصصی و تیمی متعهد، خدمات حمل کالا را از مبدأ تا مقصد با دقت و نظارت مستمر مدیریت میکنیم. ما تلاش میکنیم با برنامهریزی دقیق، انتخاب مسیر مناسب و پیگیری مستمر محموله، فرآیند حمل را برای مشتریان ساده، شفاف و قابل اعتماد کنیم.
-خدمات ما
-حملونقل بینالمللی جادهای   حمل ترانزیتی کالا  
-حمل فولتراک و خردهبار   حمل کانتینری  
-خدمات فورواردری و لجستیکی     هماهنگی امور گمرکی و اسنادی   برنامهریزی و مدیریت زنجیره تأمین  
-رهگیری و پیگیری محموله از مبدأ تا مقصد   ترخیص کالا  
-چشمانداز ما
-چشمانداز ما تبدیل شدن به یکی از شرکتهای قابل اعتماد و پیشرو در حوزه حملونقل بینالمللی و ارائه راهکارهای نوین لجستیکی در مسیرهای منطقهای و بینالمللی است.
-ارزشهای ما
-اعتماد، سرعت، ایمنی، شفافیت و تعهد پایههای اصلی فعالیت ما هستند. ما باور داریم که در حملونقل بینالمللی، یک محموله فقط یک کالا نیست؛ بلکه بخشی از کسبوکار و اعتماد مشتری است که باید با بالاترین سطح مسئولیتپذیری به مقصد برسد.
-از مبدأ تا مقصد، همراه مطمئن مسیر شما هستیم.
-</p>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  .about-page{
+    --navy-deep:#dee2e7;
+    --navy:#0f1f30;
+    --navy-card:#132840;
+    --navy-card-alt:#173049;
+    --steel:#3d5872;
+    --line:#24405c;
+    --line-soft:#1d3450;
+    --ivory:#d2d4da;
+    --muted:#81baf3;
+    --muted-dim:#5f7690;
+    --orange:#618ed1;
+    --orange-dim:#c6501f;
+    --teal:#4fa9a2;
+    --radius:14px;
+
+    background:
+      radial-gradient(circle at 12% 0%, rgba(79,169,162,0.08), transparent 45%),
+      radial-gradient(circle at 88% 15%, rgba(232,98,44,0.06), transparent 45%),
+      var(--navy-deep);
+    color:var(--ivory);
+    line-height:1.9;
+    padding:64px 20px 100px;
+    overflow:hidden;
+  }
+  .about-page[dir="rtl"]{ font-family:'Vazirmatn',sans-serif; }
+  .about-page[dir="ltr"]{ font-family:'Inter',sans-serif; }
+  .about-page *{ box-sizing:border-box; }
+  .about-page .mono{ font-family:'IBM Plex Mono',monospace; }
+
+  .about-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    color:var(--orange);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .about-eyebrow::before{
+    content:"";
+    width:18px;height:1px;
+    background:var(--orange);
+    display:inline-block;
+  }
+
+  /* ---------------- HERO ---------------- */
+  .about-hero{
+    max-width:760px;
+    margin:0 auto 56px;
+    text-align:center;
+  }
+  .about-hero h1{
+    font-size:clamp(28px,5vw,44px);
+    font-weight:900;
+    letter-spacing:-.01em;
+    margin-bottom:18px;
+    background:var(--orange);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .about-hero p{
+    color:var(--muted);
+    font-size:16px;
+    max-width:620px;
+    margin:0 auto;
+  }
+
+  .route-divider{
+    position:relative;
+    height:30px;
+    max-width:520px;
+    margin:44px auto;
+    display:flex;
+    align-items:center;
+  }
+  .route-divider .line{ flex:1; height:0; border-top:2px dashed var(--line); }
+  .route-divider i{ color:var(--muted-dim); font-size:14px; padding:0 16px; }
+  .about-page[dir="rtl"] .route-divider i{ transform:scaleX(-1); }
+  .route-divider .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--teal);
+    box-shadow:0 0 0 4px rgba(79,169,162,0.14);
+  }
+
+  /* ---------------- INTRO ---------------- */
+  .about-intro{
+    max-width:820px;
+    margin:0 auto 60px;
+    background:linear-gradient(180deg,var(--navy-card) 0%, var(--navy) 100%);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px 44px;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,0.55);
+  }
+  .about-intro p{
+    color:var(--muted);
+    font-size:15.5px;
+    margin-bottom:18px;
+  }
+  .about-intro p:last-child{ margin-bottom:0; }
+  .about-intro strong{ color:var(--ivory); }
+
+  /* ---------------- SECTION TITLES ---------------- */
+  .about-section{
+    max-width:1040px;
+    margin:0 auto 64px;
+  }
+  .about-section-head{
+    text-align:center;
+    margin-bottom:34px;
+  }
+  .about-section-head h2{
+    font-size:clamp(22px,3vw,30px);
+    font-weight:800;
+    color:var(--orange);
+  }
+
+  /* ---------------- SERVICES GRID ---------------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+  }
+  .service-card{
+    background:var(--navy-card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:26px 22px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:transform .18s ease, border-color .18s ease;
+  }
+  .service-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--teal);
+  }
+  .service-card i{
+    width:44px;height:44px;
+    border-radius:10px;
+    background:rgba(232,98,44,0.1);
+    border:1px solid rgba(232,98,44,0.3);
+    color:var(--orange);
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;
+  }
+  .service-card span{
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ivory);
+    line-height:1.7;
+  }
+
+  /* ---------------- VISION ---------------- */
+  .vision-card{
+    max-width:820px;
+    margin:0 auto;
+    position:relative;
+    background:var(--navy-card-alt);
+    border:1px dashed var(--steel);
+    border-radius:var(--radius);
+    padding:38px 44px;
+    text-align:center;
+  }
+  .vision-card i{
+    font-size:22px;
+    color:var(--teal);
+    margin-bottom:14px;
+  }
+  .vision-card p{
+    color:var(--muted);
+    font-size:15.5px;
+  }
+
+  /* ---------------- VALUES ---------------- */
+  .values-wrap{
+    max-width:820px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .values-chips{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:26px;
+  }
+  .value-chip{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    color:var(--teal);
+    background:rgba(79,169,162,0.08);
+    border:1px solid rgba(79,169,162,0.25);
+    padding:8px 18px;
+    border-radius:999px;
+  }
+  .values-wrap p{
+    color:var(--muted);
+    font-size:15.5px;
+    max-width:680px;
+    margin:0 auto;
+  }
+
+  /* ---------------- CLOSING BANNER ---------------- */
+  .about-banner{
+    max-width:1040px;
+    margin:0 auto;
+    text-align:center;
+    position:relative;
+    background:var(--navy-card-alt);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:38px 30px;
+  }
+  .about-banner p{
+    font-size:clamp(17px,2.4vw,22px);
+    font-weight:700;
+    color:var(--ivory);
+  }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width:860px){
+    .services-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:600px){
+    .about-page{ padding:44px 14px 70px; }
+    .about-intro{ padding:28px 24px; }
+    .services-grid{ grid-template-columns:1fr; }
+    .vision-card{ padding:30px 24px; }
+    .route-divider{ display:none; }
+  }
+</style>
+
+<div class="about-page" dir="{% if LANGUAGE_CODE == 'fa' %}rtl{% else %}ltr{% endif %}">
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <!-- <span class="about-eyebrow">{% if LANGUAGE_CODE == 'fa' %}معرفی شرکت{% else %}Company Profile{% endif %}</span> -->
+    <h1>{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</h1>
+    <p>
+      {% if LANGUAGE_CODE == 'fa' %}
+        از مبدأ تا مقصد، همراه مطمئن مسیر شما هستیم.
+      {% else %}
+        From origin to destination, we are your trusted partner on every journey.
+      {% endif %}
+    </p>
+  </section>
+
+  <!-- INTRO -->
+  <section class="about-intro">
+    {% if LANGUAGE_CODE == 'fa' %}
+      <p>
+        <strong>حمل‌ونقل بین‌المللی آذر تیر ارس</strong> یک شرکت حمل‌ونقل بین‌المللی با تمرکز بر ارائه خدمات حرفه‌ای و مطمئن در حوزه حمل‌ونقل جاده‌ای و زنجیره تأمین بین‌المللی می‌باشد. هدف ما ایجاد راهکارهای سریع، ایمن و مقرون‌به‌صرفه برای جابه‌جایی کالا در مسیرهای بین‌المللی و پاسخگویی به نیازهای متنوع مشتریان است.
+      </p>
+      <p>
+        با بهره‌گیری از شبکه‌ای گسترده از شرکای حمل‌ونقل، تجربه تخصصی و تیمی متعهد، خدمات حمل کالا را از مبدأ تا مقصد با دقت و نظارت مستمر مدیریت می‌کنیم. ما تلاش می‌کنیم با برنامه‌ریزی دقیق، انتخاب مسیر مناسب و پیگیری مستمر محموله، فرآیند حمل را برای مشتریان ساده، شفاف و قابل اعتماد کنیم.
+      </p>
+    {% else %}
+      <p>
+        We as <strong>AZAR TIR ARAS</strong> are an international transportation company specializing in professional and reliable road transport and logistics services. Our mission is to provide fast, safe, and cost-effective transportation solutions for businesses requiring the movement of goods across international borders.
+      </p>
+      <p>
+        With an extensive network of trusted transportation partners, experienced professionals, and a dedicated team, we manage shipments from origin to destination with precision and continuous supervision. We focus on efficient planning, optimized routes, reliable communication, and timely delivery to make international transportation simple, transparent, and dependable for our customers.
+      </p>
+    {% endif %}
+  </section>
+
+  <div class="route-divider">
+    <span class="dot"></span>
+    <span class="line"></span>
+    <i class="fas fa-paper-plane"></i>
+    <span class="line"></span>
+    <span class="dot"></span>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="about-section">
+    <div class="about-section-head">
+      <!-- <span class="about-eyebrow">{% if LANGUAGE_CODE == 'fa' %}خدمات{% else %}Services{% endif %}</span> -->
+      <h2>{% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fas fa-truck-fast"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}حمل‌ونقل بین‌المللی جاده‌ای{% else %}International Road Transportation{% endif %}</span>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-route"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}حمل ترانزیتی کالا{% else %}Transit Transportation{% endif %}</span>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-boxes-stacked"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}حمل فول‌تراک و خرده‌بار{% else %}Full Truckload (FTL) and Less-than-Truckload (LTL) Services{% endif %}</span>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-box"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}حمل کانتینری{% else %}Container Transportation{% endif %}</span>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-warehouse"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}خدمات فورواردری و لجستیکی{% else %}Freight Forwarding and Logistics Services{% endif %}</span>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-file-signature"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}هماهنگی امور گمرکی و اسنادی{% else %}Customs and Documentation Coordination{% endif %}</span>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-diagram-project"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}برنامه‌ریزی و مدیریت زنجیره تأمین{% else %}Supply Chain Management{% endif %}</span>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-location-dot"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}رهگیری و پیگیری محموله از مبدأ تا مقصد{% else %}Shipment Tracking and Monitoring{% endif %}</span>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-stamp"></i>
+        <span>{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا{% else %}Customs Clearance{% endif %}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="about-section">
+    <div class="about-section-head">
+      <!-- <span class="about-eyebrow">{% if LANGUAGE_CODE == 'fa' %}آینده‌نگری{% else %}Looking Ahead{% endif %}</span> -->
+      <h2>{% if LANGUAGE_CODE == 'fa' %}چشم‌انداز ما{% else %}Our Vision{% endif %}</h2>
+    </div>
+    <div class="vision-card">
+      <i class="fas fa-compass"></i>
+      <p>
+        {% if LANGUAGE_CODE == 'fa' %}
+          چشم‌انداز ما تبدیل شدن به یکی از شرکت‌های قابل اعتماد و پیشرو در حوزه حمل‌ونقل بین‌المللی و ارائه راهکارهای نوین لجستیکی در مسیرهای منطقه‌ای و بین‌المللی است.
+        {% else %}
+          Our vision is to become a trusted and leading international transportation and logistics company by providing innovative, efficient, and reliable solutions across regional and international markets.
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="about-section">
+    <div class="about-section-head">
+      <!-- <span class="about-eyebrow">{% if LANGUAGE_CODE == 'fa' %}اصول کاری{% else %}What Drives Us{% endif %}</span> -->
+      <h2>{% if LANGUAGE_CODE == 'fa' %}ارزش‌های ما{% else %}Our Values{% endif %}</h2>
+    </div>
+    <div class="values-wrap">
+      <div class="values-chips">
+        {% if LANGUAGE_CODE == 'fa' %}
+          <span class="value-chip">اعتماد</span>
+          <span class="value-chip">سرعت</span>
+          <span class="value-chip">ایمنی</span>
+          <span class="value-chip">شفافیت</span>
+          <span class="value-chip">تعهد</span>
+        {% else %}
+          <span class="value-chip">Trust</span>
+          <span class="value-chip">Speed</span>
+          <span class="value-chip">Safety</span>
+          <span class="value-chip">Transparency</span>
+          <span class="value-chip">Commitment</span>
+        {% endif %}
+      </div>
+      <p>
+        {% if LANGUAGE_CODE == 'fa' %}
+          اعتماد، سرعت، ایمنی، شفافیت و تعهد پایه‌های اصلی فعالیت ما هستند. ما باور داریم که در حمل‌ونقل بین‌المللی، یک محموله فقط یک کالا نیست؛ بلکه بخشی از کسب‌وکار و اعتماد مشتری است که باید با بالاترین سطح مسئولیت‌پذیری به مقصد برسد.
+        {% else %}
+          Trust, Reliability, Speed, Safety, Transparency, and Commitment are the core values of our business. We believe that in international transportation, a shipment is more than just cargo — it represents our customer's business, time, and trust. That is why we handle every shipment with the highest level of responsibility and professionalism.
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  <!-- CLOSING BANNER -->
+  <section class="about-banner">
+    <p>
+      {% if LANGUAGE_CODE == 'fa' %}
+        از مبدأ تا مقصد، همراه مطمئن مسیر شما هستیم.
+      {% else %}
+        From origin to destination, we are your trusted partner on every journey.
+      {% endif %}
+    </p>
+  </section>
+
+</div>
 
 {% endblock %}
 

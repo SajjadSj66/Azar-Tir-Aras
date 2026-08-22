@@ -1,7 +1,10 @@
 <!-- ============================================================ -->
 <!--  1)  لود فایل استایل (فایل اصلی شما)                          -->
 <!-- ============================================================ -->
-{% load static %} {% load i18n %}
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
 <!-- ============================================================ -->
@@ -41,9 +44,49 @@
     }
   }
 </style>
+<div class="top-bar">
+    <div class="container">
+        <!-- تلفن (سمت چپ در RTL) -->
+        <div class="top-phone">
+            <span>
+                {% if LANGUAGE_CODE == 'fa' %}
+                    تماس با ما: 02188479170
+                {% else %}
+                    Contact us: 02188479170
+                {% endif %}
+            </span>
+        </div>
 
-{% include 'top_bar.html' %}
+        <!-- گروه راستی (سوییچر + شبکه‌های اجتماعی) -->
+        <div class="top-right-group">
+            <!-- سوییچر زبان -->
+            <div class="lang-switcher">
+                {% get_current_language as CURRENT_LANGUAGE %}
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    <button type="submit" name="language" value="fa"
+                            class="lang-btn {% if CURRENT_LANGUAGE == 'fa' %}active{% endif %}">
+                        فارسی
+                    </button>
+                    <button type="submit" name="language" value="en"
+                            class="lang-btn {% if CURRENT_LANGUAGE == 'en' %}active{% endif %}">
+                        EN
+                    </button>
+                </form>
+            </div>
 
+            <!-- شبکه‌های اجتماعی -->
+            <div class="top-socials">
+                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-whatsapp"></i>  <!-- اگر واتساپ هم دارید -->
+            </div>
+        </div>
+    </div>
+</div>
 <!-- ============================================================ -->
 <!--  4)  هدر اصلی (منوی جدید)                                    -->
 <!-- ============================================================ -->
@@ -51,7 +94,7 @@
   <div class="container">
     <!-- لوگو -->
     <div class="logo">
-      <a href="#">
+      <a href="{% url 'index' %}">
         <span>AZAR TIR ARAS</span> <i class="fas fa-plane-departure"></i>
       </a>
     </div>
@@ -63,24 +106,100 @@
     <ul class="nav-menu" id="navMenu">
       <!-- آیتم ۱: حمل و نقل بین‌المللی -->
       <li>
-        <a href="#">حمل و نقل بین‌المللی</a>
+        <a href="#">
+            {% if LANGUAGE_CODE == 'fa' %}
+                حمل و نقل بین‌المللی
+            {% else %}
+                International Transportation
+            {% endif %}
+        </a>
       </li>
       <!-- آیتم ۲: روش‌های حمل و نقل + زیرمنو -->
       <li>
-        <a href="#">روش‌های حمل و نقل</a>
+        <a href="#">
+            {% if LANGUAGE_CODE == 'fa' %}
+                روش‌های حمل و نقل
+            {% else %}
+                Transportation Methods
+            {% endif %}
+        </a>
         <ul class="dropdown">
-          <li><a href="{% url 'tarkibi' %}">حمل و نقل ترکیبی</a></li>
-          <li><a href="{% url 'ship' %}">حمل و نقل دریایی</a></li>
-          <li><a href="{% url 'truck' %}">حمل و نقل جاده‌ای</a></li>
-          <li><a href="{% url 'airplane' %}">حمل و نقل هوایی</a></li>
-          <li><a href="{% url 'train' %}">حمل و نقل ریلی</a></li>
+          <li>
+              <a href="{% url 'tarkibi' %}">
+                  {% if LANGUAGE_CODE == 'fa' %}
+                      حمل و نقل ترکیبی
+                  {% else %}
+                      Combined Transport
+                  {% endif %}
+              </a>
+          </li>
+          <li>
+              <a href="{% url 'ship' %}">
+                  {% if LANGUAGE_CODE == 'fa' %}
+                      حمل و نقل دریایی
+                  {% else %}
+                      Sea Transport
+                  {% endif %}
+              </a>
+          </li>
+          <li>
+              <a href="{% url 'truck' %}">
+                  {% if LANGUAGE_CODE == 'fa' %}
+                      حمل و نقل جاده‌ای
+                  {% else %}
+                      Road Transport
+                  {% endif %}
+              </a>
+          </li>
+          <li>
+              <a href="{% url 'airplane' %}">
+                  {% if LANGUAGE_CODE == 'fa' %}
+                      حمل و نقل هوایی
+                  {% else %}
+                      Air Transport
+                  {% endif %}
+              </a>
+          </li>
+          <li>
+              <a href="{% url 'train' %}">
+                  {% if LANGUAGE_CODE == 'fa' %}
+                      حمل و نقل ریلی
+                  {% else %}
+                      Rail Transport
+                  {% endif %}
+              </a>
+          </li>
         </ul>
       </li>
       <!-- آیتم ۳: خدمات ارس تیر پارک -->
-      <li><a href="{% url 'service' %}">خدمات ما</a></li>
-      <li><a href="{% url 'aboutus' %}">درباره ما</a></li>
+      <li>
+          <a href="{% url 'service' %}">
+              {% if LANGUAGE_CODE == 'fa' %}
+                  خدمات ما
+              {% else %}
+                  Our Services
+              {% endif %}
+          </a>
+      </li>
+      <li>
+          <a href="{% url 'aboutus' %}">
+              {% if LANGUAGE_CODE == 'fa' %}
+                  درباره ما
+              {% else %}
+                  About Us
+              {% endif %}
+          </a>
+      </li>
       <!-- آیتم ۴: تماس با ما -->
-      <li><a href="{% url 'contact' %}">تماس با ما</a></li>
+      <li>
+          <a href="{% url 'contact' %}">
+              {% if LANGUAGE_CODE == 'fa' %}
+                  تماس با ما
+              {% else %}
+                  Contact Us
+              {% endif %}
+          </a>
+      </li>
     </ul>
   </div>
 </header>

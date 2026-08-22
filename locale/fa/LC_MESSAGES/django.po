@@ -1,398 +1,328 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: aras-tir-park 1.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-22 16:09+0000\n"
-"PO-Revision-Date: 2026-08-15 00:00+0000\n"
-"Language: en\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: templates/landing.html:398
-#, 
-#| msgid "حمل و نقل بین المللی ارس تیر پارک راهکاری مطمئن"
 msgid "حمل و نقل بین المللی آذر تیر ارس راهکاری مطمئن"
-msgstr "International transportation Azar Tir Aras is a reliable solution"
+msgstr ""
 
 #: templates/landing.html:400
-#, 
 msgid ""
 "خدمات حمل و نقل بین المللی آذر تیر ارس برای حمل و نقل محصولات و کالاها در "
 "سراسر جهان طراحی شده است. ما با استفاده از تیم متخصص و شبکه گسترده، خدمات "
 "خود را در کمترین زمان ارائه می‌دهیم."
 msgstr ""
-"Azar Tir Aras International Shipping Services are designed to transport "
-"products and goods all over the world. We provide our services in the "
-"shortest possible time using our expert team and extensive network."
 
 #: templates/landing.html:402
 msgid "اطلاعات بیشتر"
-msgstr "More information"
+msgstr ""
 
 #: templates/landing.html:412 templates/landing.html:677
 msgid "ترکیه"
-msgstr "Turkey"
+msgstr ""
 
 #: templates/landing.html:420
 msgid "روسیه"
-msgstr "Russia"
+msgstr ""
 
 #: templates/landing.html:428 templates/landing.html:665
 msgid "چین"
-msgstr "China"
+msgstr ""
 
 #: templates/landing.html:432 templates/landing.html:668
 msgid "امارات"
-msgstr "UAE"
+msgstr ""
 
 #: templates/landing.html:442
-#, 
-#| msgid "انواع روش‌های حمل و نقل در ارس تیر پارک"
 msgid "انواع روش‌های حمل و نقل در آذر تیر ارس"
-msgstr "Types of transport methods at Aras Tir Park"
+msgstr ""
 
 #: templates/landing.html:448
 msgid "حمل و نقل ترکیبی"
-msgstr "Combined transport"
+msgstr ""
 
 #: templates/landing.html:454
-#, 
-#| msgid "حمل و نقل ترکیبی"
 msgid "حمل و نقل ریلی"
-msgstr "Combined transport"
+msgstr ""
 
 #: templates/landing.html:460
 msgid "حمل و نقل دریایی"
-msgstr "Sea transport"
+msgstr ""
 
 #: templates/landing.html:466
 msgid "حمل و نقل جاده‌ای"
-msgstr "Road transport"
+msgstr ""
 
 #: templates/landing.html:472
 msgid "حمل و نقل هوایی"
-msgstr "Air transport"
+msgstr ""
 
 #: templates/landing.html:500 templates/landing.html:537
 #: templates/landing.html:702 templates/landing.html:710
 #: templates/landing.html:740 templates/landing.html:755
 #: templates/landing.html:770
-#, 
-#| msgid "ارس تیر پارک"
 msgid "آذر تیر ارس"
-msgstr "Aras Tir Park"
+msgstr ""
 
 #: templates/landing.html:500
 msgid "نامی که با اعتماد ساخته شد"
-msgstr "A name built on trust"
+msgstr ""
 
 #: templates/landing.html:521
 msgid ""
 "در دنیای امروز، سرعت، امنیت و پیدا کردن بهترین مسیر، مهم‌ترین بخش هر فرآیند "
 "حمل کالا است."
 msgstr ""
-"In today's world, speed, security, and finding the best route are the most "
-"important parts of any shipping process."
 
 #: templates/landing.html:522
-#, 
-#| msgid "ارس تیر پارک با سال‌ها تجربه در حمل‌ونقل بین‌المللی"
 msgid "آذر تیر ارس با سال‌ها تجربه در حمل‌ونقل بین‌المللی"
-msgstr "Aras Tir Park, with years of experience in international transport"
+msgstr ""
 
 #: templates/landing.html:522
 msgid "، شبکه‌ای گسترده از"
-msgstr ", has provided a wide network of"
+msgstr ""
 
 #: templates/landing.html:525
 msgid "مسیرهای زمینی"
-msgstr "land routes"
+msgstr ""
 
 #: templates/landing.html:526
-#, 
-#| msgid ""
-#| "، دریایی و هوایی را در اختیار کسب‌وکارها قرار داده تا ارسال کالا از سراسر "
-#| "جهان، بدون دغدغه انجام شود. یکی از مهم‌ترین مزیت‌های ارس تیر پارک دسترسی به "
-#| "مسیرهای حمل متنوع و شبکه گسترده شرکای بین‌المللی است. به همین دلیل، حتی "
-#| "اگر یک مسیر با محدودیت یا مانعی روبه‌رو شود،"
 msgid ""
 "، دریایی و هوایی را در اختیار کسب‌وکارها قرار داده تا ارسال کالا از سراسر "
 "جهان، بدون دغدغه انجام شود. یکی از مهم‌ترین مزیت‌های آذر تیر ارس دسترسی به "
 "مسیرهای حمل متنوع و شبکه گسترده شرکای بین‌المللی است. به همین دلیل، حتی اگر "
 "یک مسیر با محدودیت یا مانعی روبه‌رو شود،"
 msgstr ""
-", sea, and air to businesses, so that shipping goods from anywhere in the "
-"world can happen worry-free. One of the most important advantages of Aras "
-"Tir Park is access to diverse shipping routes and a wide network of "
-"international partners. That is why, even if one route faces a limitation or "
-"obstacle,"
 
 #: templates/landing.html:527
-#, 
-#| msgid "تیم لجستیک ارس تیر پارک"
 msgid "تیم لجستیک آذر تیر ارس"
-msgstr "Aras Tir Park's logistics team"
+msgstr ""
 
 #: templates/landing.html:527
 msgid ""
 " با استفاده از مسیرهای جایگزین، فرآیند حمل کالا را بدون وقفه ادامه می‌دهد تا "
 "محموله در کوتاه‌ترین زمان ممکن به مقصد برسد."
 msgstr ""
-" uses alternative routes to keep the shipping process moving without "
-"interruption, so the shipment reaches its destination in the shortest "
-"possible time."
 
 #: templates/landing.html:537
 msgid "کارشناسان فروش"
-msgstr "Sales experts"
+msgstr ""
 
 #: templates/landing.html:545
 msgid "الناز محافل"
-msgstr "Elnaz Mahafel"
+msgstr ""
 
 #: templates/landing.html:546 templates/landing.html:554
 msgid "کارشناس فروش"
-msgstr "Sales expert"
+msgstr ""
 
 #: templates/landing.html:553
 msgid "افسانه رحمانی"
-msgstr "Afsaneh Rahmani"
+msgstr ""
 
 #: templates/landing.html:563
-#,
-#| msgid "خدمات دیگر ارس تیر پارک"
 msgid "خدمات دیگر آذر تیر ارس"
-msgstr "Other services from Aras Tir Park"
+msgstr ""
 
 #: templates/landing.html:579
 msgid "واردات کالا"
-msgstr "Import of goods"
+msgstr ""
 
 #: templates/landing.html:582
 msgid "خدمات جامع واردات کالا از سراسر دنیا با کمترین هزینه و زمان."
 msgstr ""
-"Comprehensive import services from around the world at the lowest cost and "
-"time."
 
 #: templates/landing.html:600
 msgid "صادرات کالا"
-msgstr "Export of goods"
+msgstr ""
 
 #: templates/landing.html:603
 msgid "صادرات محصولات باکیفیت ایرانی به بازارهای بین المللی."
-msgstr "Export of high-quality Iranian products to international markets."
+msgstr ""
 
 #: templates/landing.html:621
 msgid "ترخیص کالا از گمرک"
-msgstr "Customs clearance"
+msgstr ""
 
 #: templates/landing.html:624
 msgid "انجام سریع تشریفات گمرکی و ترخیص کالا توسط کارشناسان مجرب."
 msgstr ""
-"Fast customs formalities and clearance handled by experienced specialists."
 
 #: templates/landing.html:642
 msgid "امور گمرکی و ترخیص"
-msgstr "Customs affairs and clearance"
+msgstr ""
 
 #: templates/landing.html:645
 msgid "مشاوره، تنظیم اظهارنامه و حل مشکلات گمرکی به صورت تخصصی."
 msgstr ""
-"Consulting, declaration preparation, and expert resolution of customs issues."
 
 #: templates/landing.html:662
 msgid "آلمان"
-msgstr "Germany"
+msgstr ""
 
 #: templates/landing.html:671
 msgid "هند"
-msgstr "India"
+msgstr ""
 
 #: templates/landing.html:674
 msgid "ژاپن"
-msgstr "Japan"
+msgstr ""
 
 #: templates/landing.html:681
-#, 
-#| msgid "حمل و نقل بین المللی ارس تیر پارک"
 msgid "حمل و نقل بین المللی آذر تیر ارس"
-msgstr "Aras Tir Park International Transport"
+msgstr ""
 
 #: templates/landing.html:683
-#, 
-#| msgid ""
-#| "اعتماد، تجربه و تخصص، سه اصل همیشگی ارس تیر پارک هستند. به همین دلیل، "
-#| "بسیاری از شرکت‌ها و بازرگانان، ارس تیر پارک را به عنوان شریک مطمئن خود در"
 msgid ""
 "اعتماد، تجربه و تخصص، سه اصل همیشگی آذر تیر ارس هستند. به همین دلیل، بسیاری "
 "از شرکت‌ها و بازرگانان، آذر تیر ارس را به عنوان شریک مطمئن خود در"
 msgstr ""
-"Trust, experience, and expertise are the three constant principles of Aras "
-"Tir Park. That is why many companies and traders choose Aras Tir Park as "
-"their reliable partner in"
 
 #: templates/landing.html:684
 msgid "حمل و نقل بین المللی"
-msgstr "international transport"
+msgstr ""
 
 #: templates/landing.html:685
 msgid ""
 "انتخاب می‌کنند. شرکتی که برای پشتیبانی هر مرحله‌ای از صادرات و واردات، بهترین "
 "گزینه است."
 msgstr ""
-". A company that is the best choice to support every stage of export and "
-"import."
 
 #: templates/landing.html:687
-#, 
-#| msgid ""
-#| "علاوه بر این، تیم لجستیک ارس تیر پارک با استفاده از مسیرهای جایگزین، "
-#| "فرایند حمل کالا را بدون وقفه ادامه می‌دهد تا محموله‌ها در کوتاه‌ترین زمان "
-#| "ممکن به مقصد برسند. ما تخصص در"
 msgid ""
 "علاوه بر این، تیم لجستیک آذر تیر ارس با استفاده از مسیرهای جایگزین، فرایند "
 "حمل کالا را بدون وقفه ادامه می‌دهد تا محموله‌ها در کوتاه‌ترین زمان ممکن به مقصد "
 "برسند. ما تخصص در"
 msgstr ""
-"In addition, Aras Tir Park's logistics team uses alternative routes to keep "
-"the shipping process moving without interruption, so shipments reach their "
-"destination in the shortest possible time. We specialize in"
 
 #: templates/landing.html:688
-#, 
-#| msgid "ترخیص کالا از گمرک"
 msgid "ترخیص کالا از مرز بازرگان"
-msgstr "Customs clearance"
+msgstr ""
 
 #: templates/landing.html:689
 msgid "و تخلیه کالا را داریم و شما می‌توانید در این زمینه نیز روی ما حساب کنید!"
-msgstr "and cargo unloading, and you can count on us for this as well!"
+msgstr ""
 
 #: templates/landing.html:691
 msgid "فروشگاه امام خمینی"
-msgstr "Imam Khomeini store"
+msgstr ""
 
 #: templates/landing.html:692
 msgid "داریم؛ و شما می‌توانید کالاهای خود را به صورت مستقیم در آنجا توزیع کنید."
-msgstr "here; you can distribute your goods there directly."
+msgstr ""
 
 #: templates/landing.html:694
 msgid "پاکت‌ساز"
-msgstr "Paktsaz"
+msgstr ""
 
 #: templates/landing.html:694
 msgid ""
 "تجربه‌ای مطمئن، سریع و حرفه‌ای از حمل و نقل بین المللی را به شما ارائه می‌دهد!"
 msgstr ""
-"offers you a reliable, fast, and professional international transport "
-"experience!"
 
 #: templates/landing.html:702
 msgid "آخرین"
-msgstr "Latest"
+msgstr ""
 
 #: templates/landing.html:702
 msgid "مقالات"
-msgstr "articles"
+msgstr ""
 
 #: templates/landing.html:704
-#, 
-#| msgid ""
-#| "با مطالعه وبلاگ حمل و نقل بین المللی ارس تیر پارک می‌توانید از تجربیات "
-#| "واقعی، تحلیل‌های دقیق و راهنمایی‌های عملی بهره‌مند شوید."
 msgid ""
 "با مطالعه وبلاگ حمل و نقل بین المللی آذر تیر ارس می‌توانید از تجربیات واقعی، "
 "تحلیل‌های دقیق و راهنمایی‌های عملی بهره‌مند شوید."
 msgstr ""
-"By reading the Aras Tir Park international transport blog, you can benefit "
-"from real experience, precise analysis, and practical guidance."
 
 #: templates/landing.html:718
 msgid "راهنمای کامل ارسال بار از ایران در سال ۱۴۰۴"
-msgstr "Complete guide to shipping cargo from Iran in 2025"
+msgstr ""
 
 #: templates/landing.html:720
 msgid ""
 "ارسال بار از ایران؛ راهنمای کامل حمل هوایی و دریایی به ایران. ارسال بار از "
 "ایران وقت موفق و به صرفه است..."
 msgstr ""
-"Shipping cargo from Iran; a complete guide to air and sea transport to Iran. "
-"Shipping cargo from Iran can be successful and cost-effective..."
 
 #: templates/landing.html:725
 msgid "ارس تیر پارک"
-msgstr "Aras Tir Park"
+msgstr ""
 
 #: templates/landing.html:733
 msgid "کراس استافینگ چیست؟"
-msgstr "What is cross-stuffing?"
+msgstr ""
 
 #: templates/landing.html:735
 msgid ""
 "کراس استافینگ چیست؟ یک روش حمل و نقل دریایی و لجستیک بین المللی است که در آن "
 "محموله از یک کانتینر..."
 msgstr ""
-"What is cross-stuffing? It is a sea transport and international logistics "
-"method in which cargo is moved from one container..."
 
 #: templates/landing.html:748
 msgid "راهنمای کامل Air Waybill در حمل و نقل بین المللی"
-msgstr "Complete guide to the Air Waybill in international transport"
+msgstr ""
 
 #: templates/landing.html:750
 msgid ""
 "بارنامه هوایی (AWB) یکی از مهم‌ترین اسناد حمل و نقل بین المللی است. در این "
 "مقاله با مفهوم Air Waybill..."
 msgstr ""
-"The Air Waybill (AWB) is one of the most important documents in "
-"international transport. In this article, we cover the concept of the Air "
-"Waybill..."
 
 #: templates/landing.html:763
 msgid "راهنمای استراتژیک بسته‌بندی در صادرات"
-msgstr "Strategic packaging guide for exports"
+msgstr ""
 
 #: templates/landing.html:765
 msgid ""
 "راهنمای استراتژیک بسته‌بندی در صادرات: مدیریت ریسک و حفاظت از سرمایه. "
 "بسته‌بندی به مثابه سیستم حفاظتی در زنجیره تأمین..."
 msgstr ""
-"Strategic packaging guide for exports: risk management and capital "
-"protection. Packaging acts as a protective system in the supply chain..."
 
 #: templates/landing.html:778
 msgid "تفاوت ترخیص از گمرک و ترانزیت"
-msgstr "Difference between customs clearance and transit"
+msgstr ""
 
 #: templates/landing.html:780
 msgid ""
 "آشنایی با تفاوت‌های اساسی بین پروسه ترخیص کالا و ترانزیت که هر کدام قوانین "
 "خاص خود را دارند."
 msgstr ""
-"Learn about the key differences between the customs clearance process and "
-"transit, each with its own rules."
 
 #: templates/landing.html:796
 msgid "درخواست مشاوره و استعلام قیمت"
-msgstr "Request a consultation and price quote"
+msgstr ""
 
 #: templates/landing.html:801
 msgid "نام و نام خانوادگی"
-msgstr "Full name"
+msgstr ""
 
 #: templates/landing.html:804
 msgid "شماره تماس"
-msgstr "Phone number"
+msgstr ""
 
 #: templates/landing.html:809
 msgid "شرح بار / توضیحات"
-msgstr "Cargo description / notes"
+msgstr ""
 
 #: templates/landing.html:812
 msgid "ثبت درخواست"
-msgstr "Submit request"
+msgstr ""
 
 #: venv/lib/python3.14/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"
