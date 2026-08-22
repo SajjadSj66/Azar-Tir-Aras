@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+<div class="top-bar">
+    <div class="container">
+        <!-- تلفن (سمت چپ در RTL) -->
+        <div class="top-phone">
+            <span>تماس با ما: 02188479170</span>
+        </div>
+
+        <!-- گروه راستی (سوییچر + شبکه‌های اجتماعی) -->
+        <div class="top-right-group">
+            <!-- سوییچر زبان -->
+            <div class="lang-switcher">
+                {% get_current_language as CURRENT_LANGUAGE %}
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    <button type="submit" name="language" value="fa"
+                            class="lang-btn {% if CURRENT_LANGUAGE == 'fa' %}active{% endif %}">
+                        فارسی
+                    </button>
+                    <button type="submit" name="language" value="en"
+                            class="lang-btn {% if CURRENT_LANGUAGE == 'en' %}active{% endif %}">
+                        EN
+                    </button>
+                </form>
+            </div>
+
+            <!-- شبکه‌های اجتماعی -->
+            <div class="top-socials">
+                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-whatsapp"></i>  <!-- اگر واتساپ هم دارید -->
+            </div>
+        </div>
+    </div>
+</div>

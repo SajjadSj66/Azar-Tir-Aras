@@ -1,73 +1,86 @@
-    <!-- ========== هدر ========== -->
-    <header class="header">
-        <div class="container">
+<!-- ============================================================ -->
+<!--  1)  لود فایل استایل (فایل اصلی شما)                          -->
+<!-- ============================================================ -->
+{% load static %} {% load i18n %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-            <!-- لوگو -->
-            <div class="logo">
-                <a href="#">
-                    <img src="https://takseez.com/wp-content/uploads/2026/07/logo-takseez-international-transport-1024x266.png"
-                         alt="تکسیز" />
-                </a>
-            </div>
+<!-- ============================================================ -->
+<!--  2)  استایل اختصاصی سوییچر زبان (می‌توانید داخل style.css    -->
+<!--      یا همینجا در <style> قرار دهید)                         -->
+<!-- ============================================================ -->
+<style>
+  /* ===== نوار بالایی (Top Bar) ===== */
+  .top-bar {
+    background-color: #157a6e; /* رنگ پس‌زمینه‌ی دلخواه */
+    padding: 8px 0;
+    color: #ffffff;
+    font-size: 0.9rem;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
 
-            <!-- دکمه همبرگر -->
-            <button class="menu-toggle" id="menuToggle" aria-label="منو">
-                <i class="fas fa-bars"></i>
-            </button>
+  /* کانتینر اصلی نوار */
+  .top-bar .container {
+    display: flex;
+    justify-content: space-between; /* تلفن چپ، بقیه راست */
+    align-items: center; /* عمودی وسط‌چین */
+    flex-wrap: wrap; /* برای موبایل به‌هم نریزد */
+    gap: 10px;
+  }
 
-            <!-- منوی ناوبری -->
-            <ul class="nav-menu" id="navMenu">
-                <!-- ۱. حمل و نقل بین‌المللی (زیرمنوی دوستونی) -->
-                <li>
-                    <a href="#">حمل و نقل بین‌المللی</a>
-                    <ul class="dropdown two-col">
-                        <li><a href="#">ارسال بار از دبی و برعکس</a></li>
-                        <li><a href="#">ارسال بار از چین و برعکس</a></li>
-                        <li><a href="#">ارسال بار از ترکیه و برعکس</a></li>
-                        <li><a href="#">ارسال بار از قطر و برعکس</a></li>
-                        <li><a href="#">ارسال بار از هنگ کنگ و برعکس</a></li>
-                        <li><a href="#">ارسال بار از روسیه و برعکس</a></li>
-                        <li><a href="#">ارسال بار از هند و برعکس</a></li>
-                        <li><a href="#">ارسال بار از مالزی و برعکس</a></li>
-                        <li><a href="#">ارسال بار از کره جنوبی و برعکس</a></li>
-                        <li><a href="#">ارسال بار از گرجستان و برعکس</a></li>
-                        <li><a href="#">ارسال بار از تایلند و برعکس</a></li>
-                        <li><a href="#">ارسال بار از تایوان و برعکس</a></li>
-                        <li><a href="#">ارسال بار از قزاقستان و برعکس</a></li>
-                    </ul>
-                </li>
+  /* ===== ریسپانسیو موبایل ===== */
+  @media (max-width: 600px) {
+    .top-bar .container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .top-right-group {
+      justify-content: center;
+      gap: 12px;
+    }
+  }
+</style>
 
-                <!-- ۲. روش‌های حمل و نقل (زیرمنوی معمولی) -->
-                <li>
-                    <a href="#">روش‌های حمل و نقل</a>
-                    <ul class="dropdown">
-                        <li><a href="#">حمل و نقل بین‌المللی به آسیا</a></li>
-                        <li><a href="#">حمل و نقل بین‌المللی به اروپا</a></li>
-                        <li><a href="#">حمل و نقل بین‌المللی به آفریقا</a></li>
-                        <li><a href="#">حمل و نقل بین‌المللی به آمریکا و کانادا</a></li>
-                        <li><a href="#">حمل و نقل بین‌المللی به استرالیا</a></li>
-                        <li><a href="#">حمل و نقل بین‌المللی به خاورمیانه</a></li>
-                    </ul>
-                </li>
+{% include 'top_bar.html' %}
 
-                <!-- ۳. خدمات تکسیز -->
-                <li><a href="#">خدمات تکسیز</a></li>
+<!-- ============================================================ -->
+<!--  4)  هدر اصلی (منوی جدید)                                    -->
+<!-- ============================================================ -->
+<header class="header">
+  <div class="container">
+    <!-- لوگو -->
+    <div class="logo">
+      <a href="#">
+        <span>AZAR TIR ARAS</span> <i class="fas fa-plane-departure"></i>
+      </a>
+    </div>
 
-                <!-- ۴. مجله تکسیز -->
-                <li><a href="#">مجله تکسیز</a></li>
+    <!-- دکمه همبرگر (موبایل) -->
+    <button class="menu-toggle" id="menuToggle" aria-label="منو">☰</button>
 
-                <!-- ۵. تماس با ما (فعال) -->
-                <li><a href="#" class="active">تماس با ما</a></li>
-
-                <!-- ۶. استخدام در تکسیز (در موبایل نمایش داده شود) -->
-                <li class="mobile-only"><a href="#">استخدام در تکسیز</a></li>
-            </ul>
-
-            <!-- دکمه‌های سمت چپ -->
-            <div class="header-actions">
-                <a href="#" class="btn-inquiry">استعلام</a>
-                <a href="#" class="btn btn-primary">درخواست بار</a>
-            </div>
-
-        </div>
-    </header>
+    <!-- منوی اصلی -->
+    <ul class="nav-menu" id="navMenu">
+      <!-- آیتم ۱: حمل و نقل بین‌المللی -->
+      <li>
+        <a href="#">حمل و نقل بین‌المللی</a>
+      </li>
+      <!-- آیتم ۲: روش‌های حمل و نقل + زیرمنو -->
+      <li>
+        <a href="#">روش‌های حمل و نقل</a>
+        <ul class="dropdown">
+          <li><a href="{% url 'tarkibi' %}">حمل و نقل ترکیبی</a></li>
+          <li><a href="{% url 'ship' %}">حمل و نقل دریایی</a></li>
+          <li><a href="{% url 'truck' %}">حمل و نقل جاده‌ای</a></li>
+          <li><a href="{% url 'airplane' %}">حمل و نقل هوایی</a></li>
+          <li><a href="{% url 'train' %}">حمل و نقل ریلی</a></li>
+        </ul>
+      </li>
+      <!-- آیتم ۳: خدمات ارس تیر پارک -->
+      <li><a href="{% url 'service' %}">خدمات ما</a></li>
+      <li><a href="{% url 'aboutus' %}">درباره ما</a></li>
+      <!-- آیتم ۴: تماس با ما -->
+      <li><a href="{% url 'contact' %}">تماس با ما</a></li>
+    </ul>
+  </div>
+</header>

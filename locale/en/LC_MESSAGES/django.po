@@ -1,0 +1,209 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: aras-tir-park 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-15 00:00+0000\n"
+"PO-Revision-Date: 2026-08-15 00:00+0000\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "حمل و نقل بین المللی ارس تیر پارک راهکاری مطمئن"
+msgstr "International Transport – Aras Tir Park, A Reliable Solution"
+
+msgid "اطلاعات بیشتر"
+msgstr "More information"
+
+msgid "آمریکا"
+msgstr "USA"
+
+msgid "آلمان"
+msgstr "Germany"
+
+msgid "چین"
+msgstr "China"
+
+msgid "امارات"
+msgstr "UAE"
+
+msgid "حمل و نقل ترکیبی"
+msgstr "Combined transport"
+
+msgid "حمل و نقل دریایی"
+msgstr "Sea transport"
+
+msgid "حمل و نقل جاده‌ای"
+msgstr "Road transport"
+
+msgid "حمل و نقل هوایی"
+msgstr "Air transport"
+
+msgid "ارس تیر پارک"
+msgstr "Aras Tir Park"
+
+msgid "نامی که با اعتماد ساخته شد"
+msgstr "A name built on trust"
+
+msgid "ارس تیر پارک با سال‌ها تجربه در حمل‌ونقل بین‌المللی"
+msgstr "Aras Tir Park, with years of experience in international transport"
+
+msgid "مسیرهای زمینی"
+msgstr "land routes"
+
+msgid "تیم لجستیک ارس تیر پارک"
+msgstr "Aras Tir Park's logistics team"
+
+msgid "کارشناسان فروش"
+msgstr "Sales experts"
+
+msgid "الناز محافل"
+msgstr "Elnaz Mahafel"
+
+msgid "کارشناس فروش"
+msgstr "Sales expert"
+
+msgid "افسانه رحمانی"
+msgstr "Afsaneh Rahmani"
+
+msgid "خدمات دیگر ارس تیر پارک"
+msgstr "Other services from Aras Tir Park"
+
+msgid "واردات کالا"
+msgstr "Import of goods"
+
+msgid "صادرات کالا"
+msgstr "Export of goods"
+
+msgid "ترخیص کالا از گمرک"
+msgstr "Customs clearance"
+
+msgid "امور گمرکی و ترخیص"
+msgstr "Customs affairs and clearance"
+
+msgid "هند"
+msgstr "India"
+
+msgid "ژاپن"
+msgstr "Japan"
+
+msgid "ترکیه"
+msgstr "Turkey"
+
+msgid "حمل و نقل بین المللی ارس تیر پارک"
+msgstr "Aras Tir Park International Transport"
+
+msgid "حمل و نقل بین المللی"
+msgstr "international transport"
+
+msgid "ترخیص کالا از مرز بازرگان"
+msgstr "customs clearance at the Bazargan border"
+
+msgid "فروشگاه امام خمینی"
+msgstr "Imam Khomeini store"
+
+msgid "پاکت‌ساز"
+msgstr "Paktsaz"
+
+msgid "تجربه‌ای مطمئن، سریع و حرفه‌ای از حمل و نقل بین المللی را به شما ارائه می‌دهد!"
+msgstr "offers you a reliable, fast, and professional international transport experience!"
+
+msgid "آخرین"
+msgstr "Latest"
+
+msgid "مقالات"
+msgstr "articles"
+
+msgid "راهنمای کامل ارسال بار از ایران در سال ۱۴۰۴"
+msgstr "Complete guide to shipping cargo from Iran in 2025"
+
+msgid "کراس استافینگ چیست؟"
+msgstr "What is cross-stuffing?"
+
+msgid "راهنمای کامل Air Waybill در حمل و نقل بین المللی"
+msgstr "Complete guide to the Air Waybill in international transport"
+
+msgid "راهنمای استراتژیک بسته‌بندی در صادرات"
+msgstr "Strategic packaging guide for exports"
+
+msgid "تفاوت ترخیص از گمرک و ترانزیت"
+msgstr "Difference between customs clearance and transit"
+
+msgid "درخواست مشاوره و استعلام قیمت"
+msgstr "Request a consultation and price quote"
+
+msgid "نام و نام خانوادگی"
+msgstr "Full name"
+
+msgid "شماره تماس"
+msgstr "Phone number"
+
+msgid "شرح بار / توضیحات"
+msgstr "Cargo description / notes"
+
+msgid "ثبت درخواست"
+msgstr "Submit request"
+
+msgid "خدمات حمل و نقل بین المللی ارس تیر پارک برای حمل و نقل محصولات و کالاها در سراسر جهان طراحی شده است. ما با استفاده از تیم متخصص و شبکه گسترده، خدمات خود را در کمترین زمان ارائه می‌دهیم."
+msgstr "Aras Tir Park's international transport services are designed for shipping products and goods around the world. Using our specialized team and wide network, we deliver our services in the shortest possible time."
+
+msgid "انواع روش‌های حمل و نقل در ارس تیر پارک"
+msgstr "Types of transport methods at Aras Tir Park"
+
+msgid "در دنیای امروز، سرعت، امنیت و پیدا کردن بهترین مسیر، مهم‌ترین بخش هر فرآیند حمل کالا است."
+msgstr "In today's world, speed, security, and finding the best route are the most important parts of any shipping process."
+
+msgid "، شبکه‌ای گسترده از"
+msgstr ", has provided a wide network of"
+
+msgid "، دریایی و هوایی را در اختیار کسب‌وکارها قرار داده تا ارسال کالا از سراسر جهان، بدون دغدغه انجام شود. یکی از مهم‌ترین مزیت‌های ارس تیر پارک دسترسی به مسیرهای حمل متنوع و شبکه گسترده شرکای بین‌المللی است. به همین دلیل، حتی اگر یک مسیر با محدودیت یا مانعی روبه‌رو شود،"
+msgstr ", sea, and air to businesses, so that shipping goods from anywhere in the world can happen worry-free. One of the most important advantages of Aras Tir Park is access to diverse shipping routes and a wide network of international partners. That is why, even if one route faces a limitation or obstacle,"
+
+msgid " با استفاده از مسیرهای جایگزین، فرآیند حمل کالا را بدون وقفه ادامه می‌دهد تا محموله در کوتاه‌ترین زمان ممکن به مقصد برسد."
+msgstr " uses alternative routes to keep the shipping process moving without interruption, so the shipment reaches its destination in the shortest possible time."
+
+msgid "خدمات جامع واردات کالا از سراسر دنیا با کمترین هزینه و زمان."
+msgstr "Comprehensive import services from around the world at the lowest cost and time."
+
+msgid "صادرات محصولات باکیفیت ایرانی به بازارهای بین المللی."
+msgstr "Export of high-quality Iranian products to international markets."
+
+msgid "انجام سریع تشریفات گمرکی و ترخیص کالا توسط کارشناسان مجرب."
+msgstr "Fast customs formalities and clearance handled by experienced specialists."
+
+msgid "مشاوره، تنظیم اظهارنامه و حل مشکلات گمرکی به صورت تخصصی."
+msgstr "Consulting, declaration preparation, and expert resolution of customs issues."
+
+msgid "اعتماد، تجربه و تخصص، سه اصل همیشگی ارس تیر پارک هستند. به همین دلیل، بسیاری از شرکت‌ها و بازرگانان، ارس تیر پارک را به عنوان شریک مطمئن خود در"
+msgstr "Trust, experience, and expertise are the three constant principles of Aras Tir Park. That is why many companies and traders choose Aras Tir Park as their reliable partner in"
+
+msgid "انتخاب می‌کنند. شرکتی که برای پشتیبانی هر مرحله‌ای از صادرات و واردات، بهترین گزینه است."
+msgstr ". A company that is the best choice to support every stage of export and import."
+
+msgid "علاوه بر این، تیم لجستیک ارس تیر پارک با استفاده از مسیرهای جایگزین، فرایند حمل کالا را بدون وقفه ادامه می‌دهد تا محموله‌ها در کوتاه‌ترین زمان ممکن به مقصد برسند. ما تخصص در"
+msgstr "In addition, Aras Tir Park's logistics team uses alternative routes to keep the shipping process moving without interruption, so shipments reach their destination in the shortest possible time. We specialize in"
+
+msgid "و تخلیه کالا را داریم و شما می‌توانید در این زمینه نیز روی ما حساب کنید!"
+msgstr "and cargo unloading, and you can count on us for this as well!"
+
+msgid "داریم؛ و شما می‌توانید کالاهای خود را به صورت مستقیم در آنجا توزیع کنید."
+msgstr "here; you can distribute your goods there directly."
+
+msgid "با مطالعه وبلاگ حمل و نقل بین المللی ارس تیر پارک می‌توانید از تجربیات واقعی، تحلیل‌های دقیق و راهنمایی‌های عملی بهره‌مند شوید."
+msgstr "By reading the Aras Tir Park international transport blog, you can benefit from real experience, precise analysis, and practical guidance."
+
+msgid "ارسال بار از ایران؛ راهنمای کامل حمل هوایی و دریایی به ایران. ارسال بار از ایران وقت موفق و به صرفه است..."
+msgstr "Shipping cargo from Iran; a complete guide to air and sea transport to Iran. Shipping cargo from Iran can be successful and cost-effective..."
+
+msgid "کراس استافینگ چیست؟ یک روش حمل و نقل دریایی و لجستیک بین المللی است که در آن محموله از یک کانتینر..."
+msgstr "What is cross-stuffing? It is a sea transport and international logistics method in which cargo is moved from one container..."
+
+msgid "بارنامه هوایی (AWB) یکی از مهم‌ترین اسناد حمل و نقل بین المللی است. در این مقاله با مفهوم Air Waybill..."
+msgstr "The Air Waybill (AWB) is one of the most important documents in international transport. In this article, we cover the concept of the Air Waybill..."
+
+msgid "راهنمای استراتژیک بسته‌بندی در صادرات: مدیریت ریسک و حفاظت از سرمایه. بسته‌بندی به مثابه سیستم حفاظتی در زنجیره تأمین..."
+msgstr "Strategic packaging guide for exports: risk management and capital protection. Packaging acts as a protective system in the supply chain..."
+
+msgid "آشنایی با تفاوت‌های اساسی بین پروسه ترخیص کالا و ترانزیت که هر کدام قوانین خاص خود را دارند."
+msgstr "Learn about the key differences between the customs clearance process and transit, each with its own rules."

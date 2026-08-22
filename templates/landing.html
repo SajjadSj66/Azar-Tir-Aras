@@ -1,984 +1,820 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+<!-- ===== HERO SECTION ===== -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تکسیز - حمل و نقل بین المللی</title>
+  <style>
+    /* تنظیمات پایه و متغیرها */
+    :root {
+      --primary-red: #c92a2a;
+      --dark-blue: #1a4b7c;
+      --gray-light: #f0f0f0;
+      --text-dark: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      direction: {% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %};
+      text-align: {% if LANGUAGE_BIDI %}right{% else %}left{% endif %};
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .services-section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 28px;
+      color: #d64d30;
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+    }
+
+    .section-header h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 3px;
+      background-color: #d64d30;
+      margin: 10px auto 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      cursor: pointer;
+      padding-bottom: 30px;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+    }
+
+    .service-img {
+      height: 160px;
+      width: 100%;
+      object-fit: cover;
+      background-color: #ddd;
+    }
+
+    .service-content {
+      position: relative;
+      background: #e6e6e6;
+      margin: -30px 15px 15px 15px;
+      padding: 20px 10px 10px;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.3s ease;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card:hover .service-content {
+      background: #ffffff;
+      box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .service-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 5px;
+    }
+
+    .service-title svg {
+      width: 16px;
+      height: 16px;
+      fill: #d64d30;
+    }
+
+    .service-hover-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #555;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .service-card:hover .service-hover-text {
+      opacity: 1;
+    }
+
+    .map-section {
+      padding: 60px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 40px;
+    }
+
+    .map-container {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+    }
+
+    .map-image {
+      width: 100%;
+      height: auto;
+      filter: grayscale(100%) opacity(0.1);
+      border-radius: 15px;
+    }
+
+    .map-pin {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background-color: #f03e3e;
+      border-radius: 50%;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 4px rgba(240, 62, 62, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .map-pin::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid #f03e3e;
+    }
+
+    .map-pin:hover {
+      transform: translate(-50%, -100%) scale(1.3);
+      background-color: #d64d30;
+    }
+
+    .pin-tooltip {
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      color: #d64d30;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .map-pin:hover .pin-tooltip {
+      opacity: 1;
+      bottom: 140%;
+    }
+
+    .map-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .map-content h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #d64d30;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .map-content p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #666;
+    }
+
+    .map-content .highlight {
+      color: #c92a2a;
+      font-weight: bold;
+    }
+
+    .blog-section {
+      background-color: var(--dark-blue);
+      padding: 40px 20px;
+      margin-top: 50px;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .blog-header h2 {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .blog-header h2 span {
+      color: #f03e3e;
+    }
+
+    .blog-header p {
+      color: #c0d1e0;
+      font-size: 14px;
+      max-width: 700px;
+      margin: 10px auto;
+    }
+
+    .blog-scroll-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .blog-scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .blog-card {
+      flex: 0 0 280px;
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 15px;
+      transition: transform 0.3s;
+      position: relative;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .blog-img-wrapper {
+      position: relative;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .blog-img-wrapper img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .blog-date-badge {
+      position: absolute;
+      bottom: 0;
+      left: 10px;
+      background: #f03e3e;
+      color: #fff;
+      padding: 5px 12px;
+      font-size: 12px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      font-weight: bold;
+    }
+
+    .blog-card h3 {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .blog-card p {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    .blog-logo-watermark {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      color: #aaa;
+      font-size: 10px;
+    }
+
     
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;800&display=swap" rel="stylesheet">
+
+    @media (max-width: 992px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .map-section {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .map-content h2 {
+        display: block;
+      }
+      .blog-card {
+        flex: 0 0 260px;
+      }
+    }
+
     
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        :root {
-            --primary-blue: #0b4d7c;
-            --dark-blue: #083d64;
-            --secondary-blue: #1a6ba6;
-            --btn-orange: #d2481a;
-            --btn-red: #df2e2e;
-            --bg-gray: #f3f4f6;
-            --white: #ffffff;
-            --text-dark: #333333;
-            --text-light: #f8f9fa;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Vazirmatn', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-gray);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header & Top Bar */
-        .top-bar {
-            background-color: var(--btn-orange);
-            color: var(--white);
-            padding: 8px 0;
-            font-size: 0.85rem;
-        }
-
-        .top-bar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-socials i {
-            margin-left: 15px;
-            cursor: pointer;
-        }
-
-        .top-phone span {
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        /* Navbar */
-        nav {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
-            color: #ddd;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            font-family: Arial, sans-serif;
-            color: var(--white);
-            letter-spacing: -1px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .logo i {
-            font-size: 1.5rem;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--white);
-            border-radius: 2px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
-            color: var(--white);
-            padding: 60px 0;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .hero-text h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .hero-text p {
-            font-size: 1rem;
-            margin-bottom: 25px;
-            color: #d1e3f0;
-        }
-
-        .btn-primary {
-            background-color: var(--btn-orange);
-            color: var(--white);
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: #b63b14;
-        }
-
-        .hero-right {
-            flex: 1.2;
-            min-width: 350px;
-        }
-
-        .banner-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            color: var(--text-dark);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .banner-card .bg-img {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://placehold.co/600x300/transparent/transparent?text=Banner+Background');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-        }
-
-        .banner-content h3 {
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-        }
-
-        .banner-input-group {
-            display: flex;
-            width: 100%;
-            margin-top: 15px;
-            gap: 10px;
-        }
-
-        .banner-input-group input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        .banner-input-group button {
-            background-color: var(--secondary-blue);
-            color: var(--white);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .flags-row {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .flag-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--white);
-            font-size: 0.8rem;
-        }
-
-        .flag-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--white);
-            border: 3px solid rgba(255,255,255,0.3);
-            margin-bottom: 5px;
-            object-fit: cover;
-        }
-
-        /* Transport Methods */
-        .methods-section {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--primary-blue);
-            font-weight: 800;
-            font-size: 1.8rem;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .section-title span {
-            color: var(--btn-orange);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background: var(--btn-orange);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-        }
-
-        .service-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        }
-
-        .service-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .service-title {
-            padding: 15px;
-            font-weight: bold;
-            color: var(--primary-blue);
-        }
-
-        /* Text Section */
-        .about-text-section {
-            padding: 30px 0 60px;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .about-text-section h2 {
-            color: var(--btn-orange);
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .about-text-section p {
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        /* Team Section */
-        .team-section {
-            background-color: var(--primary-blue);
-            padding: 60px 0;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .team-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .team-card:hover {
-            transform: scale(1.03);
-        }
-
-        .team-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .team-card h4 {
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-        }
-
-        .team-card p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Map Section */
-        .map-section {
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .map-section img {
-            max-width: 100%;
-            height: auto;
-            opacity: 0.8;
-        }
-
-        .map-section h3 {
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        /* Blog Section */
-        .blog-section {
-            background-color: var(--primary-blue);
-            padding: 60px 0;
-            color: var(--white);
-        }
-
-        .blog-section .section-title {
-            color: var(--white);
-        }
-        
-        .blog-section .section-title::after {
-            background: var(--white);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .blog-card {
-            background: var(--white);
-            color: var(--text-dark);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .blog-img-wrap {
-            position: relative;
-        }
-
-        .blog-img-wrap img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-        }
-
-        .blog-date {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--btn-red);
-            color: var(--white);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            line-height: 1;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .blog-content {
-            padding: 15px;
-        }
-
-        .blog-content h4 {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            color: var(--primary-blue);
-        }
-
-        .blog-content p {
-            font-size: 0.85rem;
-            color: #555;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* Form / Quote Section */
-        .form-section {
-            padding: 60px 0;
-            background: var(--bg-gray);
-        }
-
-        .form-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .form-box {
-            flex: 1;
-            min-width: 350px;
-            background: var(--white);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group.full {
-            grid-column: span 2;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 0.95rem;
-            background: #fff;
-            outline: none;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            height: 100px;
-        }
-
-        .submit-btn {
-            background: var(--btn-orange);
-            color: var(--white);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #b63b14;
-        }
-
-        .form-image {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .form-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-blue);
-            color: #ccc;
-            padding: 50px 0 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-col h3 {
-            color: var(--white);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .footer-col p {
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-
-        .footer-col .logo {
-            margin-bottom: 10px;
-            justify-content: flex-end; /* Align logo right in RTL */
-        }
-
-        .contact-info {
-            list-style: none;
-            margin-top: 15px;
-        }
-        
-        .contact-info li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-info i {
-            width: 20px;
-            color: var(--btn-orange);
-        }
-
-        .footer-socials {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .footer-socials a {
-            background: rgba(255,255,255,0.1);
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-
-        .footer-socials a:hover {
-            background: var(--btn-orange);
-        }
-
-        .copyright {
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                background: var(--primary-blue);
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-                gap: 15px;
-                align-items: flex-start;
-                border-top: 1px solid rgba(255,255,255,0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hero-content {
-                flex-direction: column-reverse;
-            }
-            
-            .hero-text {
-                text-align: center;
-            }
-            
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-right {
-                min-width: auto;
-                width: 100%;
-            }
-
-            .banner-input-group {
-                flex-direction: column;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-group.full {
-                grid-column: span 1;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: right;
-            }
-        }
-    </style>
+  </style>
 </head>
-<body>
 
+{% block content %}
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1>{% trans "حمل و نقل بین المللی آذر تیر ارس راهکاری مطمئن" %}</h1>
+      <p>
+        {% blocktrans %}خدمات حمل و نقل بین المللی آذر تیر ارس برای حمل و نقل محصولات و کالاها در سراسر جهان طراحی شده است. ما با استفاده از تیم متخصص و شبکه گسترده، خدمات خود را در کمترین زمان ارائه می‌دهیم.{% endblocktrans %}
+      </p>
+      <a href="{% url 'contact' %}" class="btn-primary">{% trans "اطلاعات بیشتر" %}</a>
+    </div>
+    <div class="hero-right">
+      <div class="banner-card">
+        <img src="{% static 'img/bann.png' %}" class="" alt="banner" />
+      </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>حمل و نقل بین المللی تکسیز راهکاری مطمئن</h1>
-                <p>خدمات حمل و نقل بین المللی تکسیز برای حمل و نقل محصولات و کالاها در سراسر جهان طراحی شده است. ما با استفاده از تیم متخصص و شبکه گسترده، خدمات خود را در کمترین زمان ارائه می‌دهیم.</p>
-                <button class="btn-primary">اطلاعات بیشتر</button>
-            </div>
-            <div class="hero-right">
-                <div class="banner-card">
-                    <div class="bg-img"></div>
-                    <div class="banner-content">
-                        <h3>عضویت اتاق بازرگانی ایران و آلمان</h3>
-                        <div class="banner-input-group">
-                            <input type="text" placeholder="شماره تماس یا ایمیل خود را وارد کنید...">
-                            <button>ثبت درخواست</button>
-                        </div>
-                        <div style="margin-top: 10px; display:flex; justify-content:flex-end;">
-                            <img src="https://placehold.co/150x50/transparent/1565c0?text=IHK+Logo" alt="Chamber Logo" style="max-height:40px;">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flags-row">
-                    <div class="flag-item">
-                        <img src="https://placehold.co/50x50/eee/333?text=USA" class="flag-img" alt="USA">
-                        <span>آمریکا</span>
-                    </div>
-                    <div class="flag-item">
-                        <img src="https://placehold.co/50x50/eee/333?text=GER" class="flag-img" alt="Germany">
-                        <span>آلمان</span>
-                    </div>
-                    <div class="flag-item">
-                        <img src="https://placehold.co/50x50/eee/333?text=UK" class="flag-img" alt="UK">
-                        <span>انگلیس</span>
-                    </div>
-                    <div class="flag-item">
-                        <img src="https://placehold.co/50x50/eee/333?text=SWE" class="flag-img" alt="Sweden">
-                        <span>سوئد</span>
-                    </div>
-                    <div class="flag-item">
-                        <img src="https://placehold.co/50x50/eee/333?text=CHN" class="flag-img" alt="China">
-                        <span>چین</span>
-                    </div>
-                    <div class="flag-item">
-                        <img src="https://placehold.co/50x50/eee/333?text=UAE" class="flag-img" alt="UAE">
-                        <span>امارات</span>
-                    </div>
-                </div>
-            </div>
+      <div class="flags-row">
+        <div class="flag-item">
+          <img src="{% static 'img/Turkey.svg' %}" class="flag-img" alt="TURKEY" />
+          <span>{% trans "ترکیه" %}</span>
         </div>
-    </section>
-
-    <!-- Transport Methods -->
-    <section class="methods-section container">
-        <h2 class="section-title">انواع روش‌های حمل و نقل در <span>تکسیز</span></h2>
-        <div class="grid-cards">
-            <div class="service-card">
-                <img src="https://placehold.co/400x300/0b4d7c/fff?text=حمل+و+نقل+ترکیبی" alt="Combined Transport">
-                <div class="service-title">حمل و نقل ترکیبی</div>
-            </div>
-            <div class="service-card">
-                <img src="https://placehold.co/400x300/0b4d7c/fff?text=حمل+و+نقل+دریایی" alt="Sea Transport">
-                <div class="service-title">حمل و نقل دریایی</div>
-            </div>
-            <div class="service-card">
-                <img src="https://placehold.co/400x300/0b4d7c/fff?text=حمل+و+نقل+جاده‌ای" alt="Road Transport">
-                <div class="service-title">حمل و نقل جاده‌ای</div>
-            </div>
-            <div class="service-card">
-                <img src="https://placehold.co/400x300/0b4d7c/fff?text=حمل+و+نقل+هوایی" alt="Air Transport">
-                <div class="service-title">حمل و نقل هوایی</div>
-            </div>
+        <div class="flag-item">
+          <img
+            src="{% static 'img/russia.webp' %}"
+            class="flag-img"
+            alt="RUSSIA"
+          />
+          <span>{% trans "روسیه" %}</span>
         </div>
-    </section>
+        <div class="flag-item">
+          <img
+            src="{% static 'img/china.png' %}"
+            class="flag-img"
+            alt="China"
+          />
+          <span>{% trans "چین" %}</span>
+        </div>
+        <div class="flag-item">
+          <img src="{% static 'img/uae.jpg' %}" class="flag-img" alt="UAE" />
+          <span>{% trans "امارات" %}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- About Text -->
-    <div class="container about-text-section">
-        <h2>تکسیز نامی که با اعتماد ساخته شد</h2>
+<!-- ===== SECTIONS (SERVICES, TEAM, BLOG, FORM, FOOTER) ===== -->
+<section class="methods-section container">
+  <h2 class="section-title">
+    {% blocktrans %}انواع روش‌های حمل و نقل در آذر تیر ارس{% endblocktrans %}
+  </h2>
+  <div class="grid-cards">
+    <div class="service-card">
+      <a href="{% url 'tarkibi' %}">
+        <img src="{% static 'img/tarki.webp' %}" alt="Combined Transport" />
+        <div class="service-title">{% trans "حمل و نقل ترکیبی" %}</div>
+      </a>
+    </div>
+    <div class="service-card">
+      <a href="{% url 'train' %}">
+        <img src="{% static 'img/train.jpg' %}" alt="Train Transport" />
+        <div class="service-title">{% trans "حمل و نقل ریلی" %}</div>
+      </a>
+    </div>
+    <div class="service-card">
+      <a href="{% url 'ship' %}">
+        <img src="{% static 'img/ships.jpg' %}" alt="Sea Transport" />
+        <div class="service-title">{% trans "حمل و نقل دریایی" %}</div>
+      </a>
+    </div>
+    <div class="service-card">
+      <a href="{% url 'truck' %}">
+        <img src="{% static 'img/truc.jpg' %}" alt="Road Transport" />
+        <div class="service-title">{% trans "حمل و نقل جاده‌ای" %}</div>
+      </a>
+    </div>
+    <div class="service-card">
+      <a href="{% url 'airplane' %}">
+        <img src="{% static 'img/air.jpg' %}" alt="Air Transport" />
+        <div class="service-title">{% trans "حمل و نقل هوایی" %}</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div
+    class="elementor-element elementor-element-17bee26 e-con-full e-flex e-con e-child"
+    data-id="17bee26"
+    data-element_type="container"
+    data-e-type="container"
+    data-settings='{"ekit_has_onepagescroll_dot":"yes"}'
+  >
+    <div
+      class="elementor-element elementor-element-9f1173e elementor-widget elementor-widget-elementskit-heading"
+      data-id="9f1173e"
+      data-element_type="widget"
+      data-e-type="widget"
+      data-settings='{"ekit_we_effect_on":"none"}'
+      data-widget_type="elementskit-heading.default"
+    >
+      <div class="elementor-widget-container">
+        <div class="ekit-wid-con">
+          <div
+            class="ekit-heading elementskit-section-title-wraper text_center ekit_heading_tablet- ekit_heading_mobile-text_center"
+          >
+            <h2 class="ekit-heading--title elementskit-section-title">
+              {% trans "آذر تیر ارس" %} <span><span>{% trans "نامی که با اعتماد ساخته شد" %}</span></span>
+            </h2>
+            <div
+              class="ekit_heading_separetor_wraper ekit_heading_elementskit-border-divider ekit-dotted"
+            >
+              <div class="elementskit-border-divider ekit-dotted"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="elementor-element elementor-element-1c9fe45 text-center color-scheme-inherit elementor-widget elementor-widget-text-editor"
+      data-id="1c9fe45"
+      data-element_type="widget"
+      data-e-type="widget"
+      data-settings='{"ekit_we_effect_on":"none"}'
+      data-widget_type="text-editor.default"
+    >
+      <div class="elementor-widget-container">
         <p>
-            در دنیای امروز صنعت، اهمیت و پیچیدگی‌های حمل و نقل بین‌المللی، نقش بسیار مهمی در زنجیره تامین ایفا می‌کند. تکسیز با بهره‌گیری از تیمی متخصص و کارآزموده، به عنوان یک شریک تجاری مطمئن، خدمات خود را به شما عزیزان ارائه می‌دهد. ما همواره تلاش کرده‌ایم تا با اتخاذ بهترین روش‌های ارتباطی و بهره‌گیری از جدیدترین تکنولوژی‌ها، فرآیند حمل کالا را برای شما تسهیل کنیم.
+          {% blocktrans %}در دنیای امروز، سرعت، امنیت و پیدا کردن بهترین مسیر، مهم‌ترین بخش هر فرآیند حمل کالا است.{% endblocktrans %}
+          <strong>{% trans "آذر تیر ارس با سال‌ها تجربه در حمل‌ونقل بین‌المللی" %}</strong>{% blocktrans %}، شبکه‌ای گسترده از{% endblocktrans %}
+          <a
+            href="{% url 'truck' %}"
+            >{% trans "مسیرهای زمینی" %}</a
+          >{% blocktrans %}، دریایی و هوایی را در اختیار کسب‌وکارها قرار داده تا ارسال کالا از سراسر جهان، بدون دغدغه انجام شود. یکی از مهم‌ترین مزیت‌های آذر تیر ارس دسترسی به مسیرهای حمل متنوع و شبکه گسترده شرکای بین‌المللی است. به همین دلیل، حتی اگر یک مسیر با محدودیت یا مانعی روبه‌رو شود،{% endblocktrans %}
+          <strong>{% trans "تیم لجستیک آذر تیر ارس" %}</strong>{% blocktrans %} با استفاده از مسیرهای جایگزین، فرآیند حمل کالا را بدون وقفه ادامه می‌دهد تا محموله در کوتاه‌ترین زمان ممکن به مقصد برسد.{% endblocktrans %}
         </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team-section">
+  <div class="container">
+    <h2 class="section-title" style="color: #221c1c">
+      {% trans "کارشناسان فروش" %} <span style="color: var(--btn-orange)">{% trans "آذر تیر ارس" %}</span>
+    </h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <img
+          src="https://placehold.co/300x300/eee/333?text=Elmaz"
+          alt="Elmaz"
+        />
+        <h4>{% trans "الناز محافل" %}</h4>
+        <p>{% trans "کارشناس فروش" %}</p>
+      </div>
+      <div class="team-card">
+        <img
+          src="https://placehold.co/300x300/eee/333?text=Afsaneh"
+          alt="Afsaneh"
+        />
+        <h4>{% trans "افسانه رحمانی" %}</h4>
+        <p>{% trans "کارشناس فروش" %}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- بخش اول: خدمات -->
+<section class="services-section">
+  <div class="section-header">
+    <h2>{% trans "خدمات دیگر آذر تیر ارس" %}</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <img
+        src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&q=80&w=400"
+        alt="واردات"
+        class="service-img"
+      />
+      <div class="service-content">
+        <div class="service-title">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"
+            />
+          </svg>
+          {% trans "واردات کالا" %}
+        </div>
+        <div class="service-hover-text">
+          {% blocktrans %}خدمات جامع واردات کالا از سراسر دنیا با کمترین هزینه و زمان.{% endblocktrans %}
+        </div>
+      </div>
     </div>
 
-    <!-- Team Section -->
-    <section class="team-section">
-        <div class="container">
-            <h2 class="section-title" style="color:#fff;">کارشناسان فروش <span style="color:var(--btn-orange);">تکسیز</span></h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <img src="https://placehold.co/300x300/eee/333?text=Elmaz+Mahafel" alt="Elmaz Mahafel">
-                    <h4>الناز محافل</h4>
-                    <p>کارشناس فروش</p>
-                </div>
-                <div class="team-card">
-                    <img src="https://placehold.co/300x300/eee/333?text=Afsaneh+Rahmani" alt="Afsaneh Rahmani">
-                    <h4>افسانه رحمانی</h4>
-                    <p>کارشناس فروش</p>
-                </div>
-                <div class="team-card">
-                    <img src="https://placehold.co/300x300/eee/333?text=Parsa+Allahverdi" alt="Parsa Allahverdi">
-                    <h4>پارسا الله‌وردی</h4>
-                    <p>کارشناس فروش</p>
-                </div>
-            </div>
+    <div class="service-card">
+      <img
+        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=400"
+        alt="صادرات"
+        class="service-img"
+      />
+      <div class="service-content">
+        <div class="service-title">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"
+            />
+          </svg>
+          {% trans "صادرات کالا" %}
         </div>
-    </section>
-
-    <!-- Other Services -->
-    <section class="methods-section container">
-        <h2 class="section-title">خدمات دیگر <span>تکسیز</span></h2>
-        <div class="grid-cards">
-            <div class="service-card">
-                <img src="https://placehold.co/400x300/eee/333?text=ترخیص+کالا" alt="Customs Clearance">
-                <div class="service-title">ترخیص کالا</div>
-                <div style="padding:0 15px 15px; font-size:0.8rem; color:#666;">انجام کلیه امور گمرکی و ترخیص کالا از گمرکات</div>
-            </div>
-            <div class="service-card">
-                <img src="https://placehold.co/400x300/eee/333?text=صادرات+کالا" alt="Export Services">
-                <div class="service-title">صادرات کالا</div>
-                <div style="padding:0 15px 15px; font-size:0.8rem; color:#666;">صادرات انواع کالاها به بازارهای جهانی</div>
-            </div>
-            <div class="service-card">
-                <img src="https://placehold.co/400x300/eee/333?text=خدمات+درب+به+درب" alt="Door to Door">
-                <div class="service-title">خدمات درب به درب</div>
-                <div style="padding:0 15px 15px; font-size:0.8rem; color:#666;">حمل کالا از مبدا تا مقصد بدون دغدغه</div>
-            </div>
-            <div class="service-card">
-                <img src="https://placehold.co/400x300/eee/333?text=مشاوره+حمل+و+نقل" alt="Consulting">
-                <div class="service-title">مشاوره تخصصی</div>
-                <div style="padding:0 15px 15px; font-size:0.8rem; color:#666;">ارائه راهکارهای بهینه صادرات و واردات</div>
-            </div>
+        <div class="service-hover-text">
+          {% blocktrans %}صادرات محصولات باکیفیت ایرانی به بازارهای بین المللی.{% endblocktrans %}
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Map Section -->
-    <section class="container map-section">
-        <h3>حمل و نقل بین المللی <span style="color:var(--btn-orange);">تکسیز</span></h3>
-        <p>با تکسیز، تجربه‌ای مطمئن، سریع و حرفه‌ای از حمل و نقل بین‌المللی را رقم بزنید.</p>
-        <img src="https://placehold.co/900x400/ddd/999?text=World+Map+Illustration" alt="World Map">
-    </section>
-
-    <!-- Blog Section -->
-    <section class="blog-section">
-        <div class="container">
-            <h2 class="section-title">آخرین مقالات <span style="color:var(--btn-orange);">تکسیز</span></h2>
-            <p style="text-align:center; margin-bottom:30px;">با مطالعه مقالات ما می‌توانید با آخرین قوانین، اخبار و نکات حمل و نقل بین المللی آشنا شوید.</p>
-            
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-img-wrap">
-                        <img src="https://placehold.co/300x200/eee/333?text=Air+Freight" alt="Blog Image">
-                        <div class="blog-date"><span>02</span> <span style="font-size:0.6rem;">مهر</span></div>
-                    </div>
-                    <div class="blog-content">
-                        <h4>قزیت بار چیست؟ راهنمای کامل ارسال بار به خارج</h4>
-                        <p>در این مقاله به بررسی قزیت بار و روش‌های ارسال بار به خارج از کشور پرداخته‌ایم...</p>
-                        <a href="#" style="color:var(--primary-blue); font-size:0.8rem; display:block; margin-top:10px;">ادامه مطلب...</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-img-wrap">
-                        <img src="https://placehold.co/300x200/eee/333?text=Sea+Freight" alt="Blog Image">
-                        <div class="blog-date"><span>10</span> <span style="font-size:0.6rem;">مهر</span></div>
-                    </div>
-                    <div class="blog-content">
-                        <h4>دمواژ و دتنتشن در حمل و نقل بین المللی چیست؟</h4>
-                        <p>یکی از چالش‌های اصلی در حمل و نقل دریایی، هزینه‌های دمواژ و دتنتشن است...</p>
-                        <a href="#" style="color:var(--primary-blue); font-size:0.8rem; display:block; margin-top:10px;">ادامه مطلب...</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-img-wrap">
-                        <img src="https://placehold.co/300x200/eee/333?text=Airport+Logistics" alt="Blog Image">
-                        <div class="blog-date"><span>05</span> <span style="font-size:0.6rem;">مهر</span></div>
-                    </div>
-                    <div class="blog-content">
-                        <h4>راهنمای انتخاب بهترین شرکت حمل هوایی</h4>
-                        <p>انتخاب یک شرکت حمل هوایی مناسب می‌تواند هزینه‌های لجستیک شما را به شدت کاهش دهد...</p>
-                        <a href="#" style="color:var(--primary-blue); font-size:0.8rem; display:block; margin-top:10px;">ادامه مطلب...</a>
-                    </div>
-                </div>
-
-                <div class="blog-card">
-                    <div class="blog-img-wrap">
-                        <img src="https://placehold.co/300x200/eee/333?text=Customs+Law" alt="Blog Image">
-                        <div class="blog-date"><span>25</span> <span style="font-size:0.6rem;">شهریور</span></div>
-                    </div>
-                    <div class="blog-content">
-                        <h4>راهنمای کامل ارسال بار به اروپا در سال ۱۴۰۵</h4>
-                        <p>ارسال بار به اروپا نیازمند آگاهی از آخرین قوانین گمرکی و بیمه‌ای است...</p>
-                        <a href="#" style="color:var(--primary-blue); font-size:0.8rem; display:block; margin-top:10px;">ادامه مطلب...</a>
-                    </div>
-                </div>
-            </div>
+    <div class="service-card">
+      <img
+        src="https://images.unsplash.com/photo-1580674285054-bed31e140f07?auto=format&fit=crop&q=80&w=400"
+        alt="ترخیص"
+        class="service-img"
+      />
+      <div class="service-content">
+        <div class="service-title">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"
+            />
+          </svg>
+          {% trans "ترخیص کالا از گمرک" %}
         </div>
-    </section>
-
-    <!-- Form Section -->
-    <section class="form-section">
-        <div class="container form-container">
-            <div class="form-box">
-                <h3 style="color:var(--primary-blue); margin-bottom:20px; text-align:center;">درخواست مشاوره و استعلام قیمت</h3>
-                <form>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" placeholder="نام و نام خانوادگی">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="شماره تماس">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="email" placeholder="ایمیل">
-                        </div>
-                        <div class="form-group">
-                            <select>
-                                <option value="">نوع حمل</option>
-                                <option value="air">هوایی</option>
-                                <option value="sea">دریایی</option>
-                                <option value="road">جاده‌ای</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" placeholder="مبدا">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="مقصد">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group full">
-                            <input type="text" placeholder="HS Code / شماره تعرفه گمرکی">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group full">
-                            <textarea placeholder="شرح بار / توضیحات"></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="submit-btn">ثبت درخواست</button>
-                </form>
-            </div>
-            
-            <div class="form-image">
-                <img src="https://placehold.co/500x400/eee/333?text=Calculator+Illustration" alt="Calculation Image">
-            </div>
+        <div class="service-hover-text">
+          {% blocktrans %}انجام سریع تشریفات گمرکی و ترخیص کالا توسط کارشناسان مجرب.{% endblocktrans %}
         </div>
-    </section>
-</body>
-</html>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <img
+        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=400"
+        alt="گمرک"
+        class="service-img"
+      />
+      <div class="service-content">
+        <div class="service-title">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"
+            />
+          </svg>
+          {% trans "امور گمرکی و ترخیص" %}
+        </div>
+        <div class="service-hover-text">
+          {% blocktrans %}مشاوره، تنظیم اظهارنامه و حل مشکلات گمرکی به صورت تخصصی.{% endblocktrans %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- بخش اول پایین: نقشه -->
+<section class="map-section">
+  <div class="map-container">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
+      alt="نقشه جهان"
+      class="map-image"
+    />
+
+    <div class="map-pin" style="top: 26%; left: 25%">
+      <div class="pin-tooltip">{% trans "آلمان" %}</div>
+    </div>
+    <div class="map-pin" style="top: 32%; left: 72%">
+      <div class="pin-tooltip">{% trans "چین" %}</div>
+    </div>
+    <div class="map-pin" style="top: 50%; left: 49%">
+      <div class="pin-tooltip">{% trans "امارات" %}</div>
+    </div>
+    <div class="map-pin" style="top: 40%; left: 55%">
+      <div class="pin-tooltip">{% trans "هند" %}</div>
+    </div>
+    <div class="map-pin" style="top: 28%; left: 77%">
+      <div class="pin-tooltip">{% trans "ژاپن" %}</div>
+    </div>
+    <div class="map-pin" style="top: 42%; left: 36%">
+      <div class="pin-tooltip">{% trans "ترکیه" %}</div>
+    </div>
+  </div>
+  <div class="map-content">
+    <h2>{% trans "حمل و نقل بین المللی آذر تیر ارس" %}</h2>
+    <p>
+      {% blocktrans %}اعتماد، تجربه و تخصص، سه اصل همیشگی آذر تیر ارس هستند. به همین دلیل، بسیاری از شرکت‌ها و بازرگانان، آذر تیر ارس را به عنوان شریک مطمئن خود در{% endblocktrans %}
+      <span class="highlight">{% trans "حمل و نقل بین المللی" %}</span>
+      {% blocktrans %}انتخاب می‌کنند. شرکتی که برای پشتیبانی هر مرحله‌ای از صادرات و واردات، بهترین گزینه است.{% endblocktrans %}
+      <br /><br />
+      {% blocktrans %}علاوه بر این، تیم لجستیک آذر تیر ارس با استفاده از مسیرهای جایگزین، فرایند حمل کالا را بدون وقفه ادامه می‌دهد تا محموله‌ها در کوتاه‌ترین زمان ممکن به مقصد برسند. ما تخصص در{% endblocktrans %}
+      <span class="highlight">{% trans "ترخیص کالا از مرز بازرگان" %}</span>
+      {% blocktrans %}و تخلیه کالا را داریم و شما می‌توانید در این زمینه نیز روی ما حساب کنید!{% endblocktrans %}
+      <br /><br />
+      <span class="highlight">{% trans "فروشگاه امام خمینی" %}</span>
+      {% blocktrans %}داریم؛ و شما می‌توانید کالاهای خود را به صورت مستقیم در آنجا توزیع کنید.{% endblocktrans %}
+      <br /><br />
+      <strong>{% trans "پاکت‌ساز" %}</strong> {% trans "تجربه‌ای مطمئن، سریع و حرفه‌ای از حمل و نقل بین المللی را به شما ارائه می‌دهد!" %}
+    </p>
+  </div>
+</section>
+
+<!-- بخش دوم: مقالات (اسکرول افقی) -->
+<section class="blog-section">
+  <div class="blog-header">
+    <h2>{% trans "آخرین" %} <span>{% trans "مقالات" %}</span> {% trans "آذر تیر ارس" %}</h2>
+    <p>
+      {% blocktrans %}با مطالعه وبلاگ حمل و نقل بین المللی آذر تیر ارس می‌توانید از تجربیات واقعی، تحلیل‌های دقیق و راهنمایی‌های عملی بهره‌مند شوید.{% endblocktrans %}
+    </p>
+  </div>
+
+  <div class="blog-scroll-container">
+    <div class="blog-card">
+      <div class="blog-logo-watermark">{% trans "آذر تیر ارس" %}</div>
+      <div class="blog-img-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=400"
+          alt="مقاله"
+        />
+        <div class="blog-date-badge">۱۴</div>
+      </div>
+      <h3>{% trans "راهنمای کامل ارسال بار از ایران در سال ۱۴۰۴" %}</h3>
+      <p>
+        {% blocktrans %}ارسال بار از ایران؛ راهنمای کامل حمل هوایی و دریایی به ایران. ارسال بار از ایران وقت موفق و به صرفه است...{% endblocktrans %}
+      </p>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-logo-watermark">{% trans "ارس تیر پارک" %}</div>
+      <div class="blog-img-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&q=80&w=400"
+          alt="مقاله"
+        />
+        <div class="blog-date-badge">۱۵</div>
+      </div>
+      <h3>{% trans "کراس استافینگ چیست؟" %}</h3>
+      <p>
+        {% blocktrans %}کراس استافینگ چیست؟ یک روش حمل و نقل دریایی و لجستیک بین المللی است که در آن محموله از یک کانتینر...{% endblocktrans %}
+      </p>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-logo-watermark">{% trans "آذر تیر ارس" %}</div>
+      <div class="blog-img-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=400"
+          alt="مقاله"
+        />
+        <div class="blog-date-badge">۱۷</div>
+      </div>
+      <h3>{% trans "راهنمای کامل Air Waybill در حمل و نقل بین المللی" %}</h3>
+      <p>
+        {% blocktrans %}بارنامه هوایی (AWB) یکی از مهم‌ترین اسناد حمل و نقل بین المللی است. در این مقاله با مفهوم Air Waybill...{% endblocktrans %}
+      </p>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-logo-watermark">{% trans "آذر تیر ارس" %}</div>
+      <div class="blog-img-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1590611849845-e140937f5e7c?auto=format&fit=crop&q=80&w=400"
+          alt="مقاله"
+        />
+        <div class="blog-date-badge">۱۶</div>
+      </div>
+      <h3>{% trans "راهنمای استراتژیک بسته‌بندی در صادرات" %}</h3>
+      <p>
+        {% blocktrans %}راهنمای استراتژیک بسته‌بندی در صادرات: مدیریت ریسک و حفاظت از سرمایه. بسته‌بندی به مثابه سیستم حفاظتی در زنجیره تأمین...{% endblocktrans %}
+      </p>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-logo-watermark">{% trans "آذر تیر ارس" %}</div>
+      <div class="blog-img-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1580674285054-bed31e140f07?auto=format&fit=crop&q=80&w=400"
+          alt="مقاله"
+        />
+        <div class="blog-date-badge">۲۰</div>
+      </div>
+      <h3>{% trans "تفاوت ترخیص از گمرک و ترانزیت" %}</h3>
+      <p>
+        {% blocktrans %}آشنایی با تفاوت‌های اساسی بین پروسه ترخیص کالا و ترانزیت که هر کدام قوانین خاص خود را دارند.{% endblocktrans %}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="container form-container">
+    <div class="form-box">
+      <h3
+        style="
+          color: #1b1616;
+          margin-bottom: 20px;
+          text-align: center;
+        "
+      >
+        {% trans "درخواست مشاوره و استعلام قیمت" %}
+      </h3>
+      <form>
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" placeholder="{% trans 'نام و نام خانوادگی' %}" />
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="{% trans 'شماره تماس' %}" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <textarea placeholder="{% trans 'شرح بار / توضیحات' %}"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">{% trans "ثبت درخواست" %}</button>
+      </form>
+    </div>
+    <div class="form-image">
+      <img src="{% static 'img/ban.png' %}" alt="Calculation Image" />
+    </div>
+  </div>
+</section>
+{% endblock %}

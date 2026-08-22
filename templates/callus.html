@@ -1,9 +1,10 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تماس و مشاوره با تکسیز</title>
+    <title>تماس و مشاوره با ارس تیر پارک</title>
     <!-- فونت فارسی وزیرمتن -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/dist/font-face.css" rel="stylesheet" type="text/css" />
     <!-- آیکون‌های FontAwesome -->
@@ -769,18 +770,19 @@
     </style>
 </head>
 <body>
+{% include "header.html" %}
     <!-- بخش عکس وسط (مشاوره) -->
     <section class="consultation-wrapper">
         <div class="consultation-card">
             <div class="consult-logo">
                 <i class="fas fa-plane-departure"></i>
-                <h2>تکسیز <span>TAKSEEZ</span></h2>
+                <h2>ارس تیر پارک <span>Aras Tir Park</span></h2>
             </div>
             <div class="consult-subtitle">مشاوره و محاسبه هزینه</div>
             
             <div class="consult-title">به مشاوره نیاز دارید؟</div>
             <p class="consult-text">
-                کاربر حرفه‌ای و تخصصی شرکت حمل و نقل بین المللی تکسیز آماده راهنمایی شما عزیزان به صورت کاملاً رایگان (استعلام رایگان) می‌باشند.
+                کاربر حرفه‌ای و تخصصی شرکت حمل و نقل بین المللی ارس تیر پارک آماده راهنمایی شما عزیزان به صورت کاملاً رایگان (استعلام رایگان) می‌باشند.
             </p>
             
             <div class="attention-box">
@@ -799,7 +801,7 @@
 
     <!-- بخش عکس اول (فرم تماس) -->
     <section class="hero-section">
-        <h1>تماس با تکسیز</h1>
+        <h1>تماس با ارس تیر پارک</h1>
         <p>دریافت مشاوره تخصصی و استعلام هزینه</p>
     </section>
 
@@ -809,7 +811,7 @@
                 <h3>تماس با ما</h3>
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <div>تهران، ابتدای خیابان مطهری - خیابان منصور - پلاک ۹ - ساختمان تکسیز لجستیک</div>
+                    <div>تهران، ابتدای خیابان مطهری - خیابان منصور - پلاک ۹ - ساختمان ارس تیر پارک لجستیک</div>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-phone-alt"></i>
@@ -817,7 +819,7 @@
                 </div>
                 <div class="info-item">
                     <i class="fas fa-envelope"></i>
-                    <div>info@ltakseez.com</div>
+                    <div>info@arastirpark.com</div>
                 </div>
                 <div class="social-box">
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -842,33 +844,7 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.954504626202!2d51.41478087581083!3d35.71880177254681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e015999999999%3A0x5d1a2f3e4b5c6d7e!2sTehran%2C%20Iran!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
     </section>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-right">
-                <h4>راه های ارتباطی</h4>
-                <ul>
-                    <li><i class="fas fa-phone-alt"></i> ۰۲۱-۵۸۷۷۴</li>
-                    <li><i class="fas fa-envelope"></i> info@ltakseez.com</li>
-                    <li><i class="fab fa-instagram"></i> instagram</li>
-                    <li><i class="fas fa-map-marker-alt"></i> تهران، ابتدای خیابان مطهری - خیابان منصور - پلاک ۹ - ساختمان تکسیز لجستیک</li>
-                </ul>
-            </div>
-
-            <div class="footer-center">
-                <div class="logo">تکسیز <span>TAKSEEZ</span></div>
-                <div style="border-bottom: 2px solid var(--accent-orange); width: 50px;"></div>
-            </div>
-
-            <div class="footer-left">
-                <h4>درباره ما</h4>
-                <p>شرکت حمل و نقل بین المللی تکسیز بزرگترین شرکت حمل و نقل بین المللی در ایران با در اختیار داشتن بیش از ۲۰۰ دستگاه کامیون دارای مالک و تحت پوشش، حمل محمولات و انبارداری شما را در حداقل زمان ممکن و مناسب ترین قیمت ها و با ارائه نرخ های مناسب، بهره گیری از بهترین ماشین آلات مدرن و کامیون های مدرن، تجهیزات به روز، و متخصصان با تجربه با تجربه انجام می‌دهد.</p>
-            </div>
-        </div>
-
-        <div class="copyright-bar">
-            کلیه حقوق این سایت برای شرکت حمل و نقل بین المللی تکسیز محفوظ است.
-        </div>
-    </footer>
+    {% include 'footer.html' %}
 
     <!-- دکمه‌های شناور -->
     <a href="#" class="btn-whatsapp"><i class="fab fa-whatsapp"></i></a>
