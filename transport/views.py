@@ -14,25 +14,46 @@ def contact_view(request):
             return redirect('')
     else:
         form = ContactForm()
-    return render(request, "callus.html", {"form": form})
+    return render(request, "contactnew.html", {"form": form})
+
+def hamle_asli(request):
+    return render(request, "hamle-asli.html")
 
 def airplane(request):
-    return render(request, "airplane.html")
+    return render(request, "hamle-havayi.html")
 
 def ship(request):
-    return render(request, "ship.html")
+    return render(request, "hamle-daryayi.html")
 
 def truck(request):
-    return render(request, "truck.html")
+    return render(request, "hamle-jadei.html")
 
 def train(request):
-    return render(request, "train.html")
+    return render(request, "hamle-reyli.html")
 
 def tarkibi(request):
-    return render(request, "tarkibi.html")
+    return render(request, "hamle-tarkibi.html")
 
-def service(request):
-    return render(request, "service.html")
+def international(request):
+    return render(request, "hamle.beynolmelal.html")
+
+def roads(request):
+    return render(request, "masirha.html")
+
+def service_import(request):
+    return render(request, "serviceimport.html")
+
+def service_export(request):
+    return render(request, "servicesexport.html")
+
+def service_new(request):
+    return render(request, "servicesnew.html")
+
+def service_tarkhis(request):
+    return render(request, "servicestarkhis.html")
+
+def service_umurgomroki(request):
+    return render(request, "servicesumurgomroki.html")
 
 def aboutus(request):
-    return render(request, "about.html")
+    return render(request, "aboutnew.html")

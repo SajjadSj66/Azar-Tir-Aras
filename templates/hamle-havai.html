@@ -1,0 +1,2590 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حمل و نقل هوایی | آذر تیر ارس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* =================== RESET & ROOT =================== */
+      :root {
+        --gold: #e6b94d;
+        --gold-light: #f2ca68;
+        --gold-ink: #a97c22;
+        --gold-050: #fbf3df;
+        --navy: #1b3a57;
+        --navy-soft: #294c6a;
+        --navy-surface: #1e3e59;
+        --footer-bg: #1b3a57;
+        --footer-bg-dark: #122a40;
+        --footer-text: #d9dee7;
+        --footer-muted: #aeb8c6;
+        --footer-white: #f5f7fa;
+        --white: #ffffff;
+        --light-bg: #eef1f6;
+        --light-card: #ffffff;
+        --light-border: rgba(4, 17, 36, 0.09);
+        --ink: #0c1c33;
+        --ink-muted: #5c6779;
+        --border: rgba(255, 255, 255, 0.13);
+        --blue-tint: #e8edf5;
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+        --container-width: 1200px;
+        --shadow-soft: 0 4px 20px rgba(4, 17, 36, 0.08);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Vazirmatn", sans-serif;
+        background: var(--white);
+        color: var(--ink);
+        line-height: 1.9;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        direction: rtl;
+        text-align: center; /* مرکزچین کلی برای موبایل */
+      }
+      img {
+        max-width: 100%;
+        display: block;
+        margin: 0 auto; /* تصاویر وسط‌چین */
+      }
+      section {
+        position: relative;
+        width: 100%;
+      }
+      .wrap {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 32px;
+        text-align: right; /* بازگشت به راست برای محتوای متنی در دسکتاپ */
+      }
+      .container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 24px;
+        text-align: right;
+      }
+      h1,
+      h2,
+      h3 {
+        font-weight: 800;
+        letter-spacing: -0.01em;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      /* =================== TOP BAR =================== */
+      .topbar {
+        background: #1b3a57;
+        border-bottom: 1px solid #e2e8f0;
+        position: relative;
+        z-index: 120;
+      }
+      .topbar .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 40px;
+        text-align: right;
+      }
+      .topbar-contact {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+      }
+      .topbar-contact svg {
+        flex-shrink: 0;
+        color: var(--gold);
+        width: 14px;
+        height: 14px;
+      }
+      .topbar-contact span[dir="ltr"] {
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .lang-switch {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 999px;
+        padding: 3px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .lang-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        color: #e2e8f0;
+        font-size: 11.5px;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 999px;
+        transition: all 0.25s ease;
+        background: transparent;
+        min-width: 70px;
+        height: 28px;
+      }
+      .lang-btn.active {
+        background: var(--gold);
+        color: #1b3a57;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      }
+      .lang-btn:not(.active):hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+
+      /* =================== NAV BAR =================== */
+      .navbar {
+        background: var(--white);
+        position: sticky;
+        top: 0;
+        z-index: 110;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        border-bottom: 1px solid #eef2f6;
+      }
+      .navbar .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 76px;
+        position: relative;
+        gap: 16px;
+        text-align: right;
+      }
+      .brand {
+        display: flex;
+        align-items: center; /* لوگو و منو در یک خط و وسط‌چین عمودی */
+        flex-shrink: 0; /* لوگو هرگز کوچک‌تر از اندازه‌اش نمی‌شود */
+        height: 70px; /* ارتفاع ثابت برای کل هدر (با منو هماهنگ کنید) */
+      }
+
+      .brand-link {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        text-decoration: none;
+      }
+      .brand-name {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        max-width: 180px; /* حداکثر عرض لوگو */
+        overflow: hidden; /* هر چیزی خارج از کادر بریده شود */
+      }
+      .brand-logo {
+        max-height: 60px; /* حداکثر ارتفاع لوگو - عدد دلخواه */
+        max-width: 100%;
+        width: auto;
+        height: auto;
+        display: block;
+        object-fit: contain; /* بدون برش و حفظ نسبت */
+      }
+      .brand-name .en {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--navy);
+        letter-spacing: 3px;
+        direction: ltr;
+        text-align: right;
+        text-transform: uppercase;
+        line-height: 1.2;
+        white-space: nowrap;
+        transition: color 0.2s;
+      }
+      .brand-link:hover .brand-name .en {
+        color: #0f2a40;
+      }
+      .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        order: 2;
+      }
+      .nav-item {
+        position: relative;
+      }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--navy);
+        font-size: 14.5px;
+        font-weight: 600;
+        padding: 28px 16px;
+        transition: color 0.2s ease;
+        position: relative;
+        background: transparent;
+        white-space: nowrap;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 22px;
+        right: 16px;
+        left: 16px;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+      .nav-link:hover {
+        color: var(--gold);
+      }
+      .nav-link:hover::after {
+        transform: scaleX(1);
+      }
+      .nav-item.open .nav-link {
+        color: var(--gold);
+      }
+      .nav-item.open .nav-link::after {
+        transform: scaleX(1);
+      }
+      .nav-link .caret {
+        width: 9px;
+        height: 9px;
+        transition: transform 0.2s ease;
+      }
+      .nav-item.open .nav-link .caret {
+        transform: rotate(180deg);
+      }
+      .dropdown {
+        position: absolute;
+        top: calc(100% - 4px);
+        right: 0;
+        background: var(--white);
+        border: 1px solid #e2e8f0;
+        border-top: 2px solid var(--gold);
+        border-radius: 0 0 10px 10px;
+        min-width: 230px;
+        padding: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: all 0.22s ease;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+        text-align: right;
+      }
+      .nav-item.open .dropdown,
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .dropdown a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 12px;
+        border-radius: 7px;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: var(--navy-soft);
+        transition: all 0.15s ease;
+      }
+      .dropdown a:hover {
+        background: #f8fafc;
+        color: var(--gold);
+        padding-right: 16px;
+      }
+      .dropdown a .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--gold);
+        flex-shrink: 0;
+        opacity: 0.8;
+      }
+      .quote-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold);
+        color: var(--navy);
+        font-size: 14px;
+        font-weight: 700;
+        padding: 11px 22px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+        order: 3;
+        text-align: center;
+      }
+      .quote-btn:hover {
+        background: var(--gold-light);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(230, 185, 77, 0.35);
+      }
+      .quote-btn svg {
+        transform: scaleX(-1);
+        transition: transform 0.2s ease;
+      }
+      .quote-btn:hover svg {
+        transform: scaleX(-1) translateX(4px);
+      }
+      .burger {
+        display: none;
+        width: 30px;
+        height: 24px;
+        position: relative;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 150;
+        order: 3;
+      }
+      .burger span {
+        display: block;
+        height: 2.5px;
+        width: 100%;
+        background: var(--navy);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      /* =================== MOBILE DRAWER =================== */
+      .mobile-drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+      }
+      .mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1000;
+        background: linear-gradient(180deg, #1b3a57 0%, #0f2440 100%);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        transform: translateY(-100%);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        padding: 20px 24px 24px;
+        max-height: 85vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+      }
+      .mobile-drawer.open {
+        transform: translateY(0);
+      }
+      .mobile-drawer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .mobile-drawer-brand {
+        font-size: 17px;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: 2px;
+      }
+      .mobile-drawer-close {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .mobile-drawer-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: rotate(90deg);
+      }
+      .mobile-drawer-close svg {
+        width: 20px;
+        height: 20px;
+      }
+      .mobile-drawer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .mobile-drawer-nav .nav-link {
+        color: #fff !important;
+        padding: 16px 8px;
+        font-size: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        justify-content: flex-start;
+        width: 100%;
+        position: relative;
+      }
+      .mobile-drawer-nav .nav-link::after {
+        display: none !important;
+      }
+      .mobile-drawer-nav .nav-link:hover {
+        color: var(--gold-light) !important;
+      }
+      .mobile-drawer-nav .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0 8px;
+        margin-bottom: 8px;
+        min-width: auto;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        display: block;
+      }
+      .mobile-drawer-nav .nav-item.open .dropdown {
+        max-height: 300px;
+      }
+      .mobile-drawer-nav .dropdown a {
+        color: #d9dee7 !important;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 6px;
+        margin-bottom: 4px;
+        width: 100%;
+        position: relative;
+      }
+      .mobile-drawer-nav .dropdown a::after {
+        display: none !important;
+      }
+      .mobile-drawer-nav .dropdown a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--gold-light) !important;
+      }
+      .mobile-drawer .quote-btn-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: var(--gold);
+        color: var(--navy);
+        font-size: 15px;
+        font-weight: 700;
+        padding: 14px;
+        border-radius: 10px;
+        margin-top: 16px;
+        transition: all 0.2s;
+        text-align: center;
+      }
+      .mobile-drawer .quote-btn-mobile svg {
+        transform: scaleX(-1);
+        transition: transform 0.2s ease;
+      }
+      .mobile-drawer .quote-btn-mobile:hover {
+        background: var(--gold-light);
+      }
+      .mobile-drawer .quote-btn-mobile:hover svg {
+        transform: scaleX(-1) translateX(4px);
+      }
+
+      /* =================== HERO =================== */
+      .hero {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        background-image: url("{% static 'img/airs.jpeg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: var(--footer-white);
+        padding: 120px 0 80px;
+        text-align: center;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(11, 37, 61, 0.623);
+        z-index: 1;
+        pointer-events: none;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      .hero-content {
+        max-width: 500px;
+        text-align: center;
+        margin: 0 auto;
+      }
+      .hero-content h1 {
+        font-size: 35px;
+        line-height: 1.35;
+        margin-bottom: 24px;
+        font-weight: 900;
+        text-align: center;
+      }
+      .hero-content h1 .accent {
+        color: var(--gold-light);
+        position: relative;
+        display: inline-block;
+      }
+      .hero-content h1 .accent::after {
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        right: 0;
+        width: 100%;
+        height: 3px;
+        background: var(--gold);
+        border-radius: 2px;
+        opacity: 0.7;
+      }
+      .hero-content > p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 480px;
+        margin: 0 auto 40px;
+        line-height: 2;
+        text-align: center;
+      }
+      .hero-badges {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        max-width: 520px;
+        margin: 0 auto;
+      }
+      .hero-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        flex: 1;
+        min-width: 140px;
+        justify-content: center;
+      }
+      .hero-badge .ic {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(230, 185, 77, 0.2);
+        border: 1px solid rgba(230, 185, 77, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--gold-light);
+      }
+      .hero-badge .txt b {
+        display: block;
+        color: var(--footer-white);
+        font-size: 13px;
+        font-weight: 700;
+        margin: 2px 0;
+      }
+      .hero-badge .txt span {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      /* =================== SECTION HEADERS =================== */
+      .sec-head {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .sec-head h2 {
+        font-size: 32px;
+        color: var(--ink);
+        margin-bottom: 16px;
+      }
+      .sec-head p {
+        max-width: 640px;
+        margin: 16px auto 0;
+        color: var(--ink-muted);
+        font-size: 15px;
+      }
+      .sec-head .rule {
+        width: 56px;
+        height: 4px;
+        border-radius: 4px;
+        background: var(--gold);
+        margin: 20px auto 0;
+      }
+      .sec-head.light h2 {
+        color: var(--footer-white);
+      }
+      .sec-head.light p {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* =================== WHAT IS AIR FREIGHT =================== */
+      .what-section {
+        padding: 100px 0;
+        background: var(--white);
+        text-align: center;
+      }
+      .what-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        max-width: 1100px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+      }
+      .what-visual {
+        flex: 1;
+        max-width: 450px;
+        position: relative;
+        min-width: 0;
+        margin: 0 auto;
+      }
+      .route-card {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+        box-shadow: 0 20px 40px -22px rgba(4, 17, 36, 0.3);
+      }
+      .route-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .content-right {
+        flex: 1;
+        max-width: 520px;
+        min-width: 0;
+        text-align: center;
+      }
+      .content-right h2 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: var(--ink);
+      }
+      .content-right p {
+        color: var(--ink-muted);
+        font-size: 15.5px;
+        margin-bottom: 36px;
+        line-height: 2;
+      }
+      .content-right p b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .feature-grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .feature-item {
+        text-align: center;
+        padding: 8px;
+      }
+      .feature-item .ic {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: var(--gold-050);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 14px;
+        color: var(--gold-ink);
+      }
+      .feature-item span {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+        display: block;
+        line-height: 1.5;
+      }
+
+      /* =================== AIRPORTS =================== */
+      .airports-section {
+        padding: 80px 0;
+        background: var(--light-bg);
+        text-align: center;
+      }
+      .airports-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .airport-card {
+        background: var(--light-card);
+        border-radius: 12px;
+        padding: 16px 14px;
+        text-align: center;
+        border: 1px solid var(--light-border);
+        transition: all 0.3s var(--ease);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .airport-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 24px rgba(4, 17, 36, 0.08);
+        border-color: var(--gold);
+      }
+      .airport-card .flag {
+        width: 40px;
+        height: 28px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 0 auto 4px;
+        box-shadow: 0 2px 6px rgba(4, 17, 36, 0.15);
+        flex-shrink: 0;
+      }
+      .airport-card .flag img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .airport-card .code {
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--navy);
+        line-height: 1.3;
+      }
+      .airport-card .city {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.4;
+      }
+      .airport-card .country {
+        font-size: 11px;
+        color: var(--ink-muted);
+        line-height: 1.4;
+      }
+
+      /* =================== WHY US =================== */
+      .why-section {
+        padding: 100px 0;
+        background:
+          radial-gradient(
+            ellipse at 20% 0%,
+            rgba(230, 185, 77, 0.06),
+            transparent 45%
+          ),
+          linear-gradient(180deg, var(--footer-bg-dark), var(--footer-bg));
+        text-align: center;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 15px;
+        max-width: 1150px;
+        margin: 0 auto;
+      }
+      .why-item {
+        text-align: center;
+        padding: 16px 10px;
+      }
+      .why-item .ic {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        background: rgba(230, 185, 77, 0.08);
+        border: 1px solid rgba(230, 185, 77, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 18px;
+        color: var(--gold-light);
+      }
+      .why-item h3 {
+        font-size: 15px;
+        color: var(--footer-white);
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+      .why-item p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.8;
+      }
+
+      /* =================== PROCESS =================== */
+      .process-section {
+        padding: 100px 0;
+        background: var(--white);
+        text-align: center;
+      }
+      .process-track {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 50px;
+        max-width: 1050px;
+        margin: 0 auto;
+      }
+      .process-track::before {
+        content: "";
+        position: absolute;
+        top: 65px;
+        right: 11%;
+        left: 11%;
+        height: 2px;
+        background-image: linear-gradient(
+          90deg,
+          var(--gold) 0 8px,
+          transparent 8px 16px
+        );
+        background-size: 16px 2px;
+        background-repeat: repeat-x;
+        z-index: 0;
+      }
+      .process-step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        padding: 0 8px;
+        max-width: 180px;
+        min-width: 160px;
+        margin: 0 auto;
+      }
+      .process-step .node {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 18px;
+        color: var(--gold-light);
+        border: 1px solid var(--navy-soft);
+        transition: all 0.3s var(--ease);
+      }
+      .process-step:hover .node {
+        background: var(--gold);
+        color: var(--navy);
+        transform: scale(1.1);
+      }
+      .process-step .num {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--gold-ink);
+        display: block;
+        margin-bottom: 8px;
+      }
+      .process-step h3 {
+        font-size: 15px;
+        color: var(--ink);
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+      .process-step p {
+        font-size: 12.5px;
+        color: var(--ink-muted);
+        max-width: 150px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+
+      /* =================== FAQ =================== */
+      .faq-section {
+        padding: 100px 0;
+        background: var(--light-bg);
+        text-align: center;
+      }
+      .faq-list {
+        max-width: 850px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        text-align: right;
+      }
+      .faq-item {
+        background: var(--light-card);
+        border-radius: 14px;
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+      }
+      .faq-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 22px 28px;
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 15px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .faq-q .plus {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        background: var(--blue-tint);
+        color: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          transform 0.3s var(--ease),
+          background 0.3s,
+          color 0.3s;
+      }
+      .faq-item.active .faq-q .plus {
+        background: var(--gold);
+        color: var(--footer-white);
+        transform: rotate(135deg);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s var(--ease),
+          padding 0.4s var(--ease);
+        padding: 0 28px;
+        color: var(--ink-muted);
+        font-size: 14px;
+      }
+      .faq-item.active .faq-a {
+        max-height: 200px;
+        padding: 0 28px 24px;
+      }
+
+      /* =================== CTA =================== */
+      .transport-cta {
+        position: relative;
+        width: 100%;
+        min-height: 200px;
+        direction: rtl;
+        background-image: url(./assets/IMG_6872.png.jpeg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+      .transport-cta::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 215, 100, 0.15);
+        pointer-events: none;
+      }
+      .transport-cta__container {
+        position: relative;
+        z-index: 2;
+        width: min(calc(100% - 48px), 1200px);
+        min-height: 200px;
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .transport-cta__content {
+        width: 560px;
+        padding: 20px 30px;
+        text-align: center;
+        backdrop-filter: blur(4px);
+      }
+      .transport-cta__title {
+        margin: 0 0 7px;
+        color: #07172c;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1.6;
+        letter-spacing: -0.3px;
+      }
+      .transport-cta__description {
+        margin: 0 0 18px;
+        color: #1b2938;
+        font-size: 12.5px;
+        font-weight: 500;
+        line-height: 1.8;
+      }
+      .transport-cta__actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .cta-btn {
+        height: 42px;
+        padding: 0 20px;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        font-size: 12px;
+        font-weight: 700;
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          background 180ms ease;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: none;
+      }
+      .cta-btn svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .cta-btn:hover {
+        transform: translateY(-2px);
+      }
+      .cta-btn--primary {
+        min-width: 181px;
+        color: #ffffff;
+        background: #001b3b;
+        box-shadow: 0 6px 15px rgba(0, 20, 50, 0.14);
+      }
+      .cta-btn--primary:hover {
+        background: #00264f;
+        box-shadow: 0 8px 20px rgba(0, 20, 50, 0.22);
+      }
+      .cta-btn--secondary {
+        min-width: 122px;
+        color: #2c2a22;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(42, 36, 20, 0.38);
+      }
+      .cta-btn--secondary:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      /* =================== FOOTER =================== */
+      .site-footer {
+        width: 100%;
+        direction: rtl;
+        color: #d9dee7;
+        background: #1b3a57;
+        font-family: "Vazirmatn", sans-serif;
+        text-align: center;
+      }
+      .site-footer__main {
+        width: 100%;
+        min-height: 206px;
+      }
+      .site-footer__container {
+        width: min(calc(100% - 80px), 1200px);
+        min-height: 206px;
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+        align-items: start;
+        gap: 16px;
+        padding: 20px 0;
+        text-align: center;
+      }
+      .footer-column {
+        position: relative;
+        padding: 10px 16px;
+      }
+      .footer-title {
+        margin: 0 0 16px;
+        color: #f5f7fa;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 1.5;
+      }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      .footer-links a {
+        position: relative;
+        color: #aeb8c6;
+        font-size: 12.5px;
+        font-weight: 500;
+        line-height: 1.6;
+        transition:
+          color 180ms ease,
+          transform 180ms ease;
+      }
+      .footer-links a:hover {
+        color: #f2ca68;
+        transform: translateX(-4px);
+      }
+      .footer-about p {
+        max-width: 300px;
+        margin: 0 auto;
+        color: #aeb8c6;
+        font-size: 11.5px;
+        font-weight: 400;
+        line-height: 2;
+        text-align: center;
+      }
+      .social-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      .social-links a {
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #d9dee7;
+        transition:
+          color 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease,
+          transform 180ms ease;
+      }
+      .social-links a:hover {
+        color: #f2ca68;
+        border-color: #e6b94d;
+        background: rgba(230, 185, 77, 0.08);
+        transform: translateY(-2px);
+      }
+      .social-links svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      .contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: #aeb8c6;
+        font-size: 11.5px;
+        line-height: 1.7;
+        transition: color 180ms ease;
+        text-align: center;
+      }
+      .contact-item:hover {
+        color: #ffffff;
+      }
+      .contact-icon {
+        flex: 0 0 auto;
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .contact-icon svg {
+        width: 17px;
+        height: 17px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .site-footer__bottom {
+        min-height: 47px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.07);
+      }
+      .site-footer__bottom-inner {
+        position: relative;
+        width: min(calc(100% - 80px), 1200px);
+        min-height: 47px;
+        margin-inline: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .site-footer__bottom p {
+        margin: 0;
+        color: #9fa9b8;
+        font-size: 10.5px;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+      }
+      .back-to-top {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #162235;
+        background: #e7b94d;
+        transform: translateY(-50%);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 180ms ease,
+          background 180ms ease;
+      }
+      .back-to-top:hover {
+        background: #f0c75f;
+        transform: translateY(-55%);
+      }
+      .back-to-top svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* =================== RESPONSIVE =================== */
+      @media (max-width: 1024px) {
+        .what-inner {
+          gap: 40px;
+        }
+        .feature-grid-4 {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+        }
+        .why-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+        }
+        .process-track {
+          gap: 0px;
+        }
+        .airports-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .site-footer__container {
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+      }
+      @media (max-width: 900px) {
+        .nav-menu {
+          display: none !important;
+        }
+        .quote-btn {
+          display: none !important;
+        }
+        .burger {
+          display: flex !important;
+        }
+        .navbar .container {
+          justify-content: space-between;
+        }
+        .site-footer__container {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .footer-column {
+          padding: 8px 0;
+        }
+      }
+      @media (max-width: 768px) {
+        .hero {
+          min-height: auto;
+          padding: 100px 0 60px;
+        }
+        .hero::before {
+          background: linear-gradient(
+            180deg,
+            rgba(4, 17, 36, 0.9) 0%,
+            rgba(4, 17, 36, 0.7) 50%,
+            rgba(4, 17, 36, 0.9) 100%
+          );
+        }
+        .hero-inner {
+          justify-content: center;
+        }
+        .hero-content {
+          max-width: 100%;
+          text-align: center;
+          margin: 0 auto;
+        }
+        .hero-content h1 {
+          text-align: center;
+          font-size: 32px;
+        }
+        .hero-content > p {
+          margin: 0 auto 40px;
+          text-align: center;
+        }
+        .hero-badges {
+          justify-content: center;
+          margin: 0 auto;
+          gap: 16px;
+        }
+        .hero-badge {
+          text-align: center;
+          min-width: 100px;
+        }
+        .what-inner {
+          flex-direction: column;
+          gap: 50px;
+        }
+        .what-visual {
+          max-width: 100%;
+          width: 100%;
+        }
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px;
+        }
+        .process-track {
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+        }
+        .process-track::before {
+          display: none;
+        }
+        .process-step {
+          max-width: none;
+          width: 100%;
+        }
+        .airports-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 640px) {
+        .transport-cta__container {
+          justify-content: center;
+        }
+        .transport-cta__content {
+          width: 100%;
+          padding: 16px 20px;
+        }
+        .transport-cta__actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .cta-btn {
+          width: 100%;
+          justify-content: center;
+        }
+        .back-to-top {
+          position: relative;
+          right: auto;
+          top: auto;
+          transform: none;
+          margin-top: 8px;
+        }
+        .site-footer__bottom-inner {
+          flex-direction: column;
+          gap: 6px;
+          padding: 10px 0;
+        }
+      }
+      @media (max-width: 560px) {
+        .wrap,
+        .container {
+          padding: 0 18px;
+        }
+        .hero-content h1 {
+          font-size: 28px;
+        }
+        .hero-badges {
+          display: none;
+        }
+        .hero-badge {
+          width: 100%;
+          justify-content: center;
+        }
+        .feature-grid-4 {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .what-section,
+        .why-section,
+        .process-section,
+        .faq-section,
+        .airports-section {
+          padding: 60px 0;
+        }
+      }
+      @media (max-width: 480px) {
+        .topbar-contact span:not([dir]) {
+          display: none;
+        }
+        .brand-name .en {
+          font-size: 16px;
+          letter-spacing: 1.5px;
+        }
+        .feature-grid-4 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- =================== TOP BAR =================== -->
+    <div class="topbar">
+      <div class="container">
+        <div class="topbar-contact">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+            />
+          </svg>
+          <span>تماس با ما:</span>
+          <span dir="ltr">+989141934301</span>
+        </div>
+
+        <form action="{% url 'set_language' %}" method="post" class="lang-switch">
+          {% csrf_token %}
+          <input name="next" type="hidden" value="{{ request.path }}">
+          <button type="submit" name="language" value="fa" class="lang-btn {% if request.LANGUAGE_CODE == 'fa' %}active{% endif %}">فارسی</button>
+          <button type="submit" name="language" value="en" class="lang-btn {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">English</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- =================== NAV BAR =================== -->
+    <nav class="navbar">
+      <div class="container">
+        <!-- 1. برند -->
+        <div class="brand">
+          <a href="{% url 'index' %}" class="brand-link">
+            <div class="brand-name">
+              <img
+                src="{% static 'img/logo.png' %}"
+                alt="لوگوی AZAR TIR ARAS"
+                class="brand-logo"
+              />
+            </div>
+          </a>
+        </div>
+
+        <!-- 2. منو (در دسکتاپ) -->
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item">
+            <a href="{% url 'international' %}" class="nav-link"
+              >حمل و نقل بین‌المللی</a
+            >
+          </li>
+
+          <li class="nav-item" id="transportItem">
+            <a
+              href="{% url 'hamle_asli' %}"
+              class="nav-link"
+              id="transportTrigger"
+            >
+              روش‌های حمل و نقل
+              <svg
+                class="caret"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </a>
+            <div class="dropdown">
+              <a href="{% url 'tarkibi' %}" class="dropdown-link"
+                ><span class="dot"></span>حمل و نقل ترکیبی</a
+              >
+              <a href="{% url 'ship' %}" class="dropdown-link"
+                ><span class="dot"></span>حمل و نقل دریایی</a
+              >
+              <a href="{% url 'truck' %}" class="dropdown-link"
+                ><span class="dot"></span>حمل و نقل جاده‌ای</a
+              >
+              <a href="{% url 'airplane' %}" class="dropdown-link"
+                ><span class="dot"></span>حمل و نقل هوایی</a
+              >
+              <a href="{% url 'train' %}" class="dropdown-link"
+                ><span class="dot"></span>حمل و نقل ریلی</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item" id="servicesItem">
+            <a
+              href="{% url 'service_new' %}"
+              class="nav-link"
+              id="servicesTrigger"
+            >
+              خدمات ما
+              <svg
+                class="caret"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </a>
+            <div class="dropdown">
+              <a href="{% url 'service_import' %}" class="dropdown-link"
+                ><span class="dot"></span>واردات کالا</a
+              >
+              <a href="{% url 'service_export' %}" class="dropdown-link"
+                ><span class="dot"></span>صادرات کالا</a
+              >
+              <a href="{% url 'service_tarkhis' %}" class="dropdown-link"
+                ><span class="dot"></span>ترخیص کالا از گمرک</a
+              >
+              <a href="{% url 'service_umurgomroki' %}" class="dropdown-link"
+                ><span class="dot"></span>امور گمرکی و ترخیص</a
+              >
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
+          </li>
+        </ul>
+
+        <!-- 3. دکمه استعلام -->
+        <a href="{% url 'contact' %}" class="quote-btn">
+          استعلام قیمت
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.3"
+          >
+            <path d="M13 5l7 7-7 7M20 12H4" />
+          </svg>
+        </a>
+
+        <!-- 4. همبرگری (موبایل) -->
+        <button class="burger" id="burgerBtn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <!-- =================== MOBILE DRAWER =================== -->
+    <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-head">
+        <span class="mobile-drawer-brand">AZAR TIR ARAS</span>
+        <button
+          class="mobile-drawer-close"
+          id="drawerClose"
+          aria-label="بستن منو"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-drawer-nav">
+        <a href="{% url 'international' %}" class="nav-link"
+          >حمل و نقل بین‌المللی</a
+        >
+
+        <div class="nav-item">
+          <a href="#" class="nav-link">
+            روش‌های حمل و نقل
+            <svg
+              class="caret"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </a>
+          <div class="dropdown">
+            <a href="{% url 'tarkibi' %}">حمل و نقل ترکیبی</a>
+            <a href="{% url 'ship' %}">حمل و نقل دریایی</a>
+            <a href="{% url 'truck' %}">حمل و نقل جاده‌ای</a>
+            <a href="{% url 'airplane' %}">حمل و نقل هوایی</a>
+            <a href="{% url 'train' %}">حمل و نقل ریلی</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a href="{% url 'service_new' %}" class="nav-link">
+            خدمات ما
+            <svg
+              class="caret"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </a>
+          <div class="dropdown">
+            <a href="{% url 'service_import' %}">واردات کالا</a>
+            <a href="{% url 'service_export' %}">صادرات کالا</a>
+            <a href="{% url 'service_tarkhis' %}">ترخیص کالا از گمرک</a>
+            <a href="{% url 'service_umurgomroki' %}">امور گمرکی و ترخیص</a>
+          </div>
+        </div>
+
+        <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
+        <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
+      </div>
+
+      <a href="{% url 'contact' %}" class="quote-btn-mobile">
+        استعلام قیمت
+
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.3"
+        >
+          <path d="M13 5l7 7-7 7M20 12H4" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- =================== HERO =================== -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-content">
+          <h1>
+            حمل و نقل هوایی<br />سریع‌ترین راه ارسال بار<br /><span
+              class="accent"
+              >به سراسر جهان</span
+            >
+          </h1>
+          <p>
+            با شبکه گسترده خطوط هوایی و همکاری با معتبرترین ایرلاین‌ها، بار شما
+            را در کوتاه‌ترین زمان ممکن به هر نقطه از جهان می‌رسانیم.
+          </p>
+          <div class="hero-badges">
+            <div class="hero-badge">
+              <div class="ic">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3 3" />
+                </svg>
+              </div>
+              <div class="txt"><b>۲۴-۴۸ ساعته</b><span>تحویل سریع</span></div>
+            </div>
+            <div class="hero-badge">
+              <div class="ic">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"
+                  />
+                </svg>
+              </div>
+              <div class="txt"><b>بیمه کامل</b><span>پوشش سراسری</span></div>
+            </div>
+            <div class="hero-badge">
+              <div class="ic">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <path
+                    d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z"
+                  />
+                </svg>
+              </div>
+              <div class="txt"><b>جهانی</b><span>تمام مقاصد</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== WHAT =================== -->
+    <section class="what-section">
+      <div class="wrap">
+        <div class="what-inner">
+          <div class="content-right">
+            <h2>حمل و نقل هوایی چیست؟</h2>
+            <p>
+              حمل و نقل هوایی سریع‌ترین روش جابجایی بار در سطح بین‌المللی است.
+              <b>آذر تیر ارس</b> با همکاری مستقیم با ایرلاین‌های معتبر، خدمات
+              حمل هوایی را برای کالاهای حساس، فوری و با ارزش بالا ارائه می‌دهد.
+            </p>
+            <div class="feature-grid-4">
+              <div class="feature-item">
+                <div class="ic">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 3" />
+                  </svg>
+                </div>
+                <span>سرعت بالا</span>
+              </div>
+              <div class="feature-item">
+                <div class="ic">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path
+                      d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"
+                    />
+                  </svg>
+                </div>
+                <span>امنیت بالا</span>
+              </div>
+              <div class="feature-item">
+                <div class="ic">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path
+                      d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z"
+                    />
+                  </svg>
+                </div>
+                <span>پوشش جهانی</span>
+              </div>
+              <div class="feature-item">
+                <div class="ic">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <path d="M20 12a8 8 0 11-16 0 8 8 0 0116 0z" />
+                    <path d="M9 12l2 2 4-4" />
+                  </svg>
+                </div>
+                <span>رهگیری لحظه‌ای</span>
+              </div>
+            </div>
+          </div>
+          <div class="what-visual">
+            <div class="route-card">
+              <img
+                src="{% static 'img/what-airs.jpeg' %}"
+                alt="حمل و نقل هوایی"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== AIRPORTS =================== -->
+    <section class="airports-section">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>فرودگاه‌های تحت پوشش</h2>
+          <div class="rule"></div>
+          <p>ارسال و دریافت بار از معتبرترین فرودگاه‌های جهان</p>
+        </div>
+        <div class="airports-grid">
+          <div class="airport-card">
+            <div class="flag">
+              <img src="{% static 'img/Iran.webp' %}" alt="پرچم ایران" />
+            </div>
+            <div class="code">IKA</div>
+            <div class="city">تهران</div>
+            <div class="country">ایران</div>
+          </div>
+          <div class="airport-card">
+            <div class="flag">
+              <img src="{% static 'img/United-Arab-Emirates.webp' %}" alt="پرچم امارات" />
+            </div>
+            <div class="code">DXB</div>
+            <div class="city">دبی</div>
+            <div class="country">امارات</div>
+          </div>
+          <div class="airport-card">
+            <div class="flag">
+              <img src="{% static 'img/Turkey.svg' %}" alt="پرچم ترکیه" />
+            </div>
+            <div class="code">IST</div>
+            <div class="city">استانبول</div>
+            <div class="country">ترکیه</div>
+          </div>
+          <div class="airport-card">
+            <div class="flag">
+              <img src="./assets/Germany.webp" alt="پرچم آلمان" />
+            </div>
+            <div class="code">FRA</div>
+            <div class="city">فرانکفورت</div>
+            <div class="country">آلمان</div>
+          </div>
+          <div class="airport-card">
+            <div class="flag">
+              <img src="{% static 'img/China.svg.webp' %}" alt="پرچم چین" />
+            </div>
+            <div class="code">PVG</div>
+            <div class="city">شانگهای</div>
+            <div class="country">چین</div>
+          </div>
+          <div class="airport-card">
+            <div class="flag">
+              <img src="{% static 'img/russia.webp' %}" alt="پرچم روسیه" />
+            </div>
+            <div class="code">SVO</div>
+            <div class="city">مسکو</div>
+            <div class="country">روسیه</div>
+          </div>
+          <div class="airport-card">
+            <div class="flag">
+              <img src="{% static 'img/United_Kingdom.svg.webp' %}" alt="پرچم انگلستان" />
+            </div>
+            <div class="code">LHR</div>
+            <div class="city">لندن</div>
+            <div class="country">انگلستان</div>
+          </div>
+          <div class="airport-card">
+            <div class="flag">
+              <img src="{% static 'img/france.png' %}" alt="پرچم فرانسه" />
+            </div>
+            <div class="code">CDG</div>
+            <div class="city">پاریس</div>
+            <div class="country">فرانسه</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== WHY US =================== -->
+    <section class="why-section">
+      <div class="wrap">
+        <div class="sec-head light">
+          <h2>چرا حمل هوایی آذر تیر ارس؟</h2>
+          <div class="rule"></div>
+        </div>
+        <div class="why-grid">
+          <div class="why-item">
+            <div class="ic">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 3" />
+              </svg>
+            </div>
+            <h3>سرعت استثنایی</h3>
+            <p>تحویل بار در ۲۴ تا ۴۸ ساعت</p>
+          </div>
+          <div class="why-item">
+            <div class="ic">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <path
+                  d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"
+                />
+              </svg>
+            </div>
+            <h3>امنیت کامل</h3>
+            <p>بسته‌بندی استاندارد و بیمه کامل</p>
+          </div>
+          <div class="why-item">
+            <div class="ic">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path
+                  d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z"
+                />
+              </svg>
+            </div>
+            <h3>پوشش جهانی</h3>
+            <p>دسترسی به تمام فرودگاه‌های جهان</p>
+          </div>
+          <div class="why-item">
+            <div class="ic">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <path d="M20 12a8 8 0 11-16 0 8 8 0 0116 0z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <h3>رهگیری لحظه‌ای</h3>
+            <p>پیگیری آنلاین وضعیت بار</p>
+          </div>
+          <div class="why-item">
+            <div class="ic">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+              >
+                <path
+                  d="M3 9h18M6 5h12a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2z"
+                />
+              </svg>
+            </div>
+            <h3>ترخیص سریع</h3>
+            <p>خدمات گمرکی و ترخیص کالا</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== PROCESS =================== -->
+    <section class="process-section">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>مراحل حمل هوایی</h2>
+          <div class="rule"></div>
+        </div>
+        <div class="process-track">
+          <div class="process-step">
+            <span class="num">۰۱</span>
+            <div class="node">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M9 12l2 2 4-4" />
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+              </svg>
+            </div>
+            <h3>ثبت سفارش</h3>
+            <p>ثبت اطلاعات بار و مقصد</p>
+          </div>
+          <div class="process-step">
+            <span class="num">۰۲</span>
+            <div class="node">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M4 4h16v16H4z" />
+                <path d="M4 9h16" />
+              </svg>
+            </div>
+            <h3>رزرو پرواز</h3>
+            <p>رزرو فضا در پرواز مناسب</p>
+          </div>
+          <div class="process-step">
+            <span class="num">۰۳</span>
+            <div class="node">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"
+                />
+              </svg>
+            </div>
+            <h3>تحویل به فرودگاه</h3>
+            <p>تحویل بار به ترمینال بار</p>
+          </div>
+          <div class="process-step">
+            <span class="num">۰۴</span>
+            <div class="node">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+              </svg>
+            </div>
+            <h3>پرواز</h3>
+            <p>حمل هوایی بار به مقصد</p>
+          </div>
+          <div class="process-step">
+            <span class="num">۰۵</span>
+            <div class="node">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M20 12a8 8 0 11-16 0 8 8 0 0116 0z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <h3>ترخیص و تحویل</h3>
+            <p>ترخیص گمرکی و تحویل به گیرنده</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== FAQ =================== -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="sec-head">
+          <h2>سوالات متداول حمل هوایی</h2>
+          <div class="rule"></div>
+          <p>پاسخ به سوالات رایج شما درباره حمل و نقل هوایی</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item active">
+            <div class="faq-q">
+              <span>زمان تقریبی حمل هوایی بار چقدر است؟</span
+              ><span class="plus">＋</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                حمل هوایی معمولاً بین ۲۴ تا ۷۲ ساعت زمان می‌برد. برای مسیرهای
+                مستقیم ممکن است حتی سریع‌تر هم باشد.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <span>چه کالاهایی برای حمل هوایی مناسب هستند؟</span
+              ><span class="plus">＋</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                کالاهای فوری، حساس به زمان، با ارزش بالا، دارویی، الکترونیکی،
+                اسناد مهم و نمونه‌های تجاری.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <span>حداکثر وزن قابل حمل هوایی چقدر است؟</span
+              ><span class="plus">＋</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                بسته به نوع هواپیما و مسیر، معمولاً تا ۱۰۰ تن بار قابل حمل است.
+                برای بارهای سنگین از هواپیماهای باربری اختصاصی استفاده می‌شود.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <span>هزینه حمل هوایی چگونه محاسبه می‌شود؟</span
+              ><span class="plus">＋</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                هزینه بر اساس وزن قابل پرداخت (وزن واقعی یا حجمی)، مسیر، نوع
+                کالا و فوریت ارسال محاسبه می‌شود.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <span>آیا امکان رهگیری بار هوایی وجود دارد؟</span
+              ><span class="plus">＋</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                بله، با شماره AWB (بارنامه هوایی) می‌توانید وضعیت بار را در هر
+                لحظه به صورت آنلاین پیگیری کنید.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              <span>مدارک لازم برای حمل هوایی چیست؟</span
+              ><span class="plus">＋</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                بارنامه هوایی (AWB)، فاکتور تجاری، لیست بسته‌بندی و مجوزهای
+                مربوط به کالا از مدارک اصلی هستند.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== CTA =================== -->
+    <section class="transport-cta" id="cta">
+      <div class="transport-cta__container">
+        <div class="transport-cta__content">
+          <h2 class="transport-cta__title">
+            برای حمل سریع و مطمئن، همین حالا اقدام کنید!
+          </h2>
+          <p class="transport-cta__description">
+            کارشناسان ما آماده ارائه مشاوره رایگان و استعلام قیمت به شما هستند.
+          </p>
+          <div class="transport-cta__actions">
+            <a href="{% url 'contact' %}" class="cta-btn cta-btn--primary">
+              <span>استعلام قیمت رایگان</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M21 3L3.5 10.2c-.8.3-.8 1.4 0 1.7l6.4 2.4 2.4 6.4c.3.8 1.4.8 1.7 0L21 3z"
+                />
+                <path d="M10 14l7-7" />
+              </svg>
+            </a>
+            <a href="tel:+989141934301" class="cta-btn cta-btn--secondary">
+              <span>تماس با ما</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="site-footer">
+      <div class="site-footer__main">
+        <div class="site-footer__container">
+          <!-- ستون درباره ما -->
+          <div class="footer-column footer-about">
+            <h3 class="footer-title">درباره ما</h3>
+            <p>
+              آذر تیر ارس، شرکت حمل و نقل بین‌المللی با تمرکز بر ارائه خدمات حمل
+              و نقل، ترانزیت و خدمات گمرکی به مقصد ترکیه، اروپا و کشورهای CIS.
+            </p>
+            <div class="social-links">
+              <a href="#" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6 8v10" />
+                  <circle cx="6" cy="5" r="1" />
+                  <path d="M10 18v-6a3 3 0 0 1 6 0v6" />
+                  <path d="M10 12v6" />
+                  <path d="M16 15v3" />
+                </svg>
+              </a>
+              <a href="#" aria-label="Instagram">
+                <svg viewBox="0 0 24 24">
+                  <rect x="4" y="4" width="16" height="16" rx="4" />
+                  <circle cx="12" cy="12" r="3.5" />
+                  <circle cx="17.3" cy="6.8" r="1" />
+                </svg>
+              </a>
+              <a href="#" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L4 20l.9-3.6 A8.5 8.5 0 1 1 20.5 11.7z"
+                  />
+                  <path
+                    d="M9.2 8.4c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.6.7c.8 1.4 1.5 2.1 2.9 2.9l.7-.6c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.4.5v.5c0 .3-.1.6-.4.8-.4.3-1 .4-1.5.2 -2.8-.8-5.1-3.1-5.9-5.9 -.2-.5-.1-1.1.2-1.5z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- ستون خدمات (جدا از مسیرها) -->
+          <div class="footer-column">
+            <h3 class="footer-title">خدمات</h3>
+            <ul class="footer-links">
+              <li><a href="{% url 'international' %}">حمل بین‌المللی</a></li>
+              <li><a href="{% url 'hamle_asli' %}">ترانزیت</a></li>
+              <li><a href="{% url 'hamle_asli' %}">حمل داخلی</a></li>
+              <li><a href="{% url 'hamle_asli' %}">خدمات گمرکی</a></li>
+            </ul>
+          </div>
+
+          <!-- ستون مسیرها -->
+          <div class="footer-column">
+            <h3 class="footer-title">مسیرها</h3>
+            <ul class="footer-links">
+              <li><a href="{% url 'roads' %}">ایران به ترکیه</a></li>
+              <li><a href="{% url 'roads' %}">ایران به اروپا</a></li>
+              <li><a href="{% url 'roads' %}">ترکیه به ایران</a></li>
+              <li><a href="{% url 'roads' %}">سایر مسیرها</a></li>
+            </ul>
+          </div>
+
+          <!-- ستون تماس -->
+          <div class="footer-column footer-contact">
+            <h3 class="footer-title">اطلاعات تماس</h3>
+            <div class="contact-list">
+              <a href="{% url 'contact' %}" class="contact-item">
+                <span class="contact-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 21s7-6.2 7-12A7 7 0 1 0 5 9c0 5.8 7 12 7 12z"
+                    />
+                    <circle cx="12" cy="9" r="2.3" />
+                  </svg>
+                </span>
+                <span>
+                  تهران, سید خندان خیابان<br />
+                  دبستان کوچه ،آگاهی پلاک ۸ طبقه سوم، واحد ۸
+                </span>
+              </a>
+
+              <a href="tel:+989141934301" class="contact-item">
+                <span class="contact-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"
+                    />
+                  </svg>
+                </span>
+                <span dir="ltr">+989141934301</span>
+                <span dir="ltr">+982188479170</span>
+                <span dir="ltr">+982188479151</span>
+              </a>
+              
+
+              <a href="mailto:info@azartiraras.com" class="contact-item">
+                <span class="contact-icon">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>
+                </span>
+                <span dir="ltr">info@azartiraras.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <div class="site-footer__bottom-inner">
+          <p>
+            © 1405 تمامی حقوق محفوظ است | طراحی و توسعه توسط Sijeey
+          </p>
+          <button
+            class="back-to-top"
+            id="backToTop"
+            aria-label="بازگشت به بالا"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M6 14l6-6 6 6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+         document.addEventListener("DOMContentLoaded", function () {
+  // ====== زبان ======
+  const langButtons = document.querySelectorAll(".lang-btn");
+  if (langButtons.length > 0) {
+    langButtons.forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        langButtons.forEach((b) => b.classList.remove("active"));
+        this.classList.add("active");
+      });
+    });
+  }
+
+  // ====== موبایل دراور ======
+  const burgerBtn = document.getElementById("burgerBtn");
+  const mobileDrawer = document.getElementById("mobileDrawer");
+  const drawerOverlay = document.getElementById("drawerOverlay");
+  const drawerClose = document.getElementById("drawerClose");
+
+  function openDrawer() {
+    mobileDrawer.classList.add("open");
+    drawerOverlay.style.opacity = "1";
+    drawerOverlay.style.visibility = "visible";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDrawer() {
+    mobileDrawer.classList.remove("open");
+    drawerOverlay.style.opacity = "0";
+    drawerOverlay.style.visibility = "hidden";
+    document.body.style.overflow = "";
+    document
+      .querySelectorAll(".mobile-drawer-nav .nav-item.open")
+      .forEach((item) => item.classList.remove("open"));
+  }
+
+  if (burgerBtn) burgerBtn.addEventListener("click", openDrawer);
+  if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
+  if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeDrawer();
+  });
+
+  // ====== دراپ‌داون‌های موبایل (تریگرها) ======
+  document
+    .querySelectorAll(".mobile-drawer-nav .nav-item > .nav-link")
+    .forEach((link) => {
+      link.addEventListener("click", function (e) {
+        if (this.querySelector(".caret")) {
+          e.preventDefault(); // فقط برای آیتم‌های دارای کرت جلوی هدایت گرفته می‌شود
+          const parentItem = this.closest(".nav-item");
+          if (parentItem) {
+            document
+              .querySelectorAll(".mobile-drawer-nav .nav-item.open")
+              .forEach((item) => {
+                if (item !== parentItem) item.classList.remove("open");
+              });
+            parentItem.classList.toggle("open");
+          }
+        }
+        // اگر کرت نداشت (لینک ساده) کاری نمی‌کنیم و اجازه هدایت می‌دهیم
+      });
+    });
+
+  // ====== لینک‌های فرعی موبایل (بدون preventDefault) ======
+  document
+    .querySelectorAll(".mobile-drawer-nav .dropdown a")
+    .forEach((link) => {
+      link.addEventListener("click", function (e) {
+        // ✅ بدون preventDefault – لینک هدایت می‌کند
+        closeDrawer();
+      });
+    });
+
+  // ====== لینک‌های ساده موبایل (بدون کرت) ======
+  document
+    .querySelectorAll(".mobile-drawer-nav > a.nav-link")
+    .forEach((link) => {
+      link.addEventListener("click", function (e) {
+        if (!this.querySelector(".caret")) {
+          // ✅ بدون preventDefault – هدایت می‌کند
+          closeDrawer();
+        }
+      });
+    });
+
+  // ====== منوهای دسکتاپ ======
+  const transportItem = document.getElementById("transportItem");
+  const transportTrigger = document.getElementById("transportTrigger");
+  const servicesItem = document.getElementById("servicesItem");
+  const servicesTrigger = document.getElementById("servicesTrigger");
+
+  if (transportTrigger) {
+    transportTrigger.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      transportItem.classList.toggle("open");
+      if (servicesItem) servicesItem.classList.remove("open");
+    });
+  }
+
+  if (servicesTrigger) {
+    servicesTrigger.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      servicesItem.classList.toggle("open");
+      transportItem.classList.remove("open");
+    });
+  }
+
+  // ====== لینک‌های فرعی دسکتاپ (بدون preventDefault) ======
+  document.querySelectorAll(".dropdown-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // ✅ بدون preventDefault – لینک هدایت می‌کند
+      const parentItem = this.closest(".nav-item");
+      if (parentItem) parentItem.classList.remove("open");
+    });
+  });
+
+  // بستن دراپ‌داون با کلیک بیرون
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".nav-item")) {
+      document
+        .querySelectorAll(".nav-item.open")
+        .forEach((item) => item.classList.remove("open"));
+    }
+  });
+
+  // دکمه بازگشت به بالا
+  const backToTop = document.getElementById("backToTop");
+  if (backToTop) {
+    backToTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+});
+
+        // FAQ
+        document.addEventListener("click", function (e) {
+          const q = e.target.closest(".faq-q");
+          if (!q) return;
+          const item = q.closest(".faq-item");
+          const answer = item.querySelector(".faq-a");
+          const isActive = item.classList.contains("active");
+
+          document.querySelectorAll(".faq-item.active").forEach((el) => {
+            el.classList.remove("active");
+            el.querySelector(".faq-a").style.maxHeight = null;
+          });
+
+          if (!isActive) {
+            item.classList.add("active");
+            answer.style.maxHeight = answer.scrollHeight + "px";
+          }
+        });
+    </script>
+  </body>
+</html>
