@@ -1322,705 +1322,448 @@
 
 <body>
 
-    <!-- =================== TOP BAR =================== -->
-    <div class="topbar">
-      <div class="container">
-        <div class="topbar-contact">
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
-            />
-          </svg>
-          <span>{% trans "تماس با ما" %}:</span>
-          <span dir="ltr">+989141934301</span>
-        </div>
-
-        <form action="{% url 'set_language' %}" method="post" class="lang-switch" id="langSwitch">
-          {% csrf_token %}
-          <input name="next" type="hidden" value="{{ request.path }}">
-          <button type="submit" name="language" value="fa" class="lang-btn {% if request.LANGUAGE_CODE == 'fa' %}active{% endif %}">{% trans "فارسی" %}</button>
-          <button type="submit" name="language" value="en" class="lang-btn {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">{% trans "English" %}</button>
-        </form>
-      </div>
+<!-- =================== TOP BAR =================== -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-contact">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+        />
+      </svg>
+      <span>{% if LANGUAGE_CODE == 'fa' %}تماس با ما:{% else %}Contact us:{% endif %}</span>
+      <span dir="ltr">+989141934301</span>
     </div>
 
-    <!-- =================== NAV BAR =================== -->
-    <nav class="navbar">
-      <div class="container">
-        <!-- 1. برند -->
-        <div class="brand">
-          <a href="{% url 'index' %}" class="brand-link">
-            <div class="brand-name">
-              <img
-                src="{% static 'img/logo.png' %}"
-                alt="{% trans 'لوگوی AZAR TIR ARAS' %}"
-                class="brand-logo"
-              />
-            </div>
-          </a>
+    <form action="{% url 'set_language' %}" method="post" class="lang-switch" id="langSwitch">
+      {% csrf_token %}
+      <input name="next" type="hidden" value="{{ request.path }}">
+      <button type="submit" name="language" value="fa" class="lang-btn {% if request.LANGUAGE_CODE == 'fa' %}active{% endif %}">{% if LANGUAGE_CODE == 'fa' %}فارسی{% else %}Persian{% endif %}</button>
+      <button type="submit" name="language" value="en" class="lang-btn {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">{% if LANGUAGE_CODE == 'fa' %}انگلیسی{% else %}English{% endif %}</button>
+    </form>
+  </div>
+</div>
+
+<!-- =================== NAV BAR =================== -->
+<nav class="navbar">
+  <div class="container">
+    <!-- 1. برند -->
+    <div class="brand">
+      <a href="{% url 'index' %}" class="brand-link">
+        <div class="brand-name">
+          <img
+            src="{% static 'img/logo.png' %}"
+            alt="{% if LANGUAGE_CODE == 'fa' %}لوگوی AZAR TIR ARAS{% else %}AZAR TIR ARAS logo{% endif %}"
+            class="brand-logo"
+          />
         </div>
-
-        <!-- 2. منو (در دسکتاپ) -->
-        <ul class="nav-menu" id="navMenu">
-          <li class="nav-item">
-            <a href="{% url 'international' %}" class="nav-link">{% trans "حمل و نقل بین‌المللی" %}</a>
-          </li>
-
-          <li class="nav-item" id="transportItem">
-            <a
-              href="{% url 'hamle_asli' %}"
-              class="nav-link"
-              id="transportTrigger"
-            >
-              {% trans "روش‌های حمل و نقل" %}
-              <svg
-                class="caret"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-              >
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </a>
-            <div class="dropdown">
-              <a href="{% url 'tarkibi' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "حمل و نقل ترکیبی" %}</a
-              >
-              <a href="{% url 'ship' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "حمل و نقل دریایی" %}</a
-              >
-              <a href="{% url 'truck' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "حمل و نقل جاده‌ای" %}</a
-              >
-              <a href="{% url 'airplane' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "حمل و نقل هوایی" %}</a
-              >
-              <a href="{% url 'train' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "حمل و نقل ریلی" %}</a
-              >
-            </div>
-          </li>
-
-          <li class="nav-item" id="servicesItem">
-            <a
-              href="{% url 'service_new' %}"
-              class="nav-link"
-              id="servicesTrigger"
-            >
-              {% trans "خدمات ما" %}
-              <svg
-                class="caret"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-              >
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </a>
-            <div class="dropdown">
-              <a href="{% url 'service_import' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "واردات کالا" %}</a
-              >
-              <a href="{% url 'service_export' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "صادرات کالا" %}</a
-              >
-              <a href="{% url 'service_tarkhis' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "ترخیص کالا از گمرک" %}</a
-              >
-              <a href="{% url 'service_umurgomroki' %}" class="dropdown-link"
-                ><span class="dot"></span>{% trans "امور گمرکی و ترخیص" %}</a
-              >
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a href="{% url 'aboutus' %}" class="nav-link">{% trans "درباره ما" %}</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'contact' %}" class="nav-link">{% trans "تماس با ما" %}</a>
-          </li>
-        </ul>
-
-        <!-- 3. دکمه استعلام -->
-        <a href="{% url 'contact' %}" class="quote-btn">
-          {% trans "استعلام قیمت" %}
-          <svg
-            width="15"
-            height="15"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.3"
-          >
-            <path d="M13 5l7 7-7 7M20 12H4" />
-          </svg>
-        </a>
-
-        <!-- 4. همبرگری (موبایل) -->
-        <button class="burger" id="burgerBtn">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- ====== MOBILE DRAWER ====== -->
-    <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
-    <div class="mobile-drawer" id="mobileDrawer">
-      <div class="mobile-drawer-head">
-        <span class="mobile-drawer-brand">AZAR TIR ARAS</span>
-        <button
-          class="mobile-drawer-close"
-          id="drawerClose"
-          aria-label="{% trans 'بستن منو' %}"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <div class="mobile-drawer-nav">
-        <a href="{% url 'international' %}" class="nav-link">{% trans "حمل و نقل بین‌المللی" %}</a>
-
-        <div class="nav-item">
-          <a href="#" class="nav-link">
-            {% trans "روش‌های حمل و نقل" %}
-            <svg
-              class="caret"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </a>
-          <div class="dropdown">
-            <a href="{% url 'tarkibi' %}">{% trans "حمل و نقل ترکیبی" %}</a>
-            <a href="{% url 'ship' %}">{% trans "حمل و نقل دریایی" %}</a>
-            <a href="{% url 'truck' %}">{% trans "حمل و نقل جاده‌ای" %}</a>
-            <a href="{% url 'airplane' %}">{% trans "حمل و نقل هوایی" %}</a>
-            <a href="{% url 'train' %}">{% trans "حمل و نقل ریلی" %}</a>
-          </div>
-        </div>
-
-        <div class="nav-item">
-          <a href="{% url 'service_new' %}" class="nav-link">
-            {% trans "خدمات ما" %}
-            <svg
-              class="caret"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </a>
-          <div class="dropdown">
-            <a href="{% url 'service_import' %}">{% trans "واردات کالا" %}</a>
-            <a href="{% url 'service_export' %}">{% trans "صادرات کالا" %}</a>
-            <a href="{% url 'service_tarkhis' %}">{% trans "ترخیص کالا از گمرک" %}</a>
-            <a href="{% url 'service_umurgomroki' %}">{% trans "امور گمرکی و ترخیص" %}</a>
-          </div>
-        </div>
-
-        <a href="{% url 'aboutus' %}" class="nav-link">{% trans "درباره ما" %}</a>
-        <a href="{% url 'contact' %}" class="nav-link">{% trans "تماس با ما" %}</a>
-      </div>
-
-      <a href="{% url 'contact' %}" class="quote-btn-mobile">
-        {% trans "استعلام قیمت" %}
-        <svg
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.3"
-        >
-          <path d="M13 5l7 7-7 7M20 12H4" />
-        </svg>
       </a>
     </div>
 
-    <!-- =================== MAIN CONTENT =================== -->
-    <main>
+    <!-- 2. منو (در دسکتاپ) -->
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item">
+        <a href="{% url 'international' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transport{% endif %}</a>
+      </li>
 
-        <!-- HERO امور گمرکی -->
-        <section class="services-hero" style="background-image: url('/media/gomrok.jpeg');">
-            <div class="container">
-                <div class="hero-content">
-                    <span class="tag-pill">خدمات تخصصی گمرکی</span>
-                    <h1 class="hero-title">امور <span class="accent">گمرکی</span> و ترخیص</h1>
-                    <p class="hero-desc">
-                        ارائه خدمات تخصصی در حوزه امور گمرکی شامل تنظیم اظهارنامه، اخذ مجوزهای قانونی و مشاوره ارزش‌گذاری. تیم آذر تیر ارس پرونده‌های شما را با دقت و سرعت بالا جلو می‌برد.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="{% url 'contact' %}" class="btn-primary">
-                            مشاوره رایگان
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                        <a href="{% url 'contact' %}" class="btn-outline-light">استعلام قیمت</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- آیکون‌های اعتماد -->
-        <div class="hero-trust-badges">
-            <div class="container">
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-                    <span class="trust-text">کیفیت تضمینی <small>استانداردهای جهانی</small></span>
-                </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                    <span class="trust-text">پشتیبانی ۲۴ ساعته <small>همیشه در دسترس</small></span>
-                </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9-4-18-3 9H2"/></svg>
-                    <span class="trust-text">ارسال سریع <small>تحویل به موقع</small></span>
-                </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-                    <span class="trust-text">پشتیبانی چندزبانه <small>ارتباط آسان</small></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- جزئیات امور گمرکی -->
-        <section class="import-detail-section">
-            <div class="container">
-                <div class="sec-head center" style="margin-bottom: 30px;">
-                    <h2 style="font-size:30px; font-weight:800; color:var(--navy); line-height:1.55;">چرا امور گمرکی با <span style="color:var(--gold);">آذر تیر ارس</span>؟</h2>
-                    <span class="sec-bar"></span>
-                    <p style="color:var(--ink-muted); font-size:15px; line-height:2; margin-top:16px;">ما فرآیند امور گمرکی را برای شما ساده، سریع و شفاف می‌کنیم.</p>
-                </div>
-                <div class="import-detail-wrapper">
-                    <!-- باکس عکس - تگ img داخل این div قرار می‌گیرد -->
-                    <div class="import-detail-image-box">
-                        <img src="{% static 'img/tarkhis.jpeg' %}" alt="امور گمرکی آذر تیر ارس">
-                    </div>
-                    <div class="import-detail-content">
-                        <h2>مدیریت کامل امور گمرکی از تنظیم اظهارنامه تا اخذ مجوز</h2>
-                        <p>
-                            از تنظیم اظهارنامه گمرکی و اخذ مجوزهای قانونی تا مشاوره ارزش‌گذاری کالا و تعرفه‌های گمرکی؛ ما تمام مراحل را با بهره‌گیری از کارشناسان مجرب و مجوزهای رسمی پوشش می‌دهیم. تیم متخصص آذر تیر ارس با تسلط کامل بر قوانین گمرکی و مقررات مربوطه، هزینه‌ها و زمان شما را بهینه می‌کند.
-                        </p>
-                        <div class="import-feature-list">
-                            <div class="import-feature-item">
-                                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9-4-18-3 9H2"/></svg>
-                                <span>تنظیم اظهارنامه دقیق</span>
-                            </div>
-                            <div class="import-feature-item">
-                                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-                                <span>اخذ مجوزهای قانونی</span>
-                            </div>
-                            <div class="import-feature-item">
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>مشاوره ارزش‌گذاری</span>
-                            </div>
-                            <div class="import-feature-item">
-                                <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-                                <span>پیگیری مستمر پرونده</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- سکشن درباره امور گمرکی -->
-        <section class="import-about-section">
-            <div class="container">
-                <div class="sec-head center" style="margin-bottom: 40px;">
-                    <span class="tag-pill" style="background: rgba(230,185,77,0.1); border-color: rgba(230,185,77,0.3); color: var(--gold);">تخصص ما در امور گمرکی</span>
-                    <h2 style="font-size:30px; font-weight:800; color:var(--navy); line-height:1.55;">خدمات جامع <span style="color:var(--gold);">امور گمرکی</span> با آذر تیر ارس</h2>
-                    <span class="sec-bar"></span>
-                </div>
-
-                <div class="import-about-text">
-                    <p>
-                        شرکت حمل و نقل بین‌المللی آذر تیر ارس با بیش از یک دهه تجربه درخشان در حوزه امور گمرکی و ترخیص کالا، به عنوان یکی از معتبرترین شرکت‌های فعال در این زمینه شناخته می‌شود. ما با بهره‌گیری از تیم کارشناسان مجرب و دارای پروانه رسمی ترخیص کالا از گمرکات کشور، توانسته‌ایم زنجیره کاملی از خدمات گمرکی را برای تجار، بازرگانان و شرکت‌های تولیدی فراهم آوریم. هدف ما کاهش زمان انتظار کالا در گمرک و به حداقل رساندن هزینه‌های مرتبط با امور گمرکی است.
-                    </p>
-                    
-                    <p>
-                        تیم کارشناسان ما در آذر تیر ارس با تسلط کامل بر قوانین و مقررات گمرکی، تعرفه‌های وارداتی و صادراتی، کدهای HS، ارزش‌گذاری کالا و مقررات ارزی، شما را در تمام مراحل امور گمرکی همراهی می‌کنند. از تنظیم اظهارنامه گمرکی و اخذ مجوزهای لازم از سازمان‌های ذی‌ربط مانند سازمان استاندارد، وزارت بهداشت، وزارت صمت، سازمان غذا و دارو و سازمان انرژی اتمی گرفته تا مشاوره ارزش‌گذاری کالا، پرداخت حقوق ورودی و عوارض گمرکی و خروج کالا از گمرک، همه و همه تحت نظارت مستقیم کارشناسان مجرب ما انجام می‌شود.
-                    </p>
-
-                    <div class="import-about-features">
-                        <div>
-                            <h3>
-                                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-                                مزایای امور گمرکی با ما
-                            </h3>
-                            <ul>
-                                <li><span class="check">✓</span> تنظیم اظهارنامه دقیق و کاهش ریسک خطا در اسناد گمرکی</li>
-                                <li><span class="check">✓</span> اخذ سریع مجوزهای قانونی از تمام سازمان‌های ذی‌ربط</li>
-                                <li><span class="check">✓</span> مشاوره تخصصی ارزش‌گذاری و تعرفه‌های گمرکی</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                پوشش کامل خدمات
-                            </h3>
-                            <ul>
-                                <li><span class="check">✓</span> انجام امور گمرکی در تمام گمرکات کشور</li>
-                                <li><span class="check">✓</span> هماهنگی با گمرکات اجرایی و پیگیری مستمر پرونده‌ها</li>
-                                <li><span class="check">✓</span> اخذ پروانه ترخیص و مجوزهای بهداشتی و استاندارد</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- مراحل امور گمرکی -->
-        <section class="steps-section">
-            <div class="container">
-                <div class="sec-head center" style="margin-bottom: 20px;">
-                    <h2 class="sec-title">مراحل <span class="accent">امور گمرکی</span></h2>
-                    <span class="sec-bar"></span>
-                    <p class="sec-sub">چهار گام ساده تا تکمیل پرونده گمرکی</p>
-                </div>
-                <div class="steps-grid">
-                    <div class="step-card">
-                        <div class="step-number">۱</div>
-                        <h4>بررسی اسناد</h4>
-                        <p>بررسی کامل اسناد و مدارک، تعرفه‌ها و مجوزهای مورد نیاز.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">۲</div>
-                        <h4>تنظیم اظهارنامه</h4>
-                        <p>تنظیم اظهارنامه گمرکی، احراز هویت و ارسال اسناد به سامانه.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">۳</div>
-                        <h4>ارزیابی و پرداخت</h4>
-                        <p>ارزیابی کالا توسط کارشناس گمرک و پرداخت حقوق ورودی و عوارض.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">۴</div>
-                        <h4>اخذ پروانه</h4>
-                        <p>اخذ پروانه ترخیص، بارگیری و خروج نهایی کالا از گمرک.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="transport-cta" id="cta">
-            <div class="transport-cta__container">
-                <div class="transport-cta__content">
-                    <h2 class="transport-cta__title">
-                        برای امور گمرکی سریع و مطمئن، <span>همین حالا</span> اقدام کنید!
-                    </h2>
-                    <p class="transport-cta__description">
-                        کارشناسان ما آماده ارائه مشاوره رایگان و استعلام قیمت به شما هستند.
-                    </p>
-                    <div class="transport-cta__actions">
-                        <a href="#" class="cta-btn cta-btn--primary">
-                            <span>استعلام قیمت رایگان</span>
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M21 3L3.5 10.2c-.8.3-.8 1.4 0 1.7l6.4 2.4 2.4 6.4c.3.8 1.4.8 1.7 0L21 3z" />
-                                <path d="M10 14l7-7" />
-                            </svg>
-                        </a>
-                        <a href="tel:+989141234567" class="cta-btn cta-btn--secondary">
-                            <span>تماس با ما</span>
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- =================== FOOTER =================== -->
-    <footer class="site-footer">
-      <div class="site-footer__main">
-        <div class="site-footer__container">
-          <!-- ستون درباره ما -->
-          <div class="footer-column footer-about">
-            <h3 class="footer-title">{% trans "درباره ما" %}</h3>
-            <p>
-              {% blocktrans trimmed %}
-                آذر تیر ارس، شرکت حمل و نقل بین‌المللی با تمرکز بر ارائه خدمات حمل و نقل، ترانزیت و خدمات گمرکی به مقصد ترکیه، اروپا و کشورهای CIS.
-              {% endblocktrans %}
-            </p>
-            <div class="social-links">
-              <a href="#" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24">
-                  <path d="M6 8v10" />
-                  <circle cx="6" cy="5" r="1" />
-                  <path d="M10 18v-6a3 3 0 0 1 6 0v6" />
-                  <path d="M10 12v6" />
-                  <path d="M16 15v3" />
-                </svg>
-              </a>
-              <a href="#" aria-label="Instagram">
-                <svg viewBox="0 0 24 24">
-                  <rect x="4" y="4" width="16" height="16" rx="4" />
-                  <circle cx="12" cy="12" r="3.5" />
-                  <circle cx="17.3" cy="6.8" r="1" />
-                </svg>
-              </a>
-              <a href="#" aria-label="WhatsApp">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L4 20l.9-3.6 A8.5 8.5 0 1 1 20.5 11.7z"
-                  />
-                  <path
-                    d="M9.2 8.4c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.6.7c.8 1.4 1.5 2.1 2.9 2.9l.7-.6c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.4.5v.5c0 .3-.1.6-.4.8-.4.3-1 .4-1.5.2 -2.8-.8-5.1-3.1-5.9-5.9 -.2-.5-.1-1.1.2-1.5z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- ستون خدمات (جدا از مسیرها) -->
-          <div class="footer-column">
-            <h3 class="footer-title">{% trans "خدمات" %}</h3>
-            <ul class="footer-links">
-              <li><a href="{% url 'international' %}">{% trans "حمل بین‌المللی" %}</a></li>
-              <li><a href="{% url 'hamle_asli' %}">{% trans "ترانزیت" %}</a></li>
-              <li><a href="{% url 'hamle_asli' %}">{% trans "حمل داخلی" %}</a></li>
-              <li><a href="{% url 'hamle_asli' %}">{% trans "خدمات گمرکی" %}</a></li>
-            </ul>
-          </div>
-
-          <!-- ستون مسیرها -->
-          <div class="footer-column">
-            <h3 class="footer-title">{% trans "مسیرها" %}</h3>
-            <ul class="footer-links">
-              <li><a href="{% url 'roads' %}">{% trans "ایران به ترکیه" %}</a></li>
-              <li><a href="{% url 'roads' %}">{% trans "ایران به اروپا" %}</a></li>
-              <li><a href="{% url 'roads' %}">{% trans "ترکیه به ایران" %}</a></li>
-              <li><a href="{% url 'roads' %}">{% trans "سایر مسیرها" %}</a></li>
-            </ul>
-          </div>
-
-          <!-- ستون تماس -->
-          <div class="footer-column footer-contact">
-            <h3 class="footer-title">{% trans "اطلاعات تماس" %}</h3>
-            <div class="contact-list">
-              <a href="{% url 'contact' %}" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M12 21s7-6.2 7-12A7 7 0 1 0 5 9c0 5.8 7 12 7 12z"
-                    />
-                    <circle cx="12" cy="9" r="2.3" />
-                  </svg>
-                </span>
-                <span>
-                  {% trans "تهران, سید خندان خیابان<br />دبستان کوچه ،آگاهی پلاک ۸ طبقه سوم، واحد ۸" %}
-                </span>
-              </a>
-
-              <a href="tel:+989141934301" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"
-                    />
-                  </svg>
-                </span>
-                <span dir="ltr">+989141934301</span>
-                <span dir="ltr">+982188479170</span>
-                <span dir="ltr">+982188479151</span>
-              </a>
-
-              <a href="mailto:info@azartiraras.com" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <path d="M3 7l9 6 9-6" />
-                  </svg>
-                </span>
-                <span dir="ltr">info@azartiraras.com</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="site-footer__bottom">
-        <div class="site-footer__bottom-inner">
-          <p>
-            {% blocktrans trimmed %}
-              © ۱۴۰۵ تمامی حقوق محفوظ است | طراحی و توسعه توسط Sijeey
-            {% endblocktrans %}
-          </p>
-          <button
-            class="back-to-top"
-            id="backToTop"
-            aria-label="{% trans 'بازگشت به بالا' %}"
+      <li class="nav-item" id="transportItem">
+        <a
+          href="{% url 'hamle_asli' %}"
+          class="nav-link"
+          id="transportTrigger"
+        >
+          {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}
+          <svg
+            class="caret"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
           >
-            <svg viewBox="0 0 24 24">
-              <path d="M6 14l6-6 6 6" />
-            </svg>
-          </button>
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="{% url 'tarkibi' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</a
+          >
+          <a href="{% url 'ship' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Maritime Transport{% endif %}</a
+          >
+          <a href="{% url 'truck' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</a
+          >
+          <a href="{% url 'airplane' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</a
+          >
+          <a href="{% url 'train' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</a
+          >
+        </div>
+      </li>
+
+      <li class="nav-item" id="servicesItem">
+        <a
+          href="{% url 'service_new' %}"
+          class="nav-link"
+          id="servicesTrigger"
+        >
+          {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
+          <svg
+            class="caret"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="{% url 'service_import' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import{% endif %}</a
+          >
+          <a href="{% url 'service_export' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export{% endif %}</a
+          >
+          <a href="{% url 'service_tarkhis' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a
+          >
+          <a href="{% url 'service_umurgomroki' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs{% endif %}</a
+          >
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
+      </li>
+    </ul>
+
+    <!-- 3. دکمه استعلام -->
+    <a href="{% url 'contact' %}" class="quote-btn">
+      {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
+      <svg
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.3"
+      >
+        <path d="M13 5l7 7-7 7M20 12H4" />
+      </svg>
+    </a>
+
+    <!-- 4. همبرگری (موبایل) -->
+    <button class="burger" id="burgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ====== MOBILE DRAWER ====== -->
+<div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-drawer-head">
+    <span class="mobile-drawer-brand">AZAR TIR ARAS</span>
+    <button
+      class="mobile-drawer-close"
+      id="drawerClose"
+      aria-label="{% if LANGUAGE_CODE == 'fa' %}بستن منو{% else %}Close menu{% endif %}"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div class="mobile-drawer-nav">
+    <a href="{% url 'international' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transport{% endif %}</a>
+
+    <div class="nav-item">
+      <a href="#" class="nav-link">
+        {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}
+        <svg
+          class="caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </a>
+      <div class="dropdown">
+        <a href="{% url 'tarkibi' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</a>
+        <a href="{% url 'ship' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Maritime Transport{% endif %}</a>
+        <a href="{% url 'truck' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</a>
+        <a href="{% url 'airplane' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</a>
+        <a href="{% url 'train' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="{% url 'service_new' %}" class="nav-link">
+        {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
+        <svg
+          class="caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </a>
+      <div class="dropdown">
+        <a href="{% url 'service_import' %}">{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import{% endif %}</a>
+        <a href="{% url 'service_export' %}">{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export{% endif %}</a>
+        <a href="{% url 'service_tarkhis' %}">{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a>
+        <a href="{% url 'service_umurgomroki' %}">{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs{% endif %}</a>
+      </div>
+    </div>
+
+    <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
+    <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
+  </div>
+
+  <a href="{% url 'contact' %}" class="quote-btn-mobile">
+    {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.3"
+    >
+      <path d="M13 5l7 7-7 7M20 12H4" />
+    </svg>
+  </a>
+</div>
+
+<!-- =================== MAIN CONTENT =================== -->
+<main>
+
+  <!-- HERO امور گمرکی -->
+  <section class="services-hero" style="background-image: url('/media/gomrok.jpeg');">
+    <div class="container">
+      <div class="hero-content">
+        <span class="tag-pill">{% if LANGUAGE_CODE == 'fa' %}خدمات تخصصی گمرکی{% else %}Specialized Customs Services{% endif %}</span>
+        <h1 class="hero-title">{% if LANGUAGE_CODE == 'fa' %}امور <span class="accent">گمرکی</span> و ترخیص{% else %}<span class="accent">Customs</span> Affairs & Clearance{% endif %}</h1>
+        <p class="hero-desc">
+          {% if LANGUAGE_CODE == 'fa' %}
+            ارائه خدمات تخصصی در حوزه امور گمرکی شامل تنظیم اظهارنامه، اخذ مجوزهای قانونی و مشاوره ارزش‌گذاری. تیم آذر تیر ارس پرونده‌های شما را با دقت و سرعت بالا جلو می‌برد.
+          {% else %}
+            Providing specialized services in customs affairs including declaration preparation, obtaining legal permits and valuation consultation. The Azar Tir Aras team handles your cases with high precision and speed.
+          {% endif %}
+        </p>
+        <div class="hero-buttons">
+          <a href="{% url 'contact' %}" class="btn-primary">
+            {% if LANGUAGE_CODE == 'fa' %}مشاوره رایگان{% else %}Free Consultation{% endif %}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="{% url 'contact' %}" class="btn-outline-light">{% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}</a>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <!-- =================== SCRIPT =================== -->
-    <script>
-          document.addEventListener("DOMContentLoaded", function () {
-  // ====== زبان ======
-  const langButtons = document.querySelectorAll(".lang-btn");
-  if (langButtons.length > 0) {
-    langButtons.forEach((btn) => {
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        langButtons.forEach((b) => b.classList.remove("active"));
-        this.classList.add("active");
-      });
-    });
-  }
+  <!-- آیکون‌های اعتماد -->
+  <div class="hero-trust-badges">
+    <div class="container">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span class="trust-text">{% if LANGUAGE_CODE == 'fa' %}کیفیت تضمینی{% else %}Guaranteed Quality{% endif %} <small>{% if LANGUAGE_CODE == 'fa' %}استانداردهای جهانی{% else %}Global Standards{% endif %}</small></span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span class="trust-text">{% if LANGUAGE_CODE == 'fa' %}پشتیبانی ۲۴ ساعته{% else %}24/7 Support{% endif %} <small>{% if LANGUAGE_CODE == 'fa' %}همیشه در دسترس{% else %}Always Available{% endif %}</small></span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9-4-18-3 9H2"/></svg>
+        <span class="trust-text">{% if LANGUAGE_CODE == 'fa' %}ارسال سریع{% else %}Fast Delivery{% endif %} <small>{% if LANGUAGE_CODE == 'fa' %}تحویل به موقع{% else %}On-time Delivery{% endif %}</small></span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <span class="trust-text">{% if LANGUAGE_CODE == 'fa' %}پشتیبانی چندزبانه{% else %}Multilingual Support{% endif %} <small>{% if LANGUAGE_CODE == 'fa' %}ارتباط آسان{% else %}Easy Communication{% endif %}</small></span>
+      </div>
+    </div>
+  </div>
 
-  // ====== موبایل دراور ======
-  const burgerBtn = document.getElementById("burgerBtn");
-  const mobileDrawer = document.getElementById("mobileDrawer");
-  const drawerOverlay = document.getElementById("drawerOverlay");
-  const drawerClose = document.getElementById("drawerClose");
+  <!-- جزئیات امور گمرکی -->
+  <section class="import-detail-section">
+    <div class="container">
+      <div class="sec-head center" style="margin-bottom: 30px;">
+        <h2 style="font-size:30px; font-weight:800; color:var(--navy); line-height:1.55;">
+          {% if LANGUAGE_CODE == 'fa' %}
+            چرا امور گمرکی با <span style="color:var(--gold);">آذر تیر ارس</span>؟
+          {% else %}
+            Why Customs Affairs with <span style="color:var(--gold);">Azar Tir Aras</span>?
+          {% endif %}
+        </h2>
+        <span class="sec-bar"></span>
+        <p style="color:var(--ink-muted); font-size:15px; line-height:2; margin-top:16px;">
+          {% if LANGUAGE_CODE == 'fa' %}
+            ما فرآیند امور گمرکی را برای شما ساده، سریع و شفاف می‌کنیم.
+          {% else %}
+            We make the customs affairs process simple, fast and transparent for you.
+          {% endif %}
+        </p>
+      </div>
+      <div class="import-detail-wrapper">
+        <div class="import-detail-image-box">
+          <img src="{% static 'img/tarkhis.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}امور گمرکی آذر تیر ارس{% else %}Azar Tir Aras customs affairs{% endif %}">
+        </div>
+        <div class="import-detail-content">
+          <h2>
+            {% if LANGUAGE_CODE == 'fa' %}
+              مدیریت کامل امور گمرکی از تنظیم اظهارنامه تا اخذ مجوز
+            {% else %}
+              Complete Management of Customs Affairs from Declaration to Permit Acquisition
+            {% endif %}
+          </h2>
+          <p>
+            {% if LANGUAGE_CODE == 'fa' %}
+              از تنظیم اظهارنامه گمرکی و اخذ مجوزهای قانونی تا مشاوره ارزش‌گذاری کالا و تعرفه‌های گمرکی؛ ما تمام مراحل را با بهره‌گیری از کارشناسان مجرب و مجوزهای رسمی پوشش می‌دهیم. تیم متخصص آذر تیر ارس با تسلط کامل بر قوانین گمرکی و مقررات مربوطه، هزینه‌ها و زمان شما را بهینه می‌کند.
+            {% else %}
+              From preparing customs declarations and obtaining legal permits to consultation on cargo valuation and customs tariffs; we cover all stages using experienced experts and official permits. The expert team of Azar Tir Aras, with complete mastery of customs laws and related regulations, optimizes your costs and time.
+            {% endif %}
+          </p>
+          <div class="import-feature-list">
+            <div class="import-feature-item">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9-4-18-3 9H2"/></svg>
+              <span>{% if LANGUAGE_CODE == 'fa' %}تنظیم اظهارنامه دقیق{% else %}Accurate Declaration Preparation{% endif %}</span>
+            </div>
+            <div class="import-feature-item">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              <span>{% if LANGUAGE_CODE == 'fa' %}اخذ مجوزهای قانونی{% else %}Obtaining Legal Permits{% endif %}</span>
+            </div>
+            <div class="import-feature-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span>{% if LANGUAGE_CODE == 'fa' %}مشاوره ارزش‌گذاری{% else %}Valuation Consultation{% endif %}</span>
+            </div>
+            <div class="import-feature-item">
+              <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+              <span>{% if LANGUAGE_CODE == 'fa' %}پیگیری مستمر پرونده{% else %}Continuous Case Follow-up{% endif %}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  function openDrawer() {
-    mobileDrawer.classList.add("open");
-    drawerOverlay.style.opacity = "1";
-    drawerOverlay.style.visibility = "visible";
-    document.body.style.overflow = "hidden";
-  }
+  <!-- سکشن درباره امور گمرکی -->
+  <section class="import-about-section">
+    <div class="container">
+      <div class="sec-head center" style="margin-bottom: 40px;">
+        <span class="tag-pill" style="background: rgba(230,185,77,0.1); border-color: rgba(230,185,77,0.3); color: var(--gold);">
+          {% if LANGUAGE_CODE == 'fa' %}تخصص ما در امور گمرکی{% else %}Our Customs Affairs Expertise{% endif %}
+        </span>
+        <h2 style="font-size:30px; font-weight:800; color:var(--navy); line-height:1.55;">
+          {% if LANGUAGE_CODE == 'fa' %}
+            خدمات جامع <span style="color:var(--gold);">امور گمرکی</span> با آذر تیر ارس
+          {% else %}
+            Comprehensive <span style="color:var(--gold);">Customs Affairs</span> Services with Azar Tir Aras
+          {% endif %}
+        </h2>
+        <span class="sec-bar"></span>
+      </div>
 
-  function closeDrawer() {
-    mobileDrawer.classList.remove("open");
-    drawerOverlay.style.opacity = "0";
-    drawerOverlay.style.visibility = "hidden";
-    document.body.style.overflow = "";
-    document
-      .querySelectorAll(".mobile-drawer-nav .nav-item.open")
-      .forEach((item) => item.classList.remove("open"));
-  }
+      <div class="import-about-text">
+        <p>
+          {% if LANGUAGE_CODE == 'fa' %}
+            شرکت حمل و نقل بین‌المللی آذر تیر ارس با بیش از یک دهه تجربه درخشان در حوزه امور گمرکی و ترخیص کالا، به عنوان یکی از معتبرترین شرکت‌های فعال در این زمینه شناخته می‌شود. ما با بهره‌گیری از تیم کارشناسان مجرب و دارای پروانه رسمی ترخیص کالا از گمرکات کشور، توانسته‌ایم زنجیره کاملی از خدمات گمرکی را برای تجار، بازرگانان و شرکت‌های تولیدی فراهم آوریم. هدف ما کاهش زمان انتظار کالا در گمرک و به حداقل رساندن هزینه‌های مرتبط با امور گمرکی است.
+          {% else %}
+            Azar Tir Aras International Transport Company, with over a decade of outstanding experience in customs affairs and goods clearance, is recognized as one of the most reputable companies in this field. By utilizing a team of experienced experts with official licenses for customs clearance from the country's customs offices, we have been able to provide a complete chain of customs services for traders, merchants and manufacturing companies. Our goal is to reduce the waiting time of goods at customs and minimize costs associated with customs affairs.
+          {% endif %}
+        </p>
+        
+        <p>
+          {% if LANGUAGE_CODE == 'fa' %}
+            تیم کارشناسان ما در آذر تیر ارس با تسلط کامل بر قوانین و مقررات گمرکی، تعرفه‌های وارداتی و صادراتی، کدهای HS، ارزش‌گذاری کالا و مقررات ارزی، شما را در تمام مراحل امور گمرکی همراهی می‌کنند. از تنظیم اظهارنامه گمرکی و اخذ مجوزهای لازم از سازمان‌های ذی‌ربط مانند سازمان استاندارد، وزارت بهداشت، وزارت صمت، سازمان غذا و دارو و سازمان انرژی اتمی گرفته تا مشاوره ارزش‌گذاری کالا، پرداخت حقوق ورودی و عوارض گمرکی و خروج کالا از گمرک، همه و همه تحت نظارت مستقیم کارشناسان مجرب ما انجام می‌شود.
+          {% else %}
+            Our expert team at Azar Tir Aras, with complete mastery of customs laws, import and export tariffs, HS codes, cargo valuation and currency regulations, accompanies you through all stages of customs affairs. From preparing customs declarations and obtaining necessary permits from relevant organizations such as the Standards Organization, Ministry of Health, Ministry of Industry, Mine and Trade, Food and Drug Administration and the Atomic Energy Organization, to consultation on cargo valuation, payment of import duties and customs fees and releasing goods from customs, all are carried out under the direct supervision of our experienced specialists.
+          {% endif %}
+        </p>
 
-  if (burgerBtn) burgerBtn.addEventListener("click", openDrawer);
-  if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
-  if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeDrawer();
-  });
+        <div class="import-about-features">
+          <div>
+            <h3>
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              {% if LANGUAGE_CODE == 'fa' %}مزایای امور گمرکی با ما{% else %}Customs Affairs Benefits with Us{% endif %}
+            </h3>
+            <ul>
+              <li><span class="check">✓</span> {% if LANGUAGE_CODE == 'fa' %}تنظیم اظهارنامه دقیق و کاهش ریسک خطا در اسناد گمرکی{% else %}Accurate declaration preparation and reducing error risk in customs documents{% endif %}</li>
+              <li><span class="check">✓</span> {% if LANGUAGE_CODE == 'fa' %}اخذ سریع مجوزهای قانونی از تمام سازمان‌های ذی‌ربط{% else %}Fast acquisition of legal permits from all relevant organizations{% endif %}</li>
+              <li><span class="check">✓</span> {% if LANGUAGE_CODE == 'fa' %}مشاوره تخصصی ارزش‌گذاری و تعرفه‌های گمرکی{% else %}Expert consultation on valuation and customs tariffs{% endif %}</li>
+            </ul>
+          </div>
+          <div>
+            <h3>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              {% if LANGUAGE_CODE == 'fa' %}پوشش کامل خدمات{% else %}Full Service Coverage{% endif %}
+            </h3>
+            <ul>
+              <li><span class="check">✓</span> {% if LANGUAGE_CODE == 'fa' %}انجام امور گمرکی در تمام گمرکات کشور{% else %}Performing customs affairs in all customs offices nationwide{% endif %}</li>
+              <li><span class="check">✓</span> {% if LANGUAGE_CODE == 'fa' %}هماهنگی با گمرکات اجرایی و پیگیری مستمر پرونده‌ها{% else %}Coordination with executive customs offices and continuous case follow-up{% endif %}</li>
+              <li><span class="check">✓</span> {% if LANGUAGE_CODE == 'fa' %}اخذ پروانه ترخیص و مجوزهای بهداشتی و استاندارد{% else %}Obtaining clearance permits and health and standard certificates{% endif %}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  // ====== دراپ‌داون‌های موبایل (تریگرها) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav .nav-item > .nav-link")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        if (this.querySelector(".caret")) {
-          e.preventDefault(); // فقط برای آیتم‌های دارای کرت جلوی هدایت گرفته می‌شود
-          const parentItem = this.closest(".nav-item");
-          if (parentItem) {
-            document
-              .querySelectorAll(".mobile-drawer-nav .nav-item.open")
-              .forEach((item) => {
-                if (item !== parentItem) item.classList.remove("open");
-              });
-            parentItem.classList.toggle("open");
-          }
-        }
-        // اگر کرت نداشت (لینک ساده) کاری نمی‌کنیم و اجازه هدایت می‌دهیم
-      });
-    });
+  <!-- مراحل امور گمرکی -->
+  <section class="steps-section">
+    <div class="container">
+      <div class="sec-head center" style="margin-bottom: 20px;">
+        <h2 class="sec-title">{% if LANGUAGE_CODE == 'fa' %}مراحل <span class="accent">امور گمرکی</span>{% else %}<span class="accent">Customs Affairs</span> Steps{% endif %}</h2>
+        <span class="sec-bar"></span>
+        <p class="sec-sub">{% if LANGUAGE_CODE == 'fa' %}چهار گام ساده تا تکمیل پرونده گمرکی{% else %}Four simple steps to complete the customs file{% endif %}</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">۱</div>
+          <h4>{% if LANGUAGE_CODE == 'fa' %}بررسی اسناد{% else %}Document Review{% endif %}</h4>
+          <p>{% if LANGUAGE_CODE == 'fa' %}بررسی کامل اسناد و مدارک، تعرفه‌ها و مجوزهای مورد نیاز.{% else %}Complete review of documents, tariffs and required permits.{% endif %}</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">۲</div>
+          <h4>{% if LANGUAGE_CODE == 'fa' %}تنظیم اظهارنامه{% else %}Declaration Preparation{% endif %}</h4>
+          <p>{% if LANGUAGE_CODE == 'fa' %}تنظیم اظهارنامه گمرکی، احراز هویت و ارسال اسناد به سامانه.{% else %}Preparing customs declaration, identity verification and submitting documents to the system.{% endif %}</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">۳</div>
+          <h4>{% if LANGUAGE_CODE == 'fa' %}ارزیابی و پرداخت{% else %}Assessment & Payment{% endif %}</h4>
+          <p>{% if LANGUAGE_CODE == 'fa' %}ارزیابی کالا توسط کارشناس گمرک و پرداخت حقوق ورودی و عوارض.{% else %}Cargo assessment by customs expert and payment of import duties and fees.{% endif %}</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">۴</div>
+          <h4>{% if LANGUAGE_CODE == 'fa' %}اخذ پروانه{% else %}Permit Acquisition{% endif %}</h4>
+          <p>{% if LANGUAGE_CODE == 'fa' %}اخذ پروانه ترخیص، بارگیری و خروج نهایی کالا از گمرک.{% else %}Obtaining clearance permit, loading and final release of goods from customs.{% endif %}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  // ====== لینک‌های فرعی موبایل (بدون preventDefault) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav .dropdown a")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        // ✅ بدون preventDefault – لینک هدایت می‌کند
-        closeDrawer();
-      });
-    });
-
-  // ====== لینک‌های ساده موبایل (بدون کرت) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav > a.nav-link")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        if (!this.querySelector(".caret")) {
-          // ✅ بدون preventDefault – هدایت می‌کند
-          closeDrawer();
-        }
-      });
-    });
-
-  // ====== منوهای دسکتاپ ======
-  const transportItem = document.getElementById("transportItem");
-  const transportTrigger = document.getElementById("transportTrigger");
-  const servicesItem = document.getElementById("servicesItem");
-  const servicesTrigger = document.getElementById("servicesTrigger");
-
-  if (transportTrigger) {
-    transportTrigger.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      transportItem.classList.toggle("open");
-      if (servicesItem) servicesItem.classList.remove("open");
-    });
-  }
-
-  if (servicesTrigger) {
-    servicesTrigger.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      servicesItem.classList.toggle("open");
-      transportItem.classList.remove("open");
-    });
-  }
-
-  // ====== لینک‌های فرعی دسکتاپ (بدون preventDefault) ======
-  document.querySelectorAll(".dropdown-link").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      // ✅ بدون preventDefault – لینک هدایت می‌کند
-      const parentItem = this.closest(".nav-item");
-      if (parentItem) parentItem.classList.remove("open");
-    });
-  });
-
-  // بستن دراپ‌داون با کلیک بیرون
-  document.addEventListener("click", function (e) {
-    if (!e.target.closest(".nav-item")) {
-      document
-        .querySelectorAll(".nav-item.open")
-        .forEach((item) => item.classList.remove("open"));
-    }
-  });
-
-  // دکمه بازگشت به بالا
-  const backToTop = document.getElementById("backToTop");
-  if (backToTop) {
-    backToTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-});
-    </script>
+ {% include 'footer.html' %}
 </body>
 
 </html>

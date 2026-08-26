@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -1186,6 +1188,33 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+        .float-btn {
+        position: fixed;
+        bottom: 26px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+        z-index: 50;
+        transition: transform 0.25s var(--ease);
+        text-decoration: none; /* اگر لینک است */
+        border: none; /* اگر دکمه است */
+        cursor: pointer;
+      }
+
+      .float-btn:hover {
+        transform: translateY(-4px) scale(1.05);
+      }
+
+      /* واتساپ (چپ) */
+      .float-btn-wa {
+        left: 26px;
+        background: #25d366;
+        color: #fff;
+      }
 
         /* =================== RESPONSIVE =================== */
 
@@ -1343,7 +1372,7 @@
 
 <body>
 
-    <!-- =================== TOP BAR =================== -->
+  <!-- =================== TOP BAR =================== -->
     <div class="topbar">
       <div class="container">
         <div class="topbar-contact">
@@ -1359,7 +1388,7 @@
               d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
             />
           </svg>
-          <span>تماس با ما:</span>
+          <span>{% if LANGUAGE_CODE == 'fa' %}تماس با ما:{% else %}Contact us:{% endif %}</span>
           <span dir="ltr">+989141934301</span>
         </div>
 
@@ -1382,7 +1411,7 @@
             <div class="brand-name">
               <img
                 src="{% static 'img/logo.png' %}"
-                alt="لوگوی AZAR TIR ARAS"
+                alt="{% if LANGUAGE_CODE == 'fa' %}لوگوی AZAR TIR ARAS{% else %}AZAR TIR ARAS Logo{% endif %}"
                 class="brand-logo"
               />
             </div>
@@ -1393,7 +1422,7 @@
         <ul class="nav-menu" id="navMenu">
           <li class="nav-item">
             <a href="{% url 'international' %}" class="nav-link"
-              >حمل و نقل بین‌المللی</a
+              >{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transport{% endif %}</a
             >
           </li>
 
@@ -1403,7 +1432,7 @@
               class="nav-link"
               id="transportTrigger"
             >
-              روش‌های حمل و نقل
+              {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}
               <svg
                 class="caret"
                 viewBox="0 0 24 24"
@@ -1416,19 +1445,19 @@
             </a>
             <div class="dropdown">
               <a href="{% url 'tarkibi' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل ترکیبی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</a
               >
               <a href="{% url 'ship' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل دریایی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}</a
               >
               <a href="{% url 'truck' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل جاده‌ای</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</a
               >
               <a href="{% url 'airplane' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل هوایی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</a
               >
               <a href="{% url 'train' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل ریلی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</a
               >
             </div>
           </li>
@@ -1439,7 +1468,7 @@
               class="nav-link"
               id="servicesTrigger"
             >
-              خدمات ما
+              {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
               <svg
                 class="caret"
                 viewBox="0 0 24 24"
@@ -1452,31 +1481,31 @@
             </a>
             <div class="dropdown">
               <a href="{% url 'service_import' %}" class="dropdown-link"
-                ><span class="dot"></span>واردات کالا</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import of Goods{% endif %}</a
               >
               <a href="{% url 'service_export' %}" class="dropdown-link"
-                ><span class="dot"></span>صادرات کالا</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export of Goods{% endif %}</a
               >
               <a href="{% url 'service_tarkhis' %}" class="dropdown-link"
-                ><span class="dot"></span>ترخیص کالا از گمرک</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a
               >
               <a href="{% url 'service_umurgomroki' %}" class="dropdown-link"
-                ><span class="dot"></span>امور گمرکی و ترخیص</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs & Clearance{% endif %}</a
               >
             </div>
           </li>
 
           <li class="nav-item">
-            <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
+            <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
+            <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
           </li>
         </ul>
 
         <!-- 3. دکمه استعلام -->
         <a href="{% url 'contact' %}" class="quote-btn">
-          استعلام قیمت
+          {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
           <svg
             width="15"
             height="15"
@@ -1504,7 +1533,7 @@
         <button
           class="mobile-drawer-close"
           id="drawerClose"
-          aria-label="بستن منو"
+          aria-label="{% if LANGUAGE_CODE == 'fa' %}بستن منو{% else %}Close menu{% endif %}"
         >
           <svg
             viewBox="0 0 24 24"
@@ -1518,12 +1547,12 @@
       </div>
       <div class="mobile-drawer-nav">
         <a href="{% url 'international' %}" class="nav-link"
-          >حمل و نقل بین‌المللی</a
+          >{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transport{% endif %}</a
         >
 
         <div class="nav-item">
           <a href="#" class="nav-link">
-            روش‌های حمل و نقل
+            {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}
             <svg
               class="caret"
               viewBox="0 0 24 24"
@@ -1535,17 +1564,17 @@
             </svg>
           </a>
           <div class="dropdown">
-            <a href="{% url 'tarkibi' %}">حمل و نقل ترکیبی</a>
-            <a href="{% url 'ship' %}">حمل و نقل دریایی</a>
-            <a href="{% url 'truck' %}">حمل و نقل جاده‌ای</a>
-            <a href="{% url 'airplane' %}">حمل و نقل هوایی</a>
-            <a href="{% url 'train' %}">حمل و نقل ریلی</a>
+            <a href="{% url 'tarkibi' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</a>
+            <a href="{% url 'ship' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}</a>
+            <a href="{% url 'truck' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</a>
+            <a href="{% url 'airplane' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</a>
+            <a href="{% url 'train' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</a>
           </div>
         </div>
 
         <div class="nav-item">
           <a href="{% url 'service_new' %}" class="nav-link">
-            خدمات ما
+            {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
             <svg
               class="caret"
               viewBox="0 0 24 24"
@@ -1557,19 +1586,19 @@
             </svg>
           </a>
           <div class="dropdown">
-            <a href="{% url 'service_import' %}">واردات کالا</a>
-            <a href="{% url 'service_export' %}">صادرات کالا</a>
-            <a href="{% url 'service_tarkhis' %}">ترخیص کالا از گمرک</a>
-            <a href="{% url 'service_umurgomroki' %}">امور گمرکی و ترخیص</a>
+            <a href="{% url 'service_import' %}">{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import of Goods{% endif %}</a>
+            <a href="{% url 'service_export' %}">{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export of Goods{% endif %}</a>
+            <a href="{% url 'service_tarkhis' %}">{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a>
+            <a href="{% url 'service_umurgomroki' %}">{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs & Clearance{% endif %}</a>
           </div>
         </div>
 
-        <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
-        <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
+        <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
+        <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
       </div>
 
       <a href="{% url 'contact' %}" class="quote-btn-mobile">
-        استعلام قیمت
+        {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
 
         <svg
           width="15"
@@ -1589,11 +1618,21 @@
         <!-- 1. HERO - ABOUT -->
         <header class="about-hero">
             <div class="container">
-                <span class="tag-pill" style="color: var(--gold-light); border-color: rgba(230, 185, 77, 0.5); background: rgba(255,255,255,0.05);">درباره آذر تیر ارس</span>
-                <h1 class="about-hero-title">ما مسیرهای <span class="accent">جهان</span> را به کسب‌وکار شما متصل می‌کنیم</h1>
+                <span class="tag-pill" style="color: var(--gold-light); border-color: rgba(230, 185, 77, 0.5); background: rgba(255,255,255,0.05);">{% if LANGUAGE_CODE == 'fa' %}درباره آذر تیر ارس{% else %}About Azar Tir Aras{% endif %}</span>
+                <h1 class="about-hero-title">
+                  {% if LANGUAGE_CODE == 'fa' %}
+                    ما مسیرهای <span class="accent">جهان</span> را به کسب‌وکار شما متصل می‌کنیم
+                  {% else %}
+                    We Connect the World's <span class="accent">Routes</span> to Your Business
+                  {% endif %}
+                </h1>
                 <span class="sec-bar"></span>
                 <p class="about-hero-text">
-                    آذر تیر ارس با تکیه بر سال‌ها تجربه در حوزه حمل و نقل بین‌المللی، تلاش می‌کند تا مطمئن‌ترین و سریع‌ترین راه‌های تجارت جهانی را در اختیار بازرگانان ایرانی قرار دهد. ما باور داریم اعتماد، ارزشمندترین سرمایه در تجارت است.
+                    {% if LANGUAGE_CODE == 'fa' %}
+                      آذر تیر ارس با تکیه بر سال‌ها تجربه در حوزه حمل و نقل بین‌المللی، تلاش می‌کند تا مطمئن‌ترین و سریع‌ترین راه‌های تجارت جهانی را در اختیار بازرگانان ایرانی قرار دهد. ما باور داریم اعتماد، ارزشمندترین سرمایه در تجارت است.
+                    {% else %}
+                      Relying on years of experience in international transport, Azar Tir Aras strives to provide Iranian traders with the most reliable and fastest routes for global trade. We believe trust is the most valuable asset in business.
+                    {% endif %}
                 </p>
             </div>
         </header>
@@ -1602,38 +1641,44 @@
         <section class="timeline-section section-pad">
             <div class="container">
                 <div class="sec-head center">
-                    <h2 class="sec-title">مسیر <span class="accent">رشد و افتخار</span> ما</h2>
+                    <h2 class="sec-title">
+                      {% if LANGUAGE_CODE == 'fa' %}
+                        مسیر <span class="accent">رشد و افتخار</span> ما
+                      {% else %}
+                        Our Path of <span class="accent">Growth and Pride</span>
+                      {% endif %}
+                    </h2>
                     <span class="sec-bar"></span>
-                    <p class="sec-sub">هر مرحله از این مسیر، گواهی بر تعهد ما به ارائه خدمات بی‌نقص است.</p>
+                    <p class="sec-sub">{% if LANGUAGE_CODE == 'fa' %}هر مرحله از این مسیر، گواهی بر تعهد ما به ارائه خدمات بی‌نقص است.{% else %}Every step of this journey is a testament to our commitment to flawless service.{% endif %}</p>
                 </div>
 
                 <div class="timeline">
                     <div class="tl-item left">
                         <div class="tl-content">
-                            <span class="tl-year">۱۳۹۰</span>
-                            <h4>آغاز فعالیت</h4>
-                            <p>آذر تیر ارس فعالیت خود را با تمرکز بر مسیرهای زمینی ترکیه و آسیای میانه آغاز کرد.</p>
+                            <span class="tl-year">{% if LANGUAGE_CODE == 'fa' %}۱۳۹۰{% else %}2011{% endif %}</span>
+                            <h4>{% if LANGUAGE_CODE == 'fa' %}آغاز فعالیت{% else %}Starting Operations{% endif %}</h4>
+                            <p>{% if LANGUAGE_CODE == 'fa' %}آذر تیر ارس فعالیت خود را با تمرکز بر مسیرهای زمینی ترکیه و آسیای میانه آغاز کرد.{% else %}Azar Tir Aras began operations focusing on land routes to Turkey and Central Asia.{% endif %}</p>
                         </div>
                     </div>
                     <div class="tl-item right">
                         <div class="tl-content">
-                            <span class="tl-year">۱۳۹۵</span>
-                            <h4>توسعه شبکه دریایی و هوایی</h4>
-                            <p>با راه‌اندازی قراردادهای مستقیم با خطوط بزرگ دریایی و هوایی، دامنه خدمات خود را به بازارهای اروپایی و خاور دور گسترش دادیم.</p>
+                            <span class="tl-year">{% if LANGUAGE_CODE == 'fa' %}۱۳۹۵{% else %}2016{% endif %}</span>
+                            <h4>{% if LANGUAGE_CODE == 'fa' %}توسعه شبکه دریایی و هوایی{% else %}Expanding the Sea and Air Network{% endif %}</h4>
+                            <p>{% if LANGUAGE_CODE == 'fa' %}با راه‌اندازی قراردادهای مستقیم با خطوط بزرگ دریایی و هوایی، دامنه خدمات خود را به بازارهای اروپایی و خاور دور گسترش دادیم.{% else %}By establishing direct contracts with major shipping and air lines, we expanded our services to European and Far Eastern markets.{% endif %}</p>
                         </div>
                     </div>
                     <div class="tl-item left">
                         <div class="tl-content">
-                            <span class="tl-year">۱۴۰۰</span>
-                            <h4>تخصص در لجستیک پیچیده</h4>
-                            <p>تیم فنی آذر تیر ارس با متخصص‌ترین نفرات حوزه گمرک و ترخیص کالا، به یکی از مراجع اصلی امور ترانزیت و ترخیص در کشور تبدیل شد.</p>
+                            <span class="tl-year">{% if LANGUAGE_CODE == 'fa' %}۱۴۰۰{% else %}2021{% endif %}</span>
+                            <h4>{% if LANGUAGE_CODE == 'fa' %}تخصص در لجستیک پیچیده{% else %}Expertise in Complex Logistics{% endif %}</h4>
+                            <p>{% if LANGUAGE_CODE == 'fa' %}تیم فنی آذر تیر ارس با متخصص‌ترین نفرات حوزه گمرک و ترخیص کالا، به یکی از مراجع اصلی امور ترانزیت و ترخیص در کشور تبدیل شد.{% else %}With the most skilled experts in customs and clearance, the Azar Tir Aras technical team became one of the country's leading authorities in transit and clearance affairs.{% endif %}</p>
                         </div>
                     </div>
                     <div class="tl-item right">
                         <div class="tl-content">
-                            <span class="tl-year">اکنون</span>
-                            <h4>همراه همیشگی تجارت شما</h4>
-                            <p>امروز با افتخار اعلام می‌کنیم که در تمامی نقاط جهان، آماده ارائه خدمات لجستیکی در سریع‌ترین زمان ممکن و با بالاترین استانداردها هستیم.</p>
+                            <span class="tl-year">{% if LANGUAGE_CODE == 'fa' %}اکنون{% else %}Today{% endif %}</span>
+                            <h4>{% if LANGUAGE_CODE == 'fa' %}همراه همیشگی تجارت شما{% else %}Your Permanent Trade Partner{% endif %}</h4>
+                            <p>{% if LANGUAGE_CODE == 'fa' %}امروز با افتخار اعلام می‌کنیم که در تمامی نقاط جهان، آماده ارائه خدمات لجستیکی در سریع‌ترین زمان ممکن و با بالاترین استانداردها هستیم.{% else %}Today, we proudly announce that we are ready to provide logistics services anywhere in the world, in the shortest possible time and with the highest standards.{% endif %}</p>
                         </div>
                     </div>
                 </div>
@@ -1645,17 +1690,23 @@
             <div class="container vision-grid">
 
                 <div class="vision-image">
-                    <img src="{% static 'img/bann.png' %}" alt="چشم انداز آذر تیر ارس">
+                    <img src="{% static 'img/bann.png' %}" alt="{% if LANGUAGE_CODE == 'fa' %}چشم انداز آذر تیر ارس{% else %}Azar Tir Aras Vision{% endif %}">
                 </div>
 
                 <div class="vision-text">
-                    <span class="tag-pill" style="color: var(--gold); border-color: rgba(230, 185, 77, 0.3); background: rgba(230, 185, 77, 0.1);">نگاه به آینده</span>
-                    <h2 class="sec-title-dark">چشم‌انداز ما: مسیری روشن و بدون توقف</h2>
+                    <span class="tag-pill" style="color: var(--gold); border-color: rgba(230, 185, 77, 0.3); background: rgba(230, 185, 77, 0.1);">{% if LANGUAGE_CODE == 'fa' %}نگاه به آینده{% else %}Looking to the Future{% endif %}</span>
+                    <h2 class="sec-title-dark">{% if LANGUAGE_CODE == 'fa' %}چشم‌انداز ما: مسیری روشن و بدون توقف{% else %}Our Vision: A Clear, Uninterrupted Path{% endif %}</h2>
                     <span class="sec-bar"></span>
                     <p>
-                        ما در حال سرمایه‌گذاری روی فناوری‌های نوین ردیابی ناوگان و اتوماسیون فرآیندهای گمرکی هستیم تا شما همیشه در هر لحظه، از وضعیت کالای خود باخبر باشید.
-                        <br><br>
-                        چشم‌انداز ما، تبدیل شدن به انتخاب نخست بازرگانان خاورمیانه در حمل‌ونقل بین‌المللی و ساخت یک اکوسیستم لجستیکی کاملاً یکپارچه و قابل اعتماد در سطح منطقه است. هدف ما ارائه راهکارهای نوآورانه، شفافیت کامل و تضمین ایمنی در تمامی مسیرهاست.
+                        {% if LANGUAGE_CODE == 'fa' %}
+                          ما در حال سرمایه‌گذاری روی فناوری‌های نوین ردیابی ناوگان و اتوماسیون فرآیندهای گمرکی هستیم تا شما همیشه در هر لحظه، از وضعیت کالای خود باخبر باشید.
+                          <br><br>
+                          چشم‌انداز ما، تبدیل شدن به انتخاب نخست بازرگانان خاورمیانه در حمل‌ونقل بین‌المللی و ساخت یک اکوسیستم لجستیکی کاملاً یکپارچه و قابل اعتماد در سطح منطقه است. هدف ما ارائه راهکارهای نوآورانه، شفافیت کامل و تضمین ایمنی در تمامی مسیرهاست.
+                        {% else %}
+                          We are investing in modern fleet-tracking technologies and customs process automation so that you are always informed of your cargo's status at any moment.
+                          <br><br>
+                          Our vision is to become the first choice of Middle Eastern traders in international transport and to build a fully integrated, reliable logistics ecosystem across the region. Our goal is to provide innovative solutions, complete transparency, and guaranteed safety on every route.
+                        {% endif %}
                     </p>
                 </div>
             </div>
@@ -1665,7 +1716,13 @@
         <section class="values-section section-pad">
             <div class="container">
                 <div class="sec-head center">
-                    <h2 class="sec-title">ارزش‌های <span class="accent">پایدار</span> ما</h2>
+                    <h2 class="sec-title">
+                      {% if LANGUAGE_CODE == 'fa' %}
+                        ارزش‌های <span class="accent">پایدار</span> ما
+                      {% else %}
+                        Our <span class="accent">Enduring</span> Values
+                      {% endif %}
+                    </h2>
                     <span class="sec-bar"></span>
                 </div>
 
@@ -1674,22 +1731,22 @@
                         <span class="value-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-7.5-10A4.5 4.5 0 0 1 9 6.5c1.2 0 2.3.6 3 1.5.7-.9 1.8-1.5 3-1.5a4.5 4.5 0 0 1 4.5 4.5c0 5.4-7.5 10-7.5 10z"/></svg>
                         </span>
-                        <h4>اعتماد و صداقت</h4>
-                        <p>پایبندی به تعهدات و ارائه اطلاعات شفاف، خط قرمز ما در تمامی معاملات و همکاری‌هاست.</p>
+                        <h4>{% if LANGUAGE_CODE == 'fa' %}اعتماد و صداقت{% else %}Trust and Honesty{% endif %}</h4>
+                        <p>{% if LANGUAGE_CODE == 'fa' %}پایبندی به تعهدات و ارائه اطلاعات شفاف، خط قرمز ما در تمامی معاملات و همکاری‌هاست.{% else %}Honoring commitments and providing transparent information is our red line in every deal and partnership.{% endif %}</p>
                     </div>
                     <div class="value-card">
                         <span class="value-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                         </span>
-                        <h4>سرعت در عمل</h4>
-                        <p>ما می‌دانیم زمان در تجارت یعنی پول؛ بنابراین اولویت اول ما رعایت دقیق برنامه زمان‌بندی تحویل بار است.</p>
+                        <h4>{% if LANGUAGE_CODE == 'fa' %}سرعت در عمل{% else %}Speed in Action{% endif %}</h4>
+                        <p>{% if LANGUAGE_CODE == 'fa' %}ما می‌دانیم زمان در تجارت یعنی پول؛ بنابراین اولویت اول ما رعایت دقیق برنامه زمان‌بندی تحویل بار است.{% else %}We know that in business, time is money; that's why our top priority is strict adherence to the cargo delivery schedule.{% endif %}</p>
                     </div>
                     <div class="value-card">
                         <span class="value-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5.25-3.5 10.5-8 11-4.5-.5-8-5.75-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
                         </span>
-                        <h4>ایمنی و دقت</h4>
-                        <p>با استفاده از استانداردترین روش‌های بسته‌بندی و پیگیری مسیر، کالای شما در امنیت کامل است.</p>
+                        <h4>{% if LANGUAGE_CODE == 'fa' %}ایمنی و دقت{% else %}Safety and Precision{% endif %}</h4>
+                        <p>{% if LANGUAGE_CODE == 'fa' %}با استفاده از استانداردترین روش‌های بسته‌بندی و پیگیری مسیر، کالای شما در امنیت کامل است.{% else %}Using the most standard packaging methods and route tracking, your cargo is kept completely secure.{% endif %}</p>
                     </div>
                 </div>
             </div>
@@ -1699,9 +1756,15 @@
         <section class="vision-section section-pad" style="background: var(--light-bg);">
             <div class="container">
                 <div class="sec-head center">
-                    <h2 class="sec-title">خدمات <span class="accent">تخصصی</span> ما</h2>
+                    <h2 class="sec-title">
+                      {% if LANGUAGE_CODE == 'fa' %}
+                        خدمات <span class="accent">تخصصی</span> ما
+                      {% else %}
+                        Our <span class="accent">Specialized</span> Services
+                      {% endif %}
+                    </h2>
                     <span class="sec-bar"></span>
-                    <p class="sec-sub">مجموعه‌ای کامل از خدمات لجستیکی، ترانزیت و گمرکی با بالاترین کیفیت.</p>
+                    <p class="sec-sub">{% if LANGUAGE_CODE == 'fa' %}مجموعه‌ای کامل از خدمات لجستیکی، ترانزیت و گمرکی با بالاترین کیفیت.{% else %}A complete set of logistics, transit, and customs services delivered at the highest quality.{% endif %}</p>
                 </div>
 
                 <div class="services-about-grid">
@@ -1709,350 +1772,49 @@
                         <div class="service-icon-about">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
                         </div>
-                        <div class="service-name-about">حمل و نقل زمینی</div>
-                        <div class="service-desc-about">حمل بار با ناوگان ناوگان مدرن و رانندگان مجرب در مسیرهای ترکیه و اروپا.</div>
+                        <div class="service-name-about">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل زمینی{% else %}Land Transport{% endif %}</div>
+                        <div class="service-desc-about">{% if LANGUAGE_CODE == 'fa' %}حمل بار با ناوگان ناوگان مدرن و رانندگان مجرب در مسیرهای ترکیه و اروپا.{% else %}Cargo transport with a modern fleet and experienced drivers on routes to Turkey and Europe.{% endif %}</div>
                     </div>
                     <div class="service-card-about">
                         <div class="service-icon-about">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
                         </div>
-                        <div class="service-name-about">حمل و نقل هوایی</div>
-                        <div class="service-desc-about">ارسال سریع محموله‌های فوری و حساس با خطوط هوایی معتبر در کوتاه‌ترین زمان.</div>
+                        <div class="service-name-about">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</div>
+                        <div class="service-desc-about">{% if LANGUAGE_CODE == 'fa' %}ارسال سریع محموله‌های فوری و حساس با خطوط هوایی معتبر در کوتاه‌ترین زمان.{% else %}Fast shipping of urgent, sensitive cargo via reputable airlines in the shortest possible time.{% endif %}</div>
                     </div>
                     <div class="service-card-about">
                         <div class="service-icon-about">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 5v6c0 5.25 3.5 10.5 8 11 4.5-.5 8-5.75 8-11V5l-8-3z"/><path d="M12 11V6"/><path d="M12 11l3 3"/></svg>
                         </div>
-                        <div class="service-name-about">حمل و نقل دریایی</div>
-                        <div class="service-desc-about">حمل کالای فله و کانتینری به مقاصد مختلف از طریق بندرهای بزرگ خاورمیانه و جهان.</div>
+                        <div class="service-name-about">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}</div>
+                        <div class="service-desc-about">{% if LANGUAGE_CODE == 'fa' %}حمل کالای فله و کانتینری به مقاصد مختلف از طریق بندرهای بزرگ خاورمیانه و جهان.{% else %}Bulk and container cargo transport to various destinations via major ports in the Middle East and worldwide.{% endif %}</div>
                     </div>
                     <div class="service-card-about">
                         <div class="service-icon-about">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                         </div>
-                        <div class="service-name-about">ترخیص کالا</div>
-                        <div class="service-desc-about">انجام مراحل اداری، اسناد و ترخیص اصولی کالا در سریع‌ترین زمان ممکن.</div>
+                        <div class="service-name-about">{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا{% else %}Customs Clearance{% endif %}</div>
+                        <div class="service-desc-about">{% if LANGUAGE_CODE == 'fa' %}انجام مراحل اداری، اسناد و ترخیص اصولی کالا در سریع‌ترین زمان ممکن.{% else %}Handling administrative procedures, documentation, and proper cargo clearance in the shortest possible time.{% endif %}</div>
                     </div>
                     <div class="service-card-about">
                         <div class="service-icon-about">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                         </div>
-                        <div class="service-name-about">ترانزیت و لجستیک</div>
-                        <div class="service-desc-about">برنامه‌ریزی هوشمند مسیر و مدیریت زنجیره تامین برای کاهش هزینه‌های شما.</div>
+                        <div class="service-name-about">{% if LANGUAGE_CODE == 'fa' %}ترانزیت و لجستیک{% else %}Transit and Logistics{% endif %}</div>
+                        <div class="service-desc-about">{% if LANGUAGE_CODE == 'fa' %}برنامه‌ریزی هوشمند مسیر و مدیریت زنجیره تامین برای کاهش هزینه‌های شما.{% else %}Smart route planning and supply chain management to reduce your costs.{% endif %}</div>
                     </div>
                     <div class="service-card-about">
                         <div class="service-icon-about">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 3L3.5 10.2c-.8.3-.8 1.4 0 1.7l6.4 2.4 2.4 6.4c.3.8 1.4.8 1.7 0L21 3z"/><path d="M10 14l7-7"/></svg>
                         </div>
-                        <div class="service-name-about">مشاوره بازرگانی</div>
-                        <div class="service-desc-about">مشاوره تخصصی برای ورود به بازارهای هدف با پشتوانه تحلیل کارشناسان ما.</div>
+                        <div class="service-name-about">{% if LANGUAGE_CODE == 'fa' %}مشاوره بازرگانی{% else %}Trade Consultation{% endif %}</div>
+                        <div class="service-desc-about">{% if LANGUAGE_CODE == 'fa' %}مشاوره تخصصی برای ورود به بازارهای هدف با پشتوانه تحلیل کارشناسان ما.{% else %}Expert consultation for entering target markets, backed by our analysts' insights.{% endif %}</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 6. CTA SECTION -->
-        <section class="transport-cta" id="cta">
-      <div class="transport-cta__container">
-        <div class="transport-cta__content">
-          <h2 class="transport-cta__title">
-            برای حمل سریع و مطمئن، همین حالا اقدام کنید!
-          </h2>
-          <p class="transport-cta__description">
-            کارشناسان ما آماده ارائه مشاوره رایگان و استعلام قیمت به شما هستند.
-          </p>
-          <div class="transport-cta__actions">
-            <a href="{% url 'contact' %}" class="cta-btn cta-btn--primary">
-              <span>استعلام قیمت رایگان</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M21 3L3.5 10.2c-.8.3-.8 1.4 0 1.7l6.4 2.4 2.4 6.4c.3.8 1.4.8 1.7 0L21 3z"
-                />
-                <path d="M10 14l7-7" />
-              </svg>
-            </a>
-            <a href="tel:+989141934301" class="cta-btn cta-btn--secondary">
-              <span>تماس با ما</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    </main>
-
-    <!-- =================== FOOTER =================== -->
-    <footer class="site-footer">
-      <div class="site-footer__main">
-        <div class="site-footer__container">
-          <!-- ستون درباره ما -->
-          <div class="footer-column footer-about">
-            <h3 class="footer-title">درباره ما</h3>
-            <p>
-              آذر تیر ارس، شرکت حمل و نقل بین‌المللی با تمرکز بر ارائه خدمات حمل
-              و نقل، ترانزیت و خدمات گمرکی به مقصد ترکیه، اروپا و کشورهای CIS.
-            </p>
-            <div class="social-links">
-              <a href="#" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24">
-                  <path d="M6 8v10" />
-                  <circle cx="6" cy="5" r="1" />
-                  <path d="M10 18v-6a3 3 0 0 1 6 0v6" />
-                  <path d="M10 12v6" />
-                  <path d="M16 15v3" />
-                </svg>
-              </a>
-              <a href="#" aria-label="Instagram">
-                <svg viewBox="0 0 24 24">
-                  <rect x="4" y="4" width="16" height="16" rx="4" />
-                  <circle cx="12" cy="12" r="3.5" />
-                  <circle cx="17.3" cy="6.8" r="1" />
-                </svg>
-              </a>
-              <a href="#" aria-label="WhatsApp">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L4 20l.9-3.6 A8.5 8.5 0 1 1 20.5 11.7z"
-                  />
-                  <path
-                    d="M9.2 8.4c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.6.7c.8 1.4 1.5 2.1 2.9 2.9l.7-.6c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.4.5v.5c0 .3-.1.6-.4.8-.4.3-1 .4-1.5.2 -2.8-.8-5.1-3.1-5.9-5.9 -.2-.5-.1-1.1.2-1.5z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- ستون خدمات (جدا از مسیرها) -->
-          <div class="footer-column">
-            <h3 class="footer-title">خدمات</h3>
-            <ul class="footer-links">
-              <li><a href="{% url 'international' %}">حمل بین‌المللی</a></li>
-              <li><a href="{% url 'hamle_asli' %}">ترانزیت</a></li>
-              <li><a href="{% url 'hamle_asli' %}">حمل داخلی</a></li>
-              <li><a href="{% url 'hamle_asli' %}">خدمات گمرکی</a></li>
-            </ul>
-          </div>
-
-          <!-- ستون مسیرها -->
-          <div class="footer-column">
-            <h3 class="footer-title">مسیرها</h3>
-            <ul class="footer-links">
-              <li><a href="{% url 'roads' %}">ایران به ترکیه</a></li>
-              <li><a href="{% url 'roads' %}">ایران به اروپا</a></li>
-              <li><a href="{% url 'roads' %}">ترکیه به ایران</a></li>
-              <li><a href="{% url 'roads' %}">سایر مسیرها</a></li>
-            </ul>
-          </div>
-
-          <!-- ستون تماس -->
-          <div class="footer-column footer-contact">
-            <h3 class="footer-title">اطلاعات تماس</h3>
-            <div class="contact-list">
-              <a href="{% url 'contact' %}" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M12 21s7-6.2 7-12A7 7 0 1 0 5 9c0 5.8 7 12 7 12z"
-                    />
-                    <circle cx="12" cy="9" r="2.3" />
-                  </svg>
-                </span>
-                <span>
-                  تهران, سید خندان خیابان<br />
-                  دبستان کوچه ،آگاهی پلاک ۸ طبقه سوم، واحد ۸
-                </span>
-              </a>
-
-              <a href="tel:+989141934301" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"
-                    />
-                  </svg>
-                </span>
-                <span dir="ltr">+989141934301</span>
-                <span dir="ltr">+982188479170</span>
-                <span dir="ltr">+982188479151</span>
-              </a>
-              
-
-              <a href="mailto:info@azartiraras.com" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <path d="M3 7l9 6 9-6" />
-                  </svg>
-                </span>
-                <span dir="ltr">info@azartiraras.com</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="site-footer__bottom">
-        <div class="site-footer__bottom-inner">
-          <p>
-            © 1405 تمامی حقوق محفوظ است | طراحی و توسعه توسط Sijeey
-          </p>
-          <button
-            class="back-to-top"
-            id="backToTop"
-            aria-label="بازگشت به بالا"
-          >
-            <svg viewBox="0 0 24 24">
-              <path d="M6 14l6-6 6 6" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </footer>
-
-    <!-- =================== SCRIPT =================== -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-  // ====== زبان ======
-  const langButtons = document.querySelectorAll(".lang-btn");
-  if (langButtons.length > 0) {
-    langButtons.forEach((btn) => {
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        langButtons.forEach((b) => b.classList.remove("active"));
-        this.classList.add("active");
-      });
-    });
-  }
-
-  // ====== موبایل دراور ======
-  const burgerBtn = document.getElementById("burgerBtn");
-  const mobileDrawer = document.getElementById("mobileDrawer");
-  const drawerOverlay = document.getElementById("drawerOverlay");
-  const drawerClose = document.getElementById("drawerClose");
-
-  function openDrawer() {
-    mobileDrawer.classList.add("open");
-    drawerOverlay.style.opacity = "1";
-    drawerOverlay.style.visibility = "visible";
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeDrawer() {
-    mobileDrawer.classList.remove("open");
-    drawerOverlay.style.opacity = "0";
-    drawerOverlay.style.visibility = "hidden";
-    document.body.style.overflow = "";
-    document
-      .querySelectorAll(".mobile-drawer-nav .nav-item.open")
-      .forEach((item) => item.classList.remove("open"));
-  }
-
-  if (burgerBtn) burgerBtn.addEventListener("click", openDrawer);
-  if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
-  if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeDrawer();
-  });
-
-  // ====== دراپ‌داون‌های موبایل (تریگرها) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav .nav-item > .nav-link")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        if (this.querySelector(".caret")) {
-          e.preventDefault(); // فقط برای آیتم‌های دارای کرت جلوی هدایت گرفته می‌شود
-          const parentItem = this.closest(".nav-item");
-          if (parentItem) {
-            document
-              .querySelectorAll(".mobile-drawer-nav .nav-item.open")
-              .forEach((item) => {
-                if (item !== parentItem) item.classList.remove("open");
-              });
-            parentItem.classList.toggle("open");
-          }
-        }
-        // اگر کرت نداشت (لینک ساده) کاری نمی‌کنیم و اجازه هدایت می‌دهیم
-      });
-    });
-
-  // ====== لینک‌های فرعی موبایل (بدون preventDefault) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav .dropdown a")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        // ✅ بدون preventDefault – لینک هدایت می‌کند
-        closeDrawer();
-      });
-    });
-
-  // ====== لینک‌های ساده موبایل (بدون کرت) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav > a.nav-link")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        if (!this.querySelector(".caret")) {
-          // ✅ بدون preventDefault – هدایت می‌کند
-          closeDrawer();
-        }
-      });
-    });
-
-  // ====== منوهای دسکتاپ ======
-  const transportItem = document.getElementById("transportItem");
-  const transportTrigger = document.getElementById("transportTrigger");
-  const servicesItem = document.getElementById("servicesItem");
-  const servicesTrigger = document.getElementById("servicesTrigger");
-
-  if (transportTrigger) {
-    transportTrigger.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      transportItem.classList.toggle("open");
-      if (servicesItem) servicesItem.classList.remove("open");
-    });
-  }
-
-  if (servicesTrigger) {
-    servicesTrigger.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      servicesItem.classList.toggle("open");
-      transportItem.classList.remove("open");
-    });
-  }
-
-  // ====== لینک‌های فرعی دسکتاپ (بدون preventDefault) ======
-  document.querySelectorAll(".dropdown-link").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      // ✅ بدون preventDefault – لینک هدایت می‌کند
-      const parentItem = this.closest(".nav-item");
-      if (parentItem) parentItem.classList.remove("open");
-    });
-  });
-
-  // بستن دراپ‌داون با کلیک بیرون
-  document.addEventListener("click", function (e) {
-    if (!e.target.closest(".nav-item")) {
-      document
-        .querySelectorAll(".nav-item.open")
-        .forEach((item) => item.classList.remove("open"));
-    }
-  });
-
-  // دکمه بازگشت به بالا
-  const backToTop = document.getElementById("backToTop");
-  if (backToTop) {
-    backToTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-});
-    </script>
+{% include 'footer.html' %}
 </body>
 
 </html>

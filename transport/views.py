@@ -20,7 +20,7 @@ def hamle_asli(request):
     return render(request, "hamle-asli.html")
 
 def airplane(request):
-    return render(request, "hamle-havayi.html")
+    return render(request, "hamle-havai.html")
 
 def ship(request):
     return render(request, "hamle-daryayi.html")

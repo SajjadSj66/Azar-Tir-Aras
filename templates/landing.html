@@ -2203,7 +2203,7 @@
   </head>
 
   <body>
-    <!-- =================== TOP BAR =================== -->
+ <!-- =================== TOP BAR =================== -->
     <div class="topbar">
       <div class="container">
         <div class="topbar-contact">
@@ -2219,7 +2219,7 @@
               d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
             />
           </svg>
-          <span>تماس با ما:</span>
+          <span>{% if LANGUAGE_CODE == 'fa' %}تماس با ما:{% else %}Contact us:{% endif %}</span>
           <span dir="ltr">+989141934301</span>
         </div>
 
@@ -2241,7 +2241,7 @@
             <div class="brand-name">
               <img
                 src="{% static 'img/logo.png' %}"
-                alt="لوگوی AZAR TIR ARAS"
+                alt="{% if LANGUAGE_CODE == 'fa' %}لوگوی AZAR TIR ARAS{% else %}AZAR TIR ARAS Logo{% endif %}"
                 class="brand-logo"
               />
             </div>
@@ -2252,7 +2252,7 @@
         <ul class="nav-menu" id="navMenu">
           <li class="nav-item">
             <a href="{% url 'international' %}" class="nav-link"
-              >حمل و نقل بین‌المللی</a
+              >{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transport{% endif %}</a
             >
           </li>
 
@@ -2262,7 +2262,7 @@
               class="nav-link"
               id="transportTrigger"
             >
-              روش‌های حمل و نقل
+              {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}
               <svg
                 class="caret"
                 viewBox="0 0 24 24"
@@ -2274,20 +2274,23 @@
               </svg>
             </a>
             <div class="dropdown">
+              <a href="{% url 'hamle_asli' %}" class="dropdown-link"
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}</a
+              >
               <a href="{% url 'tarkibi' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل ترکیبی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</a
               >
               <a href="{% url 'ship' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل دریایی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}</a
               >
               <a href="{% url 'truck' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل جاده‌ای</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</a
               >
               <a href="{% url 'airplane' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل هوایی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</a
               >
               <a href="{% url 'train' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل ریلی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</a
               >
             </div>
           </li>
@@ -2298,7 +2301,7 @@
               class="nav-link"
               id="servicesTrigger"
             >
-              خدمات ما
+              {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
               <svg
                 class="caret"
                 viewBox="0 0 24 24"
@@ -2311,31 +2314,31 @@
             </a>
             <div class="dropdown">
               <a href="{% url 'service_import' %}" class="dropdown-link"
-                ><span class="dot"></span>واردات کالا</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import of Goods{% endif %}</a
               >
               <a href="{% url 'service_export' %}" class="dropdown-link"
-                ><span class="dot"></span>صادرات کالا</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export of Goods{% endif %}</a
               >
               <a href="{% url 'service_tarkhis' %}" class="dropdown-link"
-                ><span class="dot"></span>ترخیص کالا از گمرک</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a
               >
               <a href="{% url 'service_umurgomroki' %}" class="dropdown-link"
-                ><span class="dot"></span>امور گمرکی و ترخیص</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs & Clearance{% endif %}</a
               >
             </div>
           </li>
 
           <li class="nav-item">
-            <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
+            <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
+            <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
           </li>
         </ul>
 
         <!-- 3. دکمه استعلام -->
         <a href="{% url 'contact' %}" class="quote-btn">
-          استعلام قیمت
+          {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
           <svg
             width="15"
             height="15"
@@ -2363,7 +2366,7 @@
         <button
           class="mobile-drawer-close"
           id="drawerClose"
-          aria-label="بستن منو"
+          aria-label="{% if LANGUAGE_CODE == 'fa' %}بستن منو{% else %}Close menu{% endif %}"
         >
           <svg
             viewBox="0 0 24 24"
@@ -2377,12 +2380,12 @@
       </div>
       <div class="mobile-drawer-nav">
         <a href="{% url 'international' %}" class="nav-link"
-          >حمل و نقل بین‌المللی</a
+          >{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transport{% endif %}</a
         >
 
         <div class="nav-item">
           <a href="#" class="nav-link">
-            روش‌های حمل و نقل
+            {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}
             <svg
               class="caret"
               viewBox="0 0 24 24"
@@ -2394,17 +2397,17 @@
             </svg>
           </a>
           <div class="dropdown">
-            <a href="{% url 'tarkibi' %}">حمل و نقل ترکیبی</a>
-            <a href="{% url 'ship' %}">حمل و نقل دریایی</a>
-            <a href="{% url 'truck' %}">حمل و نقل جاده‌ای</a>
-            <a href="{% url 'airplane' %}">حمل و نقل هوایی</a>
-            <a href="{% url 'train' %}">حمل و نقل ریلی</a>
+            <a href="{% url 'tarkibi' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</a>
+            <a href="{% url 'ship' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}</a>
+            <a href="{% url 'truck' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</a>
+            <a href="{% url 'airplane' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</a>
+            <a href="{% url 'train' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</a>
           </div>
         </div>
 
         <div class="nav-item">
           <a href="{% url 'service_new' %}" class="nav-link">
-            خدمات ما
+            {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
             <svg
               class="caret"
               viewBox="0 0 24 24"
@@ -2416,19 +2419,19 @@
             </svg>
           </a>
           <div class="dropdown">
-            <a href="{% url 'service_import' %}">واردات کالا</a>
-            <a href="{% url 'service_export' %}">صادرات کالا</a>
-            <a href="{% url 'service_tarkhis' %}">ترخیص کالا از گمرک</a>
-            <a href="{% url 'service_umurgomroki' %}">امور گمرکی و ترخیص</a>
+            <a href="{% url 'service_import' %}">{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import of Goods{% endif %}</a>
+            <a href="{% url 'service_export' %}">{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export of Goods{% endif %}</a>
+            <a href="{% url 'service_tarkhis' %}">{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a>
+            <a href="{% url 'service_umurgomroki' %}">{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs & Clearance{% endif %}</a>
           </div>
         </div>
 
-        <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
-        <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
+        <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
+        <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
       </div>
 
       <a href="{% url 'contact' %}" class="quote-btn-mobile">
-        استعلام قیمت
+        {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
 
         <svg
           width="15"
@@ -2448,23 +2451,35 @@
       <div class="container">
         <div class="hero-content">
           <span class="hero-eyebrow"
-            ><span class="pulse"></span>فعال در بیش از ۵ مسیر بین‌المللی</span
+            ><span class="pulse"></span>{% if LANGUAGE_CODE == 'fa' %}فعال در بیش از ۵ مسیر بین‌المللی{% else %}Active on More Than 5 International Routes{% endif %}</span
           >
 
           <h1 class="hero-title">
-            حمل و نقل بین‌المللی <span class="accent">آذر تیر ارس</span><br />
-            راهکاری مطمئن
+            {% if LANGUAGE_CODE == 'fa' %}
+              حمل و نقل بین‌المللی <span class="accent">آذر تیر ارس</span><br />
+              راهکاری مطمئن
+            {% else %}
+              <span class="accent">Azar Tir Aras</span> International Transport<br />
+              A Reliable Solution
+            {% endif %}
           </h1>
 
           <p class="hero-text">
-            خدمات حمل و نقل بین‌المللی آذر تیر ارس برای حمل و نقل محصولات و
-            کالا‌ها در سراسر جهان طراحی شده است، ما با استفاده از تیم متخصص و
-            شبکه گسترده، خدمات خود را در کمترین زمان ارائه می‌دهیم.
+            {% if LANGUAGE_CODE == 'fa' %}
+              خدمات حمل و نقل بین‌المللی آذر تیر ارس برای حمل و نقل محصولات و
+              کالا‌ها در سراسر جهان طراحی شده است، ما با استفاده از تیم متخصص و
+              شبکه گسترده، خدمات خود را در کمترین زمان ارائه می‌دهیم.
+            {% else %}
+              Azar Tir Aras international transport services are designed to
+              carry products and goods across the world. Using an expert team
+              and an extensive network, we deliver our services in the
+              shortest possible time.
+            {% endif %}
           </p>
 
           <div class="hero-actions">
             <a href="{% url 'contact' %}" class="btn-more">
-              اطلاعات بیشتر
+              {% if LANGUAGE_CODE == 'fa' %}اطلاعات بیشتر{% else %}Learn More{% endif %}
               <svg
                 width="16"
                 height="16"
@@ -2482,46 +2497,46 @@
 
       <div class="trust-strip">
         <div class="container">
-          <div class="trust-label">مسیرهای فعال حمل و نقل بین‌المللی</div>
+          <div class="trust-label">{% if LANGUAGE_CODE == 'fa' %}مسیرهای فعال حمل و نقل بین‌المللی{% else %}Active International Transport Routes{% endif %}</div>
           <div class="flags-row">
             <div class="flag-item">
               <img
                 src="{% static 'img/Turkey.svg' %}"
-                alt="ترکیه"
+                alt="{% if LANGUAGE_CODE == 'fa' %}ترکیه{% else %}Turkey{% endif %}"
                 class="flag-icon"
-              /><span class="flag-name">ترکیه</span>
+              /><span class="flag-name">{% if LANGUAGE_CODE == 'fa' %}ترکیه{% else %}Turkey{% endif %}</span>
             </div>
             <div class="flag-divider"></div>
             <div class="flag-item">
               <img
                 src="{% static 'img/russia.webp' %}"
-                alt="روسیه"
+                alt="{% if LANGUAGE_CODE == 'fa' %}روسیه{% else %}Russia{% endif %}"
                 class="flag-icon"
-              /><span class="flag-name">روسیه</span>
+              /><span class="flag-name">{% if LANGUAGE_CODE == 'fa' %}روسیه{% else %}Russia{% endif %}</span>
             </div>
             <div class="flag-divider"></div>
             <div class="flag-item">
               <img
                 src="{% static 'img/china.png' %}"
-                alt="چین"
+                alt="{% if LANGUAGE_CODE == 'fa' %}چین{% else %}China{% endif %}"
                 class="flag-icon"
-              /><span class="flag-name">چین</span>
+              /><span class="flag-name">{% if LANGUAGE_CODE == 'fa' %}چین{% else %}China{% endif %}</span>
             </div>
             <div class="flag-divider"></div>
             <div class="flag-item">
               <img
                 src="{% static 'img/United-Arab-Emirates.webp' %}"
-                alt="امارات"
+                alt="{% if LANGUAGE_CODE == 'fa' %}امارات{% else %}UAE{% endif %}"
                 class="flag-icon"
-              /><span class="flag-name">امارات</span>
+              /><span class="flag-name">{% if LANGUAGE_CODE == 'fa' %}امارات{% else %}UAE{% endif %}</span>
             </div>
             <div class="flag-divider"></div>
             <div class="flag-item">
               <img
                 src="{% static 'img/europe.png' %}"
-                alt="اروپا"
+                alt="{% if LANGUAGE_CODE == 'fa' %}اروپا{% else %}Europe{% endif %}"
                 class="flag-icon"
-              /><span class="flag-name">اروپا</span>
+              /><span class="flag-name">{% if LANGUAGE_CODE == 'fa' %}اروپا{% else %}Europe{% endif %}</span>
             </div>
           </div>
         </div>
@@ -2533,7 +2548,11 @@
       <div class="container">
         <div class="sec-head">
           <h2 class="sec-title">
-            انواع روش‌های حمل و نقل در <span class="accent">آذر تیر ارس</span>
+            {% if LANGUAGE_CODE == 'fa' %}
+              انواع روش‌های حمل و نقل در <span class="accent">آذر تیر ارس</span>
+            {% else %}
+              Types of Transport Methods at <span class="accent">Azar Tir Aras</span>
+            {% endif %}
           </h2>
           <span class="sec-bar"></span>
         </div>
@@ -2541,44 +2560,44 @@
         <div class="methods-grid">
           <a href="#" class="method-card">
             <div class="method-media">
-              <img src="{% static 'img/air.jpg' %}" alt="حمل و نقل هوایی" />
+              <img src="{% static 'img/air.jpg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}" />
               <div class="overlay"></div>
             </div>
-            <span class="method-pill">حمل و نقل هوایی</span>
+            <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</span>
           </a>
           <a href="#" class="method-card">
             <div class="method-media">
               <img
                 src="{% static 'img/tireyli.jpg' %}"
-                alt="حمل و نقل جاده‌ای"
+                alt="{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}"
               />
               <div class="overlay"></div>
             </div>
-            <span class="method-pill">حمل و نقل جاده‌ای</span>
+            <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</span>
           </a>
           <a href="#" class="method-card">
             <div class="method-media">
-              <img src="{% static 'img/ship.jpg' %}" alt="حمل و نقل دریایی" />
+              <img src="{% static 'img/ship.jpg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}" />
               <div class="overlay"></div>
             </div>
-            <span class="method-pill">حمل و نقل دریایی</span>
+            <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}</span>
           </a>
           <a href="#" class="method-card">
             <div class="method-media">
-              <img src="{% static 'img/train.jpg' %}" alt="حمل و نقل ریلی" />
+              <img src="{% static 'img/train.jpg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}" />
               <div class="overlay"></div>
             </div>
-            <span class="method-pill">حمل و نقل ریلی</span>
+            <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</span>
           </a>
           <a href="#" class="method-card">
             <div class="method-media">
               <img
                 src="{% static 'img/tarkibi.webp' %}"
-                alt="حمل و نقل ترکیبی"
+                alt="{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}"
               />
               <div class="overlay"></div>
             </div>
-            <span class="method-pill">حمل و نقل ترکیبی</span>
+            <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</span>
           </a>
         </div>
       </div>
@@ -2587,23 +2606,39 @@
     <!-- =================== SECTION — TRUST STATEMENT =================== -->
     <section class="section-trust section-pad">
       <div class="container trust-wrap">
-        <span class="tag-pill">افتخار همکاری</span>
+        <span class="tag-pill">{% if LANGUAGE_CODE == 'fa' %}افتخار همکاری{% else %}Proud Partnership{% endif %}</span>
         <h2 class="trust-title">
-          آذر تیر ارس؛ نامی که با <span class="accent">اعتماد</span> ساخته شد
+          {% if LANGUAGE_CODE == 'fa' %}
+            آذر تیر ارس؛ نامی که با <span class="accent">اعتماد</span> ساخته شد
+          {% else %}
+            Azar Tir Aras; a Name Built on <span class="accent">Trust</span>
+          {% endif %}
         </h2>
         <div class="dotted-divider">
           <span></span><span></span><span></span><span></span><span></span
           ><span></span><span></span>
         </div>
         <p class="trust-text">
-          در دنیای امروز، سرعت، امنیت و پیدا کردن بهترین مسیر، مهم‌ترین بخش هر
-          فرآیند حمل کالاست.
-          <strong>آذر تیر ارس با سال‌ها تجربه در حمل‌ونقل بین‌المللی</strong>،
-          شبکه‌ای گسترده از مسیرهای زمینی، دریایی و هوایی را در اختیار
-          کسب‌وکارها قرار داده تا ارسال کالا از سراسر جهان، بدون دغدغه انجام
-          شود. حتی اگر یک مسیر با محدودیتی روبه‌رو شود،
-          <strong>تیم لجستیک آذر تیر ارس</strong> با استفاده از مسیرهای جایگزین،
-          فرآیند حمل را بدون وقفه تا کوتاه‌ترین زمان ممکن ادامه می‌دهد.
+          {% if LANGUAGE_CODE == 'fa' %}
+            در دنیای امروز، سرعت، امنیت و پیدا کردن بهترین مسیر، مهم‌ترین بخش هر
+            فرآیند حمل کالاست.
+            <strong>آذر تیر ارس با سال‌ها تجربه در حمل‌ونقل بین‌المللی</strong>،
+            شبکه‌ای گسترده از مسیرهای زمینی، دریایی و هوایی را در اختیار
+            کسب‌وکارها قرار داده تا ارسال کالا از سراسر جهان، بدون دغدغه انجام
+            شود. حتی اگر یک مسیر با محدودیتی روبه‌رو شود،
+            <strong>تیم لجستیک آذر تیر ارس</strong> با استفاده از مسیرهای جایگزین،
+            فرآیند حمل را بدون وقفه تا کوتاه‌ترین زمان ممکن ادامه می‌دهد.
+          {% else %}
+            In today's world, speed, security, and finding the best route are
+            the most important part of any shipping process.
+            <strong>With years of experience in international transport,
+            Azar Tir Aras</strong> has provided businesses with an extensive
+            network of land, sea, and air routes so that shipping goods from
+            anywhere in the world can be done worry-free. Even if one route
+            faces a limitation, the <strong>Azar Tir Aras logistics
+            team</strong> uses alternative routes to keep the shipping process
+            going without interruption, in the shortest possible time.
+          {% endif %}
         </p>
       </div>
     </section>
@@ -2613,7 +2648,11 @@
       <div class="container">
         <div class="sec-head">
           <h2 class="sec-title">
-            خدمات دیگر <span class="accent">آذر تیر ارس</span>
+            {% if LANGUAGE_CODE == 'fa' %}
+              خدمات دیگر <span class="accent">آذر تیر ارس</span>
+            {% else %}
+              Other Services of <span class="accent">Azar Tir Aras</span>
+            {% endif %}
           </h2>
           <span class="sec-bar"></span>
         </div>
@@ -2623,13 +2662,13 @@
             <div class="service-media">
               <img
                 src="{% static 'img/gomrok.jpeg' %}"
-                alt="امور گمرکی و ترخیص"
+                alt="{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs & Clearance{% endif %}"
               />
               <div class="overlay"></div>
             </div>
             <div class="service-panel">
               <div class="service-panel-head">
-                <span class="title">امور گمرکی و ترخیص</span>
+                <span class="title">{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs & Clearance{% endif %}</span>
                 <span class="service-check">
                   <svg
                     width="12"
@@ -2644,8 +2683,14 @@
                 </span>
               </div>
               <p class="service-desc">
-                مدیریت کامل امور گمرکی و ترخیص کالا با کمترین زمان و بیشترین
-                دقت، توسط تیم متخصص آذر تیر ارس.
+                {% if LANGUAGE_CODE == 'fa' %}
+                  مدیریت کامل امور گمرکی و ترخیص کالا با کمترین زمان و بیشترین
+                  دقت، توسط تیم متخصص آذر تیر ارس.
+                {% else %}
+                  Full management of customs affairs and cargo clearance with
+                  minimal time and maximum accuracy, handled by the Azar Tir
+                  Aras expert team.
+                {% endif %}
               </p>
             </div>
           </a>
@@ -2654,13 +2699,13 @@
             <div class="service-media">
               <img
                 src="{% static 'img/tarkhis.jpeg' %}"
-                alt="ترخیص کالا از گمرک"
+                alt="{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}"
               />
               <div class="overlay"></div>
             </div>
             <div class="service-panel">
               <div class="service-panel-head">
-                <span class="title">ترخیص کالا از گمرک</span>
+                <span class="title">{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</span>
                 <span class="service-check">
                   <svg
                     width="12"
@@ -2675,20 +2720,25 @@
                 </span>
               </div>
               <p class="service-desc">
-                ترخیص سریع و بدون دردسر کالای شما از گمرک، با پیگیری تخصصی مراحل
-                اداری و قانونی.
+                {% if LANGUAGE_CODE == 'fa' %}
+                  ترخیص سریع و بدون دردسر کالای شما از گمرک، با پیگیری تخصصی مراحل
+                  اداری و قانونی.
+                {% else %}
+                  Fast and hassle-free clearance of your goods from customs,
+                  with expert follow-up of administrative and legal steps.
+                {% endif %}
               </p>
             </div>
           </a>
 
           <a href="{% url 'service_export' %}" class="service-card">
             <div class="service-media">
-              <img src="{% static 'img/saderat.jpeg' %}" alt="صادرات کالا" />
+              <img src="{% static 'img/saderat.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export of Goods{% endif %}" />
               <div class="overlay"></div>
             </div>
             <div class="service-panel">
               <div class="service-panel-head">
-                <span class="title">صادرات کالا</span>
+                <span class="title">{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export of Goods{% endif %}</span>
                 <span class="service-check">
                   <svg
                     width="12"
@@ -2703,20 +2753,26 @@
                 </span>
               </div>
               <p class="service-desc">
-                صادرات مطمئن کالای شما به مقصد جهانی، همراه با مشاوره تخصصی مسیر
-                و مستندات لازم.
+                {% if LANGUAGE_CODE == 'fa' %}
+                  صادرات مطمئن کالای شما به مقصد جهانی، همراه با مشاوره تخصصی مسیر
+                  و مستندات لازم.
+                {% else %}
+                  Reliable export of your goods to global destinations, along
+                  with expert consultation on the route and required
+                  documentation.
+                {% endif %}
               </p>
             </div>
           </a>
 
           <a href="{% url 'service_import' %}" class="service-card">
             <div class="service-media">
-              <img src="{% static 'img/import.jpeg' %}" alt="واردات کالا" />
+              <img src="{% static 'img/import.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import of Goods{% endif %}" />
               <div class="overlay"></div>
             </div>
             <div class="service-panel">
               <div class="service-panel-head">
-                <span class="title">واردات کالا</span>
+                <span class="title">{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import of Goods{% endif %}</span>
                 <span class="service-check">
                   <svg
                     width="12"
@@ -2731,8 +2787,14 @@
                 </span>
               </div>
               <p class="service-desc">
-                خدمات جامع واردات کالا از سراسر دنیا با کمترین هزینه و زمان، از
-                مبدا تا درب انبار شما.
+                {% if LANGUAGE_CODE == 'fa' %}
+                  خدمات جامع واردات کالا از سراسر دنیا با کمترین هزینه و زمان، از
+                  مبدا تا درب انبار شما.
+                {% else %}
+                  Comprehensive import services from anywhere in the world at
+                  the lowest cost and time, from the origin to your warehouse
+                  door.
+                {% endif %}
               </p>
             </div>
           </a>
@@ -2751,14 +2813,23 @@
               border-color: rgba(169, 124, 34, 0.4);
               background: rgba(169, 124, 34, 0.08);
             "
-            >تیم فروش</span
+            >{% if LANGUAGE_CODE == 'fa' %}تیم فروش{% else %}Sales Team{% endif %}</span
           >
           <h2 class="sec-title">
-            مدیر فروش <span class="accent">آذر تیر ارس</span>
+            {% if LANGUAGE_CODE == 'fa' %}
+              مدیر فروش <span class="accent">آذر تیر ارس</span>
+            {% else %}
+              Sales Manager of <span class="accent">Azar Tir Aras</span>
+            {% endif %}
           </h2>
           <span class="sec-bar"></span>
           <p class="sec-sub">
-            برای مشاوره تخصصی و استعلام سریع، با مدیر فروش ما در ارتباط باشید.
+            {% if LANGUAGE_CODE == 'fa' %}
+              برای مشاوره تخصصی و استعلام سریع، با مدیر فروش ما در ارتباط باشید.
+            {% else %}
+              For expert consultation and a quick quote, get in touch with our
+              sales manager.
+            {% endif %}
           </p>
         </div>
 
@@ -2766,16 +2837,23 @@
           <div class="manager-card">
             <img
               src="{% static 'img/behzad.jpg' %}"
-              alt="بهزاد - مدیر فروش"
+              alt="{% if LANGUAGE_CODE == 'fa' %}بهزاد - مدیر فروش{% else %}Behzad - Sales Manager{% endif %}"
               class="manager-avatar"
             />
             <div class="manager-info">
-              <h3 class="manager-name">بهزاد</h3>
-              <span class="manager-role">مدیر ارشد فروش</span>
+              <h3 class="manager-name">{% if LANGUAGE_CODE == 'fa' %}بهزاد{% else %}Behzad{% endif %}</h3>
+              <span class="manager-role">{% if LANGUAGE_CODE == 'fa' %}مدیر ارشد فروش{% else %}Senior Sales Manager{% endif %}</span>
               <p class="manager-desc">
-                متخصص حمل‌ونقل بین‌المللی و ترخیص کالا با بیش از ۱۲ سال تجربه در
-                مسیرهای اروپا و آسیا. آماده ارائه مشاوره تخصصی و استعلام سریع
-                قیمت برای شما.
+                {% if LANGUAGE_CODE == 'fa' %}
+                  متخصص حمل‌ونقل بین‌المللی و ترخیص کالا با بیش از ۱۲ سال تجربه در
+                  مسیرهای اروپا و آسیا. آماده ارائه مشاوره تخصصی و استعلام سریع
+                  قیمت برای شما.
+                {% else %}
+                  Expert in international transport and customs clearance with
+                  over 12 years of experience on European and Asian routes.
+                  Ready to provide expert consultation and a quick price quote
+                  for you.
+                {% endif %}
               </p>
               <div class="manager-contact">
                 <a href="tel:+989141934301">
@@ -2805,7 +2883,7 @@
                     <rect x="3" y="5" width="18" height="14" rx="2" />
                     <path d="M3 7l9 6 9-6" />
                   </svg>
-                  ایمیل
+                  {% if LANGUAGE_CODE == 'fa' %}ایمیل{% else %}Email{% endif %}
                 </a>
               </div>
             </div>
@@ -2821,28 +2899,46 @@
           <div class="map-frame">
             <img
               src="{% static 'img/map2.jpeg' %}"
-              alt="نقشه جهانی"
+              alt="{% if LANGUAGE_CODE == 'fa' %}نقشه جهانی{% else %}World Map{% endif %}"
               class="map-bg-img"
             />
           </div>
         </div>
 
         <div class="global-text">
-          <span class="tag-pill">شبکه بین‌المللی</span>
+          <span class="tag-pill">{% if LANGUAGE_CODE == 'fa' %}شبکه بین‌المللی{% else %}International Network{% endif %}</span>
           <h2 class="sec-title-dark">
-            حمل و نقل بین‌المللی <span class="accent">آذر تیر ارس</span>
+            {% if LANGUAGE_CODE == 'fa' %}
+              حمل و نقل بین‌المللی <span class="accent">آذر تیر ارس</span>
+            {% else %}
+              <span class="accent">Azar Tir Aras</span> International Transport
+            {% endif %}
           </h2>
           <span class="sec-bar"></span>
           <p class="global-desc">
-            اعتماد، تجربه و تخصص، سه اصل همیشگی آذر تیر ارس هستند. به همین دلیل
-            بسیاری از شرکت‌ها و بازرگانان، آذر تیر ارس را به عنوان شریک مطمئن
-            خود در <span class="hl">حمل و نقل بین‌المللی</span> انتخاب می‌کنند؛
-            شرکتی که برای پشتیبانی هر مرحله از واردات و صادرات، بهترین گزینه
-            است. <br /><br />
-            علاوه بر این، تیم لجستیک آذر تیر ارس فرآیند حمل کالا را با استفاده
-            از مسیرهای جایگزین، بدون وقفه ادامه می‌دهد و در تخصص
-            <span class="hl">ترخیص کالا از مرز</span> و تخلیه کالا نیز در کنار
-            <span class="hl">بازرگانان</span> است.
+            {% if LANGUAGE_CODE == 'fa' %}
+              اعتماد، تجربه و تخصص، سه اصل همیشگی آذر تیر ارس هستند. به همین دلیل
+              بسیاری از شرکت‌ها و بازرگانان، آذر تیر ارس را به عنوان شریک مطمئن
+              خود در <span class="hl">حمل و نقل بین‌المللی</span> انتخاب می‌کنند؛
+              شرکتی که برای پشتیبانی هر مرحله از واردات و صادرات، بهترین گزینه
+              است. <br /><br />
+              علاوه بر این، تیم لجستیک آذر تیر ارس فرآیند حمل کالا را با استفاده
+              از مسیرهای جایگزین، بدون وقفه ادامه می‌دهد و در تخصص
+              <span class="hl">ترخیص کالا از مرز</span> و تخلیه کالا نیز در کنار
+              <span class="hl">بازرگانان</span> است.
+            {% else %}
+              Trust, experience, and expertise are the three permanent
+              principles of Azar Tir Aras. That is why many companies and
+              traders choose Azar Tir Aras as their reliable partner in
+              <span class="hl">international transport</span>; a company that
+              is the best option for supporting every stage of import and
+              export. <br /><br />
+              In addition, the Azar Tir Aras logistics team keeps the shipping
+              process going without interruption using alternative routes, and
+              stands alongside <span class="hl">traders</span> with expertise
+              in <span class="hl">border customs clearance</span> and cargo
+              unloading.
+            {% endif %}
           </p>
         </div>
       </div>
@@ -2853,12 +2949,22 @@
       <div class="container">
         <div class="sec-head center">
           <h2 class="sec-title">
-            آخرین <span class="accent">مقالات</span> آذر تیر ارس
+            {% if LANGUAGE_CODE == 'fa' %}
+              آخرین <span class="accent">مقالات</span> آذر تیر ارس
+            {% else %}
+              Latest <span class="accent">Articles</span> from Azar Tir Aras
+            {% endif %}
           </h2>
           <span class="sec-bar"></span>
           <p class="sec-sub">
-            با مطالعه وبلاگ حمل‌ونقل بین‌المللی آذر تیر ارس، از تجربیات واقعی،
-            تحلیل‌های دقیق و راهنمایی‌های عملی بهره‌مند شوید.
+            {% if LANGUAGE_CODE == 'fa' %}
+              با مطالعه وبلاگ حمل‌ونقل بین‌المللی آذر تیر ارس، از تجربیات واقعی،
+              تحلیل‌های دقیق و راهنمایی‌های عملی بهره‌مند شوید.
+            {% else %}
+              By reading the Azar Tir Aras international transport blog,
+              benefit from real experiences, in-depth analyses, and practical
+              guidance.
+            {% endif %}
           </p>
         </div>
 
@@ -2867,7 +2973,7 @@
             <div class="article-media">
               <img
                 src="{% static 'img/baste bandi.jpeg' %}"
-                alt="راهنمای بسته‌بندی"
+                alt="{% if LANGUAGE_CODE == 'fa' %}راهنمای بسته‌بندی{% else %}Packaging Guide{% endif %}"
               />
               <span class="article-tag">
                 <svg
@@ -2881,21 +2987,31 @@
                   <path d="M4 4h16v16H4z" />
                   <path d="M8 9h8M8 13h8M8 17h4" />
                 </svg>
-                مقاله
+                {% if LANGUAGE_CODE == 'fa' %}مقاله{% else %}Article{% endif %}
               </span>
             </div>
             <div class="article-body">
               <h3 class="article-title">
-                راهنمای استراتژیک بسته‌بندی در صادرات
+                {% if LANGUAGE_CODE == 'fa' %}
+                  راهنمای استراتژیک بسته‌بندی در صادرات
+                {% else %}
+                  Strategic Guide to Packaging in Exports
+                {% endif %}
               </h3>
               <p class="article-excerpt">
-                بسته‌بندی اصولی در صادرات، مدیریت ریسک و حفاظت از سرمایه شماست؛
-                با اصول یک بسته‌بندی ایمن و استاندارد آشنا شوید...
+                {% if LANGUAGE_CODE == 'fa' %}
+                  بسته‌بندی اصولی در صادرات، مدیریت ریسک و حفاظت از سرمایه شماست؛
+                  با اصول یک بسته‌بندی ایمن و استاندارد آشنا شوید...
+                {% else %}
+                  Proper packaging in exports is risk management and
+                  protection of your capital; get to know the principles of
+                  safe, standard packaging...
+                {% endif %}
               </p>
               <div class="article-meta">
-                <span class="date">آذر تیر ارس</span>
+                <span class="date">{% if LANGUAGE_CODE == 'fa' %}آذر تیر ارس{% else %}Azar Tir Aras{% endif %}</span>
                 <span class="more"
-                  >مطالعه مقاله
+                  >{% if LANGUAGE_CODE == 'fa' %}مطالعه مقاله{% else %}Read Article{% endif %}
                   <svg
                     width="12"
                     height="12"
@@ -2915,7 +3031,7 @@
             <div class="article-media">
               <img
                 src="{% static 'img/barname.jpeg' %}"
-                alt="راهنمای بارنامه هوایی"
+                alt="{% if LANGUAGE_CODE == 'fa' %}راهنمای بارنامه هوایی{% else %}Air Waybill Guide{% endif %}"
               />
               <span class="article-tag">
                 <svg
@@ -2929,21 +3045,31 @@
                   <path d="M4 4h16v16H4z" />
                   <path d="M8 9h8M8 13h8M8 17h4" />
                 </svg>
-                مقاله
+                {% if LANGUAGE_CODE == 'fa' %}مقاله{% else %}Article{% endif %}
               </span>
             </div>
             <div class="article-body">
               <h3 class="article-title">
-                راهنمای کامل Air Waybill در حمل و نقل بین‌المللی
+                {% if LANGUAGE_CODE == 'fa' %}
+                  راهنمای کامل Air Waybill در حمل و نقل بین‌المللی
+                {% else %}
+                  Complete Guide to the Air Waybill in International Transport
+                {% endif %}
               </h3>
               <p class="article-excerpt">
-                بارنامه هوایی یکی از مهم‌ترین اسناد حمل بین‌المللی است؛ در این
-                راهنما با مفهوم و کاربرد آن آشنا می‌شوید...
+                {% if LANGUAGE_CODE == 'fa' %}
+                  بارنامه هوایی یکی از مهم‌ترین اسناد حمل بین‌المللی است؛ در این
+                  راهنما با مفهوم و کاربرد آن آشنا می‌شوید...
+                {% else %}
+                  The air waybill is one of the most important documents in
+                  international shipping; in this guide you will learn about
+                  its concept and use...
+                {% endif %}
               </p>
               <div class="article-meta">
-                <span class="date">آذر تیر ارس</span>
+                <span class="date">{% if LANGUAGE_CODE == 'fa' %}آذر تیر ارس{% else %}Azar Tir Aras{% endif %}</span>
                 <span class="more"
-                  >مطالعه مقاله
+                  >{% if LANGUAGE_CODE == 'fa' %}مطالعه مقاله{% else %}Read Article{% endif %}
                   <svg
                     width="12"
                     height="12"
@@ -2961,7 +3087,7 @@
 
           <a href="#" class="article-card">
             <div class="article-media">
-              <img src="{% static 'img/cross.jpeg' %}" alt="کراس استافینگ" />
+              <img src="{% static 'img/cross.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}کراس استافینگ{% else %}Cross Stuffing{% endif %}" />
               <span class="article-tag">
                 <svg
                   width="12"
@@ -2974,19 +3100,25 @@
                   <path d="M4 4h16v16H4z" />
                   <path d="M8 9h8M8 13h8M8 17h4" />
                 </svg>
-                مقاله
+                {% if LANGUAGE_CODE == 'fa' %}مقاله{% else %}Article{% endif %}
               </span>
             </div>
             <div class="article-body">
-              <h3 class="article-title">کراس استافینگ چیست؟</h3>
+              <h3 class="article-title">{% if LANGUAGE_CODE == 'fa' %}کراس استافینگ چیست؟{% else %}What Is Cross Stuffing?{% endif %}</h3>
               <p class="article-excerpt">
-                کراس استافینگ روشی کارآمد در حمل و نقل و لجستیک بین‌المللی است
-                که در آن محموله میان دو کانتینر جابه‌جا می‌شود...
+                {% if LANGUAGE_CODE == 'fa' %}
+                  کراس استافینگ روشی کارآمد در حمل و نقل و لجستیک بین‌المللی است
+                  که در آن محموله میان دو کانتینر جابه‌جا می‌شود...
+                {% else %}
+                  Cross stuffing is an efficient method in international
+                  transport and logistics in which cargo is transferred
+                  between two containers...
+                {% endif %}
               </p>
               <div class="article-meta">
-                <span class="date">آذر تیر ارس</span>
+                <span class="date">{% if LANGUAGE_CODE == 'fa' %}آذر تیر ارس{% else %}Azar Tir Aras{% endif %}</span>
                 <span class="more"
-                  >مطالعه مقاله
+                  >{% if LANGUAGE_CODE == 'fa' %}مطالعه مقاله{% else %}Read Article{% endif %}
                   <svg
                     width="12"
                     height="12"
@@ -3006,7 +3138,7 @@
             <div class="article-media">
               <img
                 src="{% static 'img/ersal.jpeg' %}"
-                alt="راهنمای ارسال بار"
+                alt="{% if LANGUAGE_CODE == 'fa' %}راهنمای ارسال بار{% else %}Cargo Shipping Guide{% endif %}"
               />
               <span class="article-tag">
                 <svg
@@ -3020,21 +3152,31 @@
                   <path d="M4 4h16v16H4z" />
                   <path d="M8 9h8M8 13h8M8 17h4" />
                 </svg>
-                مقاله
+                {% if LANGUAGE_CODE == 'fa' %}مقاله{% else %}Article{% endif %}
               </span>
             </div>
             <div class="article-body">
               <h3 class="article-title">
-                راهنمای کامل ارسال بار از ایران در سال ۱۴۰۴
+                {% if LANGUAGE_CODE == 'fa' %}
+                  راهنمای کامل ارسال بار از ایران در سال ۱۴۰۴
+                {% else %}
+                  Complete Guide to Shipping Cargo from Iran in 1404 (2025-26)
+                {% endif %}
               </h3>
               <p class="article-excerpt">
-                راهنمای جامع حمل هوایی و دریایی بار از ایران؛ مسیر مطمئن، موفق و
-                به‌صرفه برای صادرکنندگان و بازرگانان...
+                {% if LANGUAGE_CODE == 'fa' %}
+                  راهنمای جامع حمل هوایی و دریایی بار از ایران؛ مسیر مطمئن، موفق و
+                  به‌صرفه برای صادرکنندگان و بازرگانان...
+                {% else %}
+                  A comprehensive guide to air and sea cargo shipping from
+                  Iran; a reliable, successful, and cost-effective route for
+                  exporters and traders...
+                {% endif %}
               </p>
               <div class="article-meta">
-                <span class="date">آذر تیر ارس</span>
+                <span class="date">{% if LANGUAGE_CODE == 'fa' %}آذر تیر ارس{% else %}Azar Tir Aras{% endif %}</span>
                 <span class="more"
-                  >مطالعه مقاله
+                  >{% if LANGUAGE_CODE == 'fa' %}مطالعه مقاله{% else %}Read Article{% endif %}
                   <svg
                     width="12"
                     height="12"
@@ -3058,33 +3200,38 @@
       <div class="container">
         <div class="quote-grid">
           <div class="quote-form-card">
-            <span class="tag-pill">مشاوره رایگان</span>
-            <h2 class="form-title">درخواست مشاوره و استعلام قیمت</h2>
+            <span class="tag-pill">{% if LANGUAGE_CODE == 'fa' %}مشاوره رایگان{% else %}Free Consultation{% endif %}</span>
+            <h2 class="form-title">{% if LANGUAGE_CODE == 'fa' %}درخواست مشاوره و استعلام قیمت{% else %}Request Consultation & Price Quote{% endif %}</h2>
             <p class="form-desc">
-              فرم زیر را تکمیل کنید تا کارشناسان آذر تیر ارس در کوتاه‌ترین زمان
-              ممکن با شما تماس بگیرند.
+              {% if LANGUAGE_CODE == 'fa' %}
+                فرم زیر را تکمیل کنید تا کارشناسان آذر تیر ارس در کوتاه‌ترین زمان
+                ممکن با شما تماس بگیرند.
+              {% else %}
+                Fill out the form below so that Azar Tir Aras experts can
+                contact you as soon as possible.
+              {% endif %}
             </p>
 
             <form class="quote-form">
               <div class="form-row">
                 <div class="field">
-                  <label>نام و نام خانوادگی</label>
-                  <input type="text" placeholder="مثلاً علی رضایی" />
+                  <label>{% if LANGUAGE_CODE == 'fa' %}نام و نام خانوادگی{% else %}Full Name{% endif %}</label>
+                  <input type="text" placeholder="{% if LANGUAGE_CODE == 'fa' %}مثلاً علی رضایی{% else %}e.g. John Smith{% endif %}" />
                 </div>
                 <div class="field">
-                  <label>شماره تماس</label>
+                  <label>{% if LANGUAGE_CODE == 'fa' %}شماره تماس{% else %}Phone Number{% endif %}</label>
                   <input type="tel" placeholder="09xxxxxxxxx" />
                 </div>
               </div>
               <div class="field">
-                <label>شرح بار / توضیحات</label>
+                <label>{% if LANGUAGE_CODE == 'fa' %}شرح بار / توضیحات{% else %}Cargo Description / Notes{% endif %}</label>
                 <textarea
                   rows="4"
-                  placeholder="نوع کالا، مبدا و مقصد را بنویسید..."
+                  placeholder="{% if LANGUAGE_CODE == 'fa' %}نوع کالا، مبدا و مقصد را بنویسید...{% else %}Enter the type of goods, origin, and destination...{% endif %}"
                 ></textarea>
               </div>
               <button type="submit" class="btn-submit">
-                ثبت درخواست
+                {% if LANGUAGE_CODE == 'fa' %}ثبت درخواست{% else %}Submit Request{% endif %}
                 <svg
                   width="16"
                   height="16"
@@ -3101,7 +3248,7 @@
 
           <div class="quote-visual">
             <div class="visual-frame">
-              <img src="{% static 'img/ban.png' %}" alt="پشتیبانی ۲۴/۷" />
+              <img src="{% static 'img/ban.png' %}" alt="{% if LANGUAGE_CODE == 'fa' %}پشتیبانی ۲۴/۷{% else %}24/7 Support{% endif %}" />
             </div>
             <div class="visual-accent">
               <div class="accent-icon">
@@ -3119,7 +3266,7 @@
               </div>
               <div class="accent-text">
                 <span class="num">۲۴/۷</span>
-                <span class="lbl">پاسخ‌گویی سریع به درخواست شما</span>
+                <span class="lbl">{% if LANGUAGE_CODE == 'fa' %}پاسخ‌گویی سریع به درخواست شما{% else %}Fast Response to Your Request{% endif %}</span>
               </div>
             </div>
           </div>
@@ -3132,14 +3279,23 @@
       <div class="transport-cta__container">
         <div class="transport-cta__content">
           <h2 class="transport-cta__title">
-            برای حمل سریع و مطمئن، همین حالا اقدام کنید!
+            {% if LANGUAGE_CODE == 'fa' %}
+              برای حمل سریع و مطمئن، همین حالا اقدام کنید!
+            {% else %}
+              For Fast, Reliable Shipping, Take Action Now!
+            {% endif %}
           </h2>
           <p class="transport-cta__description">
-            کارشناسان ما آماده ارائه مشاوره رایگان و استعلام قیمت به شما هستند.
+            {% if LANGUAGE_CODE == 'fa' %}
+              کارشناسان ما آماده ارائه مشاوره رایگان و استعلام قیمت به شما هستند.
+            {% else %}
+              Our experts are ready to offer you free consultation and a price
+              quote.
+            {% endif %}
           </p>
           <div class="transport-cta__actions">
             <a href="{% url 'contact' %}" class="cta-btn cta-btn--primary">
-              <span>استعلام قیمت رایگان</span>
+              <span>{% if LANGUAGE_CODE == 'fa' %}استعلام قیمت رایگان{% else %}Get a Free Quote{% endif %}</span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   d="M21 3L3.5 10.2c-.8.3-.8 1.4 0 1.7l6.4 2.4 2.4 6.4c.3.8 1.4.8 1.7 0L21 3z"
@@ -3148,7 +3304,7 @@
               </svg>
             </a>
             <a href="tel:+989141934301" class="cta-btn cta-btn--secondary">
-              <span>تماس با ما</span>
+              <span>{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"
@@ -3166,10 +3322,16 @@
         <div class="site-footer__container">
           <!-- ستون درباره ما -->
           <div class="footer-column footer-about">
-            <h3 class="footer-title">درباره ما</h3>
+            <h3 class="footer-title">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</h3>
             <p>
-              آذر تیر ارس، شرکت حمل و نقل بین‌المللی با تمرکز بر ارائه خدمات حمل
-              و نقل، ترانزیت و خدمات گمرکی به مقصد ترکیه، اروپا و کشورهای CIS.
+              {% if LANGUAGE_CODE == 'fa' %}
+                آذر تیر ارس، شرکت حمل و نقل بین‌المللی با تمرکز بر ارائه خدمات حمل
+                و نقل، ترانزیت و خدمات گمرکی به مقصد ترکیه، اروپا و کشورهای CIS.
+              {% else %}
+                Azar Tir Aras is an international transport company focused on
+                providing transport, transit, and customs services to Turkey,
+                Europe, and the CIS countries.
+              {% endif %}
             </p>
             <div class="social-links">
               <a href="#" aria-label="LinkedIn">
@@ -3203,29 +3365,31 @@
 
           <!-- ستون خدمات (جدا از مسیرها) -->
           <div class="footer-column">
-            <h3 class="footer-title">خدمات</h3>
+            <a href="{% url 'service_new' %}">
+            <h3 class="footer-title">{% if LANGUAGE_CODE == 'fa' %}خدمات{% else %}Services{% endif %}</h3>
+            </a>
             <ul class="footer-links">
-              <li><a href="{% url 'international' %}">حمل بین‌المللی</a></li>
-              <li><a href="{% url 'hamle_asli' %}">ترانزیت</a></li>
-              <li><a href="{% url 'hamle_asli' %}">حمل داخلی</a></li>
-              <li><a href="{% url 'hamle_asli' %}">خدمات گمرکی</a></li>
+              <li><a href="{% url 'international' %}">{% if LANGUAGE_CODE == 'fa' %}حمل بین‌المللی{% else %}International Transport{% endif %}</a></li>
+              <li><a href="{% url 'hamle_asli' %}">{% if LANGUAGE_CODE == 'fa' %}ترانزیت{% else %}Transit{% endif %}</a></li>
+              <li><a href="{% url 'hamle_asli' %}">{% if LANGUAGE_CODE == 'fa' %}حمل داخلی{% else %}Domestic Transport{% endif %}</a></li>
+              <li><a href="{% url 'hamle_asli' %}">{% if LANGUAGE_CODE == 'fa' %}خدمات گمرکی{% else %}Customs Services{% endif %}</a></li>
             </ul>
           </div>
 
           <!-- ستون مسیرها -->
           <div class="footer-column">
-            <h3 class="footer-title">مسیرها</h3>
+            <h3 class="footer-title">{% if LANGUAGE_CODE == 'fa' %}مسیرها{% else %}Routes{% endif %}</h3>
             <ul class="footer-links">
-              <li><a href="{% url 'roads' %}">ایران به ترکیه</a></li>
-              <li><a href="{% url 'roads' %}">ایران به اروپا</a></li>
-              <li><a href="{% url 'roads' %}">ترکیه به ایران</a></li>
-              <li><a href="{% url 'roads' %}">سایر مسیرها</a></li>
+              <li><a href="{% url 'roads' %}">{% if LANGUAGE_CODE == 'fa' %}ایران به ترکیه{% else %}Iran to Turkey{% endif %}</a></li>
+              <li><a href="{% url 'roads' %}">{% if LANGUAGE_CODE == 'fa' %}ایران به اروپا{% else %}Iran to Europe{% endif %}</a></li>
+              <li><a href="{% url 'roads' %}">{% if LANGUAGE_CODE == 'fa' %}ترکیه به ایران{% else %}Turkey to Iran{% endif %}</a></li>
+              <li><a href="{% url 'roads' %}">{% if LANGUAGE_CODE == 'fa' %}سایر مسیرها{% else %}Other Routes{% endif %}</a></li>
             </ul>
           </div>
 
           <!-- ستون تماس -->
           <div class="footer-column footer-contact">
-            <h3 class="footer-title">اطلاعات تماس</h3>
+            <h3 class="footer-title">{% if LANGUAGE_CODE == 'fa' %}اطلاعات تماس{% else %}Contact Information{% endif %}</h3>
             <div class="contact-list">
               <a href="{% url 'contact' %}" class="contact-item">
                 <span class="contact-icon">
@@ -3237,8 +3401,13 @@
                   </svg>
                 </span>
                 <span>
-                  تهران, سید خندان خیابان<br />
-                  دبستان کوچه ،آگاهی پلاک ۸ طبقه سوم، واحد ۸
+                  {% if LANGUAGE_CODE == 'fa' %}
+                    تهران, سید خندان خیابان<br />
+                    دبستان کوچه ،آگاهی پلاک ۸ طبقه سوم، واحد ۸
+                  {% else %}
+                    Tehran, Seyed Khandan St.<br />
+                    Dabestan Alley, Agahi No. 8, 3rd Floor, Unit 8
+                  {% endif %}
                 </span>
               </a>
 
@@ -3273,12 +3442,16 @@
       <div class="site-footer__bottom">
         <div class="site-footer__bottom-inner">
           <p>
-            © 1405 تمامی حقوق محفوظ است | طراحی و توسعه توسط Sijeey
+            {% if LANGUAGE_CODE == 'fa' %}
+              © ۱۴۰۵ تمامی حقوق محفوظ است | طراحی و توسعه توسط Sijeey
+            {% else %}
+              © 2026 All rights reserved | Designed and developed by Sijeey
+            {% endif %}
           </p>
           <button
             class="back-to-top"
             id="backToTop"
-            aria-label="بازگشت به بالا"
+            aria-label="{% if LANGUAGE_CODE == 'fa' %}بازگشت به بالا{% else %}Back to top{% endif %}"
           >
             <svg viewBox="0 0 24 24">
               <path d="M6 14l6-6 6 6" />

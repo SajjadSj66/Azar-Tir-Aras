@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!doctype html>
 <html lang="fa" dir="rtl">
   <head>
@@ -1235,6 +1237,33 @@
         stroke: currentColor;
         stroke-width: 2;
       }
+      .float-btn {
+        position: fixed;
+        bottom: 26px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+        z-index: 50;
+        transition: transform 0.25s var(--ease);
+        text-decoration: none; /* اگر لینک است */
+        border: none; /* اگر دکمه است */
+        cursor: pointer;
+      }
+
+      .float-btn:hover {
+        transform: translateY(-4px) scale(1.05);
+      }
+
+      /* واتساپ (چپ) */
+      .float-btn-wa {
+        left: 26px;
+        background: #25d366;
+        color: #fff;
+      }
 
       /* ---------- Responsive ---------- */
       @media (max-width: 1024px) {
@@ -1395,913 +1424,627 @@
     </style>
   </head>
   <body>
-    <!-- =============== TOP BAR =============== -->
-    <div class="topbar">
-      <div class="container">
-        <div class="topbar-contact">
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
-            />
-          </svg>
-          <span>تماس با ما:</span>
-          <span dir="ltr">+989141934301</span>
-        </div>
-
-        <form action="{% url 'set_language' %}" method="post" class="lang-switch">
-          {% csrf_token %}
-          <input name="next" type="hidden" value="{{ request.path }}">
-          <button type="submit" name="language" value="fa" class="lang-btn {% if request.LANGUAGE_CODE == 'fa' %}active{% endif %}">فارسی</button>
-          <button type="submit" name="language" value="en" class="lang-btn {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">English</button>
-        </form>
-      </div>
+<!-- =============== TOP BAR =============== -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-contact">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+        />
+      </svg>
+      <span>{% if LANGUAGE_CODE == 'fa' %}تماس با ما:{% else %}Contact us:{% endif %}</span>
+      <span dir="ltr">+989141934301</span>
     </div>
 
+    <form action="{% url 'set_language' %}" method="post" class="lang-switch">
+      {% csrf_token %}
+      <input name="next" type="hidden" value="{{ request.path }}">
+      <button type="submit" name="language" value="fa" class="lang-btn {% if request.LANGUAGE_CODE == 'fa' %}active{% endif %}">فارسی</button>
+      <button type="submit" name="language" value="en" class="lang-btn {% if request.LANGUAGE_CODE == 'en' %}active{% endif %}">English</button>
+    </form>
+  </div>
+</div>
 
-    <!-- =============== NAV BAR =============== -->
-    <nav class="navbar">
-      <div class="container">
-        <!-- 1. برند -->
-        <div class="brand">
-          <a href="{% url 'index' %}" class="brand-link">
-            <div class="brand-name">
-              <img
-                src="{% static 'img/logo.png' %}"
-                alt="لوگوی AZAR TIR ARAS"
-                class="brand-logo"
-              />
-            </div>
-          </a>
+
+<!-- =============== NAV BAR =============== -->
+<nav class="navbar">
+  <div class="container">
+    <!-- 1. برند -->
+    <div class="brand">
+      <a href="{% url 'index' %}" class="brand-link">
+        <div class="brand-name">
+          <img
+            src="{% static 'img/logo.png' %}"
+            alt="{% if LANGUAGE_CODE == 'fa' %}لوگوی AZAR TIR ARAS{% else %}AZAR TIR ARAS logo{% endif %}"
+            class="brand-logo"
+          />
         </div>
-
-        <!-- 2. منو (در دسکتاپ) -->
-        <ul class="nav-menu" id="navMenu">
-          <li class="nav-item">
-            <a href="{% url 'international' %}" class="nav-link"
-              >حمل و نقل بین‌المللی</a
-            >
-          </li>
-
-          <li class="nav-item" id="transportItem">
-            <a
-              href="{% url 'hamle_asli' %}"
-              class="nav-link"
-              id="transportTrigger"
-            >
-              روش‌های حمل و نقل
-              <svg
-                class="caret"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-              >
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </a>
-            <div class="dropdown">
-              <a href="{% url 'tarkibi' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل ترکیبی</a
-              >
-              <a href="{% url 'ship' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل دریایی</a
-              >
-              <a href="{% url 'truck' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل جاده‌ای</a
-              >
-              <a href="{% url 'airplane' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل هوایی</a
-              >
-              <a href="{% url 'train' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل ریلی</a
-              >
-            </div>
-          </li>
-
-          <li class="nav-item" id="servicesItem">
-            <a
-              href="{% url 'service_new' %}"
-              class="nav-link"
-              id="servicesTrigger"
-            >
-              خدمات ما
-              <svg
-                class="caret"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3"
-              >
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </a>
-            <div class="dropdown">
-              <a href="{% url 'service_import' %}" class="dropdown-link"
-                ><span class="dot"></span>واردات کالا</a
-              >
-              <a href="{% url 'service_export' %}" class="dropdown-link"
-                ><span class="dot"></span>صادرات کالا</a
-              >
-              <a href="{% url 'service_tarkhis' %}" class="dropdown-link"
-                ><span class="dot"></span>ترخیص کالا از گمرک</a
-              >
-              <a href="{% url 'service_umurgomroki' %}" class="dropdown-link"
-                ><span class="dot"></span>امور گمرکی و ترخیص</a
-              >
-            </div>
-          </li>
-
-          <li class="nav-item">
-            <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
-          </li>
-        </ul>
-
-        <!-- 3. دکمه استعلام -->
-        <a href="{% url 'contact' %}" class="quote-btn">
-          استعلام قیمت
-          <svg
-            width="15"
-            height="15"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.3"
-          >
-            <path d="M13 5l7 7-7 7M20 12H4" />
-          </svg>
-        </a>
-
-        <!-- 4. همبرگری (موبایل) -->
-        <button class="burger" id="burgerBtn">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- =============== MOBILE DRAWER =============== -->
-    <div class="mobile-drawer-overlay" id="drawerOverlay"></div>
-    <div class="mobile-drawer" id="mobileDrawer">
-      <div class="mobile-drawer-head">
-        <span class="mobile-drawer-brand">AZAR TIR ARAS</span>
-        <button
-          class="mobile-drawer-close"
-          id="drawerClose"
-          aria-label="بستن منو"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <div class="mobile-drawer-nav">
-        <a href="{% url 'international' %}" class="nav-link"
-          >حمل و نقل بین‌المللی</a
-        >
-
-        <div class="nav-item">
-          <a href="#" class="nav-link">
-            روش‌های حمل و نقل
-            <svg
-              class="caret"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </a>
-          <div class="dropdown">
-            <a href="{% url 'tarkibi' %}">حمل و نقل ترکیبی</a>
-            <a href="{% url 'ship' %}">حمل و نقل دریایی</a>
-            <a href="{% url 'truck' %}">حمل و نقل جاده‌ای</a>
-            <a href="{% url 'airplane' %}">حمل و نقل هوایی</a>
-            <a href="{% url 'train' %}">حمل و نقل ریلی</a>
-          </div>
-        </div>
-
-        <div class="nav-item">
-          <a href="{% url 'service_new' %}" class="nav-link">
-            خدمات ما
-            <svg
-              class="caret"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </a>
-          <div class="dropdown">
-            <a href="{% url 'service_import' %}">واردات کالا</a>
-            <a href="{% url 'service_export' %}">صادرات کالا</a>
-            <a href="{% url 'service_tarkhis' %}">ترخیص کالا از گمرک</a>
-            <a href="{% url 'service_umurgomroki' %}">امور گمرکی و ترخیص</a>
-          </div>
-        </div>
-
-        <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
-        <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
-      </div>
-
-      <a href="{% url 'contact' %}" class="quote-btn-mobile">
-        استعلام قیمت
-
-        <svg
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.3"
-        >
-          <path d="M13 5l7 7-7 7M20 12H4" />
-        </svg>
       </a>
     </div>
 
-    <!-- =============== HERO =============== -->
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <div class="hero-content">
-          <h1>روش‌های حمل و نقل<br /><span class="accent">آذر تیر ارس</span></h1>
-          <p>
-            با ۵ روش حمل و نقل زمینی، ریلی، دریایی، هوایی و ترکیبی، بار شما را
-            به هر نقطه از جهان می‌رسانیم.
-          </p>
-          <div class="hero-badges">
-            <div class="hero-badge">
-              <div class="ic">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <rect x="1" y="6" width="13" height="11" rx="1" />
-                  <path d="M14 10h4l3 3v4h-7v-7z" />
-                  <circle cx="6" cy="18.5" r="1.5" />
-                  <circle cx="17" cy="18.5" r="1.5" />
-                </svg>
-              </div>
-              <div class="txt"><b>۵ روش حمل</b><span>پوشش کامل</span></div>
-            </div>
-            <div class="hero-badge">
-              <div class="ic">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <circle cx="12" cy="12" r="9" />
-                  <path
-                    d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z"
-                  />
-                </svg>
-              </div>
-              <div class="txt"><b>بین‌المللی</b><span>سراسر جهان</span></div>
-            </div>
-            <div class="hero-badge">
-              <div class="ic">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <path
-                    d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"
-                  />
-                </svg>
-              </div>
-              <div class="txt"><b>بیمه کامل</b><span>پوشش سراسری</span></div>
-            </div>
-            <div class="hero-badge">
-              <div class="ic">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                >
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 7v5l3 3" />
-                </svg>
-              </div>
-              <div class="txt"><b>۲۴/۷</b><span>پشتیبانی کامل</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 2. منو (در دسکتاپ) -->
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item">
+        <a href="{% url 'international' %}" class="nav-link"
+          >{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transport{% endif %}</a
+        >
+      </li>
 
-    <!-- =============== ABOUT ARTICLE =============== -->
-    <section class="about-article">
-      <div class="wrap article-container">
-        <div class="sec-head">
-          <h2>آشنایی با آذر تیر ارس</h2>
-          <div class="rule"></div>
-        </div>
-        <div class="article-block">
-          <div class="article-text">
-            <h3>شرکت حمل و نقل بین‌المللی آذر تیر ارس</h3>
-            <p>
-              <b>آذر تیر ارس</b> با بیش از یک دهه تجربه در صنعت حمل و نقل، یکی
-              از شرکت‌های پیشرو در ارائه خدمات لجستیک و ترانزیت بین‌المللی در
-              ایران است. ما با بهره‌گیری از شبکه گسترده حمل و نقل و همکاری با
-              معتبرترین خطوط کشتیرانی، ریلی، هوایی و ناوگان جاده‌ای، خدمات کاملی
-              را به مشتریان خود ارائه می‌دهیم.
-            </p>
-            <div class="article-highlight">
-              <p>
-                💡 ماموریت ما: ارائه سریع‌ترین، ایمن‌ترین و اقتصادی‌ترین
-                راهکارهای حمل و نقل برای تجارت شما
-              </p>
-            </div>
-          </div>
-          <div class="article-visual">
-            <img
-              src="{% static 'img/daryayi-hero.jpeg' %}"
-              alt="شرکت آذر تیر ارس"
-              loading="lazy"
-            />
-          </div>
-        </div>
-        <div class="article-block">
-          <div class="article-visual">
-            <img
-              src="{% static 'img/tarkibi-hero.png' %}"
-              alt="روش‌های حمل و نقل"
-              loading="lazy"
-            />
-          </div>
-          <div class="article-text">
-            <h3>۵ روش حمل و نقل برای هر نیاز</h3>
-            <p>
-              ما در آذر تیر ارس با ارائه <b>۵ روش حمل و نقل</b> شامل جاده‌ای،
-              ریلی، دریایی، هوایی و ترکیبی، انعطاف‌پذیری کامل را برای مشتریان
-              خود فراهم کرده‌ایم. هر روش مزایای خاص خود را دارد و تیم کارشناسی
-              ما بهترین گزینه را بر اساس نوع بار، مقصد، زمان و بودجه شما پیشنهاد
-              می‌دهد.
-            </p>
-            <div class="article-highlight">
-              <p>
-                📊 حمل ترکیبی می‌تواند تا <b>۴۰٪</b> هزینه‌های حمل و نقل شما را
-                کاهش دهد!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="article-block">
-          <div class="article-text">
-            <h3>پوشش جهانی و خدمات گمرکی</h3>
-            <p>
-              از ترکیه و اروپا تا چین، روسیه و امارات، شبکه حمل و نقل ما بیش از
-              <b>۸۰ مقصد بین‌المللی</b> را پوشش می‌دهد. علاوه بر حمل و نقل،
-              خدمات کامل گمرکی شامل ترخیص کالا، اسناد و مجوزها را نیز ارائه
-              می‌دهیم تا فرآیند حمل بار شما بدون هیچ دغدغه‌ای انجام شود.
-            </p>
-            <div class="article-highlight">
-              <p>
-                🌍 حمل دریایی اقتصادی‌ترین روش برای بارهای حجیم بین قاره‌ای است!
-              </p>
-            </div>
-          </div>
-          <div class="article-visual">
-            <img src="{% static '/assets/jahani.jpeg' %}" alt="پوشش جهانی" loading="lazy" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =============== TRANSPORT SERVICES =============== -->
-    <section class="transport-services">
-      <div class="wrap">
-        <div class="sec-head">
-          <h2>روش‌های حمل و نقل</h2>
-          <div class="rule"></div>
-          <p>انتخاب بهترین روش حمل بر اساس نیاز شما</p>
-        </div>
-        <div class="services-grid">
-          <a href="{% url 'truck' %}" class="service-card">
-            <div class="service-card-img">
-              <img src="{% static 'img/jade.jpeg' %}" alt="حمل جاده‌ای" loading="lazy" />
-            </div>
-            <div class="service-card-body">
-              <h3>حمل جاده‌ای</h3>
-              <p>انعطاف‌پذیرترین روش برای حمل داخلی و بین‌المللی</p>
-              <span class="learn-more"
-                >بیشتر بدانید
-                <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
-            </div>
-          </a>
-          <a href="{% url 'train' %}" class="service-card">
-            <div class="service-card-img">
-              <img src="{% static 'img/train.jpeg' %}" alt="حمل ریلی" loading="lazy" />
-            </div>
-            <div class="service-card-body">
-              <h3>حمل ریلی</h3>
-              <p>اقتصادی و ایمن برای بارهای حجیم در مسیرهای طولانی</p>
-              <span class="learn-more"
-                >بیشتر بدانید
-                <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
-            </div>
-          </a>
-          <a href="{% url 'ship' %}" class="service-card">
-            <div class="service-card-img">
-              <img src="{% static 'img/sea.jpeg' %}" alt="حمل دریایی" loading="lazy" />
-            </div>
-            <div class="service-card-body">
-              <h3>حمل دریایی</h3>
-              <p>اقتصادی‌ترین روش برای بارهای سنگین بین قاره‌ای</p>
-              <span class="learn-more"
-                >بیشتر بدانید
-                <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
-            </div>
-          </a>
-          <a href="{% url 'airplane' %}" class="service-card">
-            <div class="service-card-img">
-              <img src="{% static 'img/air.jpeg' %}" alt="حمل هوایی" loading="lazy" />
-            </div>
-            <div class="service-card-body">
-              <h3>حمل هوایی</h3>
-              <p>سریع‌ترین روش برای کالاهای فوری و حساس</p>
-              <span class="learn-more"
-                >بیشتر بدانید
-                <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
-            </div>
-          </a>
-          <a href="{% url 'tarkibi' %}" class="service-card">
-            <div class="service-card-img">
-              <img
-                src="{% static 'img/combined.jpeg' %}"
-                alt="حمل ترکیبی"
-                loading="lazy"
-              />
-            </div>
-            <div class="service-card-body">
-              <h3>حمل ترکیبی</h3>
-              <p>هوشمندانه‌ترین ترکیب روش‌ها برای کاهش هزینه</p>
-              <span class="learn-more"
-                >بیشتر بدانید
-                <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- =============== STATS =============== -->
-    <section class="stats-section">
-      <div class="wrap">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-number">۱۵<span>+</span></div>
-            <div class="stat-label">سال تجربه</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">۲۵<span>K+</span></div>
-            <div class="stat-label">حمل موفق</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">۸۰<span>+</span></div>
-            <div class="stat-label">مقصد بین‌المللی</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">۹۹<span>٪</span></div>
-            <div class="stat-label">رضایت مشتری</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =============== PROCESS =============== -->
-    <section class="process-section">
-      <div class="wrap">
-        <div class="sec-head">
-          <h2>فرآیند همکاری با ما</h2>
-          <div class="rule"></div>
-        </div>
-        <div class="process-track">
-          <div class="process-step">
-            <span class="num">۰۱</span>
-            <div class="node">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path d="M9 12l2 2 4-4" />
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-              </svg>
-            </div>
-            <h3>ثبت درخواست</h3>
-            <p>اطلاعات بار خود را ثبت کنید</p>
-          </div>
-          <div class="process-step">
-            <span class="num">۰۲</span>
-            <div class="node">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path d="M4 4h16v16H4z" />
-                <path d="M4 9h16" />
-              </svg>
-            </div>
-            <h3>مشاوره و پیشنهاد</h3>
-            <p>بهترین روش حمل پیشنهاد می‌شود</p>
-          </div>
-          <div class="process-step">
-            <span class="num">۰۳</span>
-            <div class="node">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path
-                  d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"
-                />
-              </svg>
-            </div>
-            <h3>عقد قرارداد</h3>
-            <p>ثبت سفارش و بیمه بار</p>
-          </div>
-          <div class="process-step">
-            <span class="num">۰۴</span>
-            <div class="node">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path d="M4 7h8v5H4zM12 12h8v5h-8z" />
-                <path d="M8 12v5M16 7v5M4 17h16" />
-              </svg>
-            </div>
-            <h3>اجرای حمل</h3>
-            <p>جابجایی بار با روش انتخابی</p>
-          </div>
-          <div class="process-step">
-            <span class="num">۰۵</span>
-            <div class="node">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path d="M20 12a8 8 0 11-16 0 8 8 0 0116 0z" />
-                <path d="M9 12l2 2 4-4" />
-              </svg>
-            </div>
-            <h3>تحویل بار</h3>
-            <p>تحویل سالم در مقصد</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-    <!-- =============== CTA =============== -->
-    <section class="transport-cta" id="cta">
-      <div class="transport-cta__container">
-        <div class="transport-cta__content">
-          <h2 class="transport-cta__title">
-            برای حمل سریع و مطمئن، همین حالا اقدام کنید!
-          </h2>
-          <p class="transport-cta__description">
-            کارشناسان ما آماده ارائه مشاوره رایگان و استعلام قیمت به شما هستند.
-          </p>
-          <div class="transport-cta__actions">
-            <a href="{% url 'contact' %}" class="cta-btn cta-btn--primary">
-              <span>استعلام قیمت رایگان</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M21 3L3.5 10.2c-.8.3-.8 1.4 0 1.7l6.4 2.4 2.4 6.4c.3.8 1.4.8 1.7 0L21 3z"
-                />
-                <path d="M10 14l7-7" />
-              </svg>
-            </a>
-            <a href="tel:+989141934301" class="cta-btn cta-btn--secondary">
-              <span>تماس با ما</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- =============== FOOTER =============== -->
-    <footer class="site-footer">
-      <div class="site-footer__main">
-        <div class="site-footer__container">
-          <!-- ستون درباره ما -->
-          <div class="footer-column footer-about">
-            <h3 class="footer-title">درباره ما</h3>
-            <p>
-              آذر تیر ارس، شرکت حمل و نقل بین‌المللی با تمرکز بر ارائه خدمات حمل
-              و نقل، ترانزیت و خدمات گمرکی به مقصد ترکیه، اروپا و کشورهای CIS.
-            </p>
-            <div class="social-links">
-              <a href="#" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24">
-                  <path d="M6 8v10" />
-                  <circle cx="6" cy="5" r="1" />
-                  <path d="M10 18v-6a3 3 0 0 1 6 0v6" />
-                  <path d="M10 12v6" />
-                  <path d="M16 15v3" />
-                </svg>
-              </a>
-              <a href="#" aria-label="Instagram">
-                <svg viewBox="0 0 24 24">
-                  <rect x="4" y="4" width="16" height="16" rx="4" />
-                  <circle cx="12" cy="12" r="3.5" />
-                  <circle cx="17.3" cy="6.8" r="1" />
-                </svg>
-              </a>
-              <a href="#" aria-label="WhatsApp">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L4 20l.9-3.6 A8.5 8.5 0 1 1 20.5 11.7z"
-                  />
-                  <path
-                    d="M9.2 8.4c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.6.7c.8 1.4 1.5 2.1 2.9 2.9l.7-.6c.2-.2.4-.2.6-.1l1.7.7c.3.1.4.3.4.4.5v.5c0 .3-.1.6-.4.8-.4.3-1 .4-1.5.2 -2.8-.8-5.1-3.1-5.9-5.9 -.2-.5-.1-1.1.2-1.5z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- ستون خدمات (جدا از مسیرها) -->
-          <div class="footer-column">
-            <h3 class="footer-title">خدمات</h3>
-            <ul class="footer-links">
-              <li><a href="{% url 'international' %}">حمل بین‌المللی</a></li>
-              <li><a href="{% url 'hamle_asli' %}">ترانزیت</a></li>
-              <li><a href="{% url 'hamle_asli' %}">حمل داخلی</a></li>
-              <li><a href="{% url 'hamle_asli' %}">خدمات گمرکی</a></li>
-            </ul>
-          </div>
-
-          <!-- ستون مسیرها -->
-          <div class="footer-column">
-            <h3 class="footer-title">مسیرها</h3>
-            <ul class="footer-links">
-              <li><a href="{% url 'roads' %}">ایران به ترکیه</a></li>
-              <li><a href="{% url 'roads' %}">ایران به اروپا</a></li>
-              <li><a href="{% url 'roads' %}">ترکیه به ایران</a></li>
-              <li><a href="{% url 'roads' %}">سایر مسیرها</a></li>
-            </ul>
-          </div>
-
-          <!-- ستون تماس -->
-          <div class="footer-column footer-contact">
-            <h3 class="footer-title">اطلاعات تماس</h3>
-            <div class="contact-list">
-              <a href="{% url 'contact' %}" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M12 21s7-6.2 7-12A7 7 0 1 0 5 9c0 5.8 7 12 7 12z"
-                    />
-                    <circle cx="12" cy="9" r="2.3" />
-                  </svg>
-                </span>
-                <span>
-                  تهران, سید خندان خیابان<br />
-                  دبستان کوچه ،آگاهی پلاک ۸ طبقه سوم، واحد ۸
-                </span>
-              </a>
-
-              <a href="tel:+989141934301" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"
-                    />
-                  </svg>
-                </span>
-                <span dir="ltr">+989141934301</span>
-                <span dir="ltr">+982188479170</span>
-                <span dir="ltr">+982188479151</span>
-              </a>
-              
-
-              <a href="mailto:info@azartiraras.com" class="contact-item">
-                <span class="contact-icon">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <path d="M3 7l9 6 9-6" />
-                  </svg>
-                </span>
-                <span dir="ltr">info@azartiraras.com</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="site-footer__bottom">
-        <div class="site-footer__bottom-inner">
-          <p>
-            © 1405 تمامی حقوق محفوظ است | طراحی و توسعه توسط Sijeey
-          </p>
-          <button
-            class="back-to-top"
-            id="backToTop"
-            aria-label="بازگشت به بالا"
+      <li class="nav-item" id="transportItem">
+        <a
+          href="{% url 'hamle_asli' %}"
+          class="nav-link"
+          id="transportTrigger"
+        >
+          {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}
+          <svg
+            class="caret"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
           >
-            <svg viewBox="0 0 24 24">
-              <path d="M6 14l6-6 6 6" />
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="{% url 'tarkibi' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</a
+          >
+          <a href="{% url 'ship' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Maritime Transport{% endif %}</a
+          >
+          <a href="{% url 'truck' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</a
+          >
+          <a href="{% url 'airplane' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</a
+          >
+          <a href="{% url 'train' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</a
+          >
+        </div>
+      </li>
+
+      <li class="nav-item" id="servicesItem">
+        <a
+          href="{% url 'service_new' %}"
+          class="nav-link"
+          id="servicesTrigger"
+        >
+          {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
+          <svg
+            class="caret"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="{% url 'service_import' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import{% endif %}</a
+          >
+          <a href="{% url 'service_export' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export{% endif %}</a
+          >
+          <a href="{% url 'service_tarkhis' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a
+          >
+          <a href="{% url 'service_umurgomroki' %}" class="dropdown-link"
+            ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs{% endif %}</a
+          >
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
+      </li>
+    </ul>
+
+    <!-- 3. دکمه استعلام -->
+    <a href="{% url 'contact' %}" class="quote-btn">
+      {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
+      <svg
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.3"
+      >
+        <path d="M13 5l7 7-7 7M20 12H4" />
+      </svg>
+    </a>
+
+    <!-- 4. همبرگری (موبایل) -->
+    <button class="burger" id="burgerBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- =============== MOBILE DRAWER =============== -->
+<div class="mobile-drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mobile-drawer-head">
+    <span class="mobile-drawer-brand">AZAR TIR ARAS</span>
+    <button
+      class="mobile-drawer-close"
+      id="drawerClose"
+      aria-label="{% if LANGUAGE_CODE == 'fa' %}بستن منو{% else %}Close menu{% endif %}"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div class="mobile-drawer-nav">
+    <a href="{% url 'international' %}" class="nav-link"
+      >{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transport{% endif %}</a
+    >
+
+    <div class="nav-item">
+      <a href="#" class="nav-link">
+        {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}
+        <svg
+          class="caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </a>
+      <div class="dropdown">
+        <a href="{% url 'tarkibi' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Combined Transport{% endif %}</a>
+        <a href="{% url 'ship' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Maritime Transport{% endif %}</a>
+        <a href="{% url 'truck' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</a>
+        <a href="{% url 'airplane' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</a>
+        <a href="{% url 'train' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="{% url 'service_new' %}" class="nav-link">
+        {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
+        <svg
+          class="caret"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </a>
+      <div class="dropdown">
+        <a href="{% url 'service_import' %}">{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import{% endif %}</a>
+        <a href="{% url 'service_export' %}">{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export{% endif %}</a>
+        <a href="{% url 'service_tarkhis' %}">{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a>
+        <a href="{% url 'service_umurgomroki' %}">{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs{% endif %}</a>
+      </div>
+    </div>
+
+    <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
+    <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
+  </div>
+
+  <a href="{% url 'contact' %}" class="quote-btn-mobile">
+    {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.3"
+    >
+      <path d="M13 5l7 7-7 7M20 12H4" />
+    </svg>
+  </a>
+</div>
+
+<!-- =============== HERO =============== -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-content">
+      <h1>{% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل<br /><span class="accent">آذر تیر ارس</span>{% else %}Transport Methods<br /><span class="accent">Azar Tir Aras</span>{% endif %}</h1>
+      <p>
+        {% if LANGUAGE_CODE == 'fa' %}
+          با ۵ روش حمل و نقل زمینی، ریلی، دریایی، هوایی و ترکیبی، بار شما را به هر نقطه از جهان می‌رسانیم.
+        {% else %}
+          With 5 transport methods – road, rail, sea, air and combined – we deliver your cargo to any point in the world.
+        {% endif %}
+      </p>
+      <div class="hero-badges">
+        <div class="hero-badge">
+          <div class="ic">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <rect x="1" y="6" width="13" height="11" rx="1" />
+              <path d="M14 10h4l3 3v4h-7v-7z" />
+              <circle cx="6" cy="18.5" r="1.5" />
+              <circle cx="17" cy="18.5" r="1.5" />
             </svg>
-          </button>
+          </div>
+          <div class="txt"><b>{% if LANGUAGE_CODE == 'fa' %}۵ روش حمل{% else %}5 Methods{% endif %}</b><span>{% if LANGUAGE_CODE == 'fa' %}پوشش کامل{% else %}Full Coverage{% endif %}</span></div>
+        </div>
+        <div class="hero-badge">
+          <div class="ic">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path
+                d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z"
+              />
+            </svg>
+          </div>
+          <div class="txt"><b>{% if LANGUAGE_CODE == 'fa' %}بین‌المللی{% else %}International{% endif %}</b><span>{% if LANGUAGE_CODE == 'fa' %}سراسر جهان{% else %}Worldwide{% endif %}</span></div>
+        </div>
+        <div class="hero-badge">
+          <div class="ic">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"
+              />
+            </svg>
+          </div>
+          <div class="txt"><b>{% if LANGUAGE_CODE == 'fa' %}بیمه کامل{% else %}Full Insurance{% endif %}</b><span>{% if LANGUAGE_CODE == 'fa' %}پوشش سراسری{% else %}Worldwide Coverage{% endif %}</span></div>
+        </div>
+        <div class="hero-badge">
+          <div class="ic">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 3" />
+            </svg>
+          </div>
+          <div class="txt"><b>{% if LANGUAGE_CODE == 'fa' %}۲۴/۷{% else %}24/7{% endif %}</b><span>{% if LANGUAGE_CODE == 'fa' %}پشتیبانی کامل{% else %}Full Support{% endif %}</span></div>
         </div>
       </div>
-    </footer>
+    </div>
+  </div>
+</section>
 
-    <script>
-         document.addEventListener("DOMContentLoaded", function () {
-  // ====== زبان ======
-  const langButtons = document.querySelectorAll(".lang-btn");
-  if (langButtons.length > 0) {
-    langButtons.forEach((btn) => {
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        langButtons.forEach((b) => b.classList.remove("active"));
-        this.classList.add("active");
-      });
-    });
-  }
+<!-- =============== ABOUT ARTICLE =============== -->
+<section class="about-article">
+  <div class="wrap article-container">
+    <div class="sec-head">
+      <h2>{% if LANGUAGE_CODE == 'fa' %}آشنایی با آذر تیر ارس{% else %}About Azar Tir Aras{% endif %}</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="article-block">
+      <div class="article-text">
+        <h3>{% if LANGUAGE_CODE == 'fa' %}شرکت حمل و نقل بین‌المللی آذر تیر ارس{% else %}Azar Tir Aras International Transport Company{% endif %}</h3>
+        <p>
+          {% if LANGUAGE_CODE == 'fa' %}
+            <b>آذر تیر ارس</b> با بیش از یک دهه تجربه در صنعت حمل و نقل، یکی از شرکت‌های پیشرو در ارائه خدمات لجستیک و ترانزیت بین‌المللی در ایران است. ما با بهره‌گیری از شبکه گسترده حمل و نقل و همکاری با معتبرترین خطوط کشتیرانی، ریلی، هوایی و ناوگان جاده‌ای، خدمات کاملی را به مشتریان خود ارائه می‌دهیم.
+          {% else %}
+            <b>Azar Tir Aras</b> with more than a decade of experience in the transport industry, is one of the leading companies providing logistics and international transit services in Iran. By utilizing a wide transport network and cooperating with the most reputable shipping lines, railways, airlines and road fleets, we offer comprehensive services to our customers.
+          {% endif %}
+        </p>
+        <div class="article-highlight">
+          <p>
+            {% if LANGUAGE_CODE == 'fa' %}
+              💡 ماموریت ما: ارائه سریع‌ترین، ایمن‌ترین و اقتصادی‌ترین راهکارهای حمل و نقل برای تجارت شما
+            {% else %}
+              💡 Our mission: providing the fastest, safest and most economical transport solutions for your business
+            {% endif %}
+          </p>
+        </div>
+      </div>
+      <div class="article-visual">
+        <img
+          src="{% static 'img/daryayi-hero.jpeg' %}"
+          alt="{% if LANGUAGE_CODE == 'fa' %}شرکت آذر تیر ارس{% else %}Azar Tir Aras Company{% endif %}"
+          loading="lazy"
+        />
+      </div>
+    </div>
+    <div class="article-block">
+      <div class="article-visual">
+        <img
+          src="{% static 'img/tarkibi-hero.png' %}"
+          alt="{% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport methods{% endif %}"
+          loading="lazy"
+        />
+      </div>
+      <div class="article-text">
+        <h3>{% if LANGUAGE_CODE == 'fa' %}۵ روش حمل و نقل برای هر نیاز{% else %}5 Transport Methods for Every Need{% endif %}</h3>
+        <p>
+          {% if LANGUAGE_CODE == 'fa' %}
+            ما در آذر تیر ارس با ارائه <b>۵ روش حمل و نقل</b> شامل جاده‌ای، ریلی، دریایی، هوایی و ترکیبی، انعطاف‌پذیری کامل را برای مشتریان خود فراهم کرده‌ایم. هر روش مزایای خاص خود را دارد و تیم کارشناسی ما بهترین گزینه را بر اساس نوع بار، مقصد، زمان و بودجه شما پیشنهاد می‌دهد.
+          {% else %}
+            At Azar Tir Aras, by offering <b>5 transport methods</b> including road, rail, sea, air and combined, we provide full flexibility for our customers. Each method has its own advantages and our expert team suggests the best option based on cargo type, destination, time and budget.
+          {% endif %}
+        </p>
+        <div class="article-highlight">
+          <p>
+            {% if LANGUAGE_CODE == 'fa' %}
+              📊 حمل ترکیبی می‌تواند تا <b>۴۰٪</b> هزینه‌های حمل و نقل شما را کاهش دهد!
+            {% else %}
+              📊 Combined transport can reduce your transport costs by up to <b>40%</b>!
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="article-block">
+      <div class="article-text">
+        <h3>{% if LANGUAGE_CODE == 'fa' %}پوشش جهانی و خدمات گمرکی{% else %}Global Coverage and Customs Services{% endif %}</h3>
+        <p>
+          {% if LANGUAGE_CODE == 'fa' %}
+            از ترکیه و اروپا تا چین، روسیه و امارات، شبکه حمل و نقل ما بیش از <b>۸۰ مقصد بین‌المللی</b> را پوشش می‌دهد. علاوه بر حمل و نقل، خدمات کامل گمرکی شامل ترخیص کالا، اسناد و مجوزها را نیز ارائه می‌دهیم تا فرآیند حمل بار شما بدون هیچ دغدغه‌ای انجام شود.
+          {% else %}
+            From Turkey and Europe to China, Russia and the UAE, our transport network covers more than <b>80 international destinations</b>. In addition to transport, we also provide full customs services including clearance, documents and permits so that your cargo process is carried out without any worries.
+          {% endif %}
+        </p>
+        <div class="article-highlight">
+          <p>
+            {% if LANGUAGE_CODE == 'fa' %}
+              🌍 حمل دریایی اقتصادی‌ترین روش برای بارهای حجیم بین قاره‌ای است!
+            {% else %}
+              🌍 Sea transport is the most economical method for bulk cargo between continents!
+            {% endif %}
+          </p>
+        </div>
+      </div>
+      <div class="article-visual">
+        <img src="{% static 'img/jahani.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}پوشش جهانی{% else %}Global coverage{% endif %}" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
 
-  // ====== موبایل دراور ======
-  const burgerBtn = document.getElementById("burgerBtn");
-  const mobileDrawer = document.getElementById("mobileDrawer");
-  const drawerOverlay = document.getElementById("drawerOverlay");
-  const drawerClose = document.getElementById("drawerClose");
+<!-- =============== TRANSPORT SERVICES =============== -->
+<section class="transport-services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>{% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transport Methods{% endif %}</h2>
+      <div class="rule"></div>
+      <p>{% if LANGUAGE_CODE == 'fa' %}انتخاب بهترین روش حمل بر اساس نیاز شما{% else %}Choose the best transport method based on your needs{% endif %}</p>
+    </div>
+    <div class="services-grid">
+      <a href="{% url 'truck' %}" class="service-card">
+        <div class="service-card-img">
+          <img src="{% static 'img/jade.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل جاده‌ای{% else %}Road transport{% endif %}" loading="lazy" />
+        </div>
+        <div class="service-card-body">
+          <h3>{% if LANGUAGE_CODE == 'fa' %}حمل جاده‌ای{% else %}Road Transport{% endif %}</h3>
+          <p>{% if LANGUAGE_CODE == 'fa' %}انعطاف‌پذیرترین روش برای حمل داخلی و بین‌المللی{% else %}The most flexible method for domestic and international transport{% endif %}</p>
+          <span class="learn-more"
+            >{% if LANGUAGE_CODE == 'fa' %}بیشتر بدانید{% else %}Learn more{% endif %}
+            <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
+        </div>
+      </a>
+      <a href="{% url 'train' %}" class="service-card">
+        <div class="service-card-img">
+          <img src="{% static 'img/train.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل ریلی{% else %}Rail transport{% endif %}" loading="lazy" />
+        </div>
+        <div class="service-card-body">
+          <h3>{% if LANGUAGE_CODE == 'fa' %}حمل ریلی{% else %}Rail Transport{% endif %}</h3>
+          <p>{% if LANGUAGE_CODE == 'fa' %}اقتصادی و ایمن برای بارهای حجیم در مسیرهای طولانی{% else %}Economical and safe for bulk cargo on long routes{% endif %}</p>
+          <span class="learn-more"
+            >{% if LANGUAGE_CODE == 'fa' %}بیشتر بدانید{% else %}Learn more{% endif %}
+            <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
+        </div>
+      </a>
+      <a href="{% url 'ship' %}" class="service-card">
+        <div class="service-card-img">
+          <img src="{% static 'img/sea.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل دریایی{% else %}Maritime transport{% endif %}" loading="lazy" />
+        </div>
+        <div class="service-card-body">
+          <h3>{% if LANGUAGE_CODE == 'fa' %}حمل دریایی{% else %}Maritime Transport{% endif %}</h3>
+          <p>{% if LANGUAGE_CODE == 'fa' %}اقتصادی‌ترین روش برای بارهای سنگین بین قاره‌ای{% else %}The most economical method for heavy intercontinental cargo{% endif %}</p>
+          <span class="learn-more"
+            >{% if LANGUAGE_CODE == 'fa' %}بیشتر بدانید{% else %}Learn more{% endif %}
+            <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
+        </div>
+      </a>
+      <a href="{% url 'airplane' %}" class="service-card">
+        <div class="service-card-img">
+          <img src="{% static 'img/air.jpeg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل هوایی{% else %}Air transport{% endif %}" loading="lazy" />
+        </div>
+        <div class="service-card-body">
+          <h3>{% if LANGUAGE_CODE == 'fa' %}حمل هوایی{% else %}Air Transport{% endif %}</h3>
+          <p>{% if LANGUAGE_CODE == 'fa' %}سریع‌ترین روش برای کالاهای فوری و حساس{% else %}The fastest method for urgent and sensitive goods{% endif %}</p>
+          <span class="learn-more"
+            >{% if LANGUAGE_CODE == 'fa' %}بیشتر بدانید{% else %}Learn more{% endif %}
+            <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
+        </div>
+      </a>
+      <a href="{% url 'tarkibi' %}" class="service-card">
+        <div class="service-card-img">
+          <img
+            src="{% static 'img/combined.jpeg' %}"
+            alt="{% if LANGUAGE_CODE == 'fa' %}حمل ترکیبی{% else %}Combined transport{% endif %}"
+            loading="lazy"
+          />
+        </div>
+        <div class="service-card-body">
+          <h3>{% if LANGUAGE_CODE == 'fa' %}حمل ترکیبی{% else %}Combined Transport{% endif %}</h3>
+          <p>{% if LANGUAGE_CODE == 'fa' %}هوشمندانه‌ترین ترکیب روش‌ها برای کاهش هزینه{% else %}The smartest combination of methods to reduce costs{% endif %}</p>
+          <span class="learn-more"
+            >{% if LANGUAGE_CODE == 'fa' %}بیشتر بدانید{% else %}Learn more{% endif %}
+            <svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" /></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
-  function openDrawer() {
-    mobileDrawer.classList.add("open");
-    drawerOverlay.style.opacity = "1";
-    drawerOverlay.style.visibility = "visible";
-    document.body.style.overflow = "hidden";
-  }
+<!-- =============== STATS =============== -->
+<section class="stats-section">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">۱۵<span>+</span></div>
+        <div class="stat-label">{% if LANGUAGE_CODE == 'fa' %}سال تجربه{% else %}Years Experience{% endif %}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">۲۵<span>K+</span></div>
+        <div class="stat-label">{% if LANGUAGE_CODE == 'fa' %}حمل موفق{% else %}Successful Shipments{% endif %}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">۸۰<span>+</span></div>
+        <div class="stat-label">{% if LANGUAGE_CODE == 'fa' %}مقصد بین‌المللی{% else %}International Destinations{% endif %}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">۹۹<span>٪</span></div>
+        <div class="stat-label">{% if LANGUAGE_CODE == 'fa' %}رضایت مشتری{% else %}Customer Satisfaction{% endif %}</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  function closeDrawer() {
-    mobileDrawer.classList.remove("open");
-    drawerOverlay.style.opacity = "0";
-    drawerOverlay.style.visibility = "hidden";
-    document.body.style.overflow = "";
-    document
-      .querySelectorAll(".mobile-drawer-nav .nav-item.open")
-      .forEach((item) => item.classList.remove("open"));
-  }
+<!-- =============== PROCESS =============== -->
+<section class="process-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>{% if LANGUAGE_CODE == 'fa' %}فرآیند همکاری با ما{% else %}Our Cooperation Process{% endif %}</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="process-track">
+      <div class="process-step">
+        <span class="num">۰۱</span>
+        <div class="node">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M9 12l2 2 4-4" />
+            <rect x="3" y="4" width="18" height="16" rx="2" />
+          </svg>
+        </div>
+        <h3>{% if LANGUAGE_CODE == 'fa' %}ثبت درخواست{% else %}Submit Request{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'fa' %}اطلاعات بار خود را ثبت کنید{% else %}Submit your cargo details{% endif %}</p>
+      </div>
+      <div class="process-step">
+        <span class="num">۰۲</span>
+        <div class="node">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M4 4h16v16H4z" />
+            <path d="M4 9h16" />
+          </svg>
+        </div>
+        <h3>{% if LANGUAGE_CODE == 'fa' %}مشاوره و پیشنهاد{% else %}Consultation & Proposal{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'fa' %}بهترین روش حمل پیشنهاد می‌شود{% else %}Best transport method is suggested{% endif %}</p>
+      </div>
+      <div class="process-step">
+        <span class="num">۰۳</span>
+        <div class="node">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"
+            />
+          </svg>
+        </div>
+        <h3>{% if LANGUAGE_CODE == 'fa' %}عقد قرارداد{% else %}Sign Contract{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'fa' %}ثبت سفارش و بیمه بار{% else %}Order registration and cargo insurance{% endif %}</p>
+      </div>
+      <div class="process-step">
+        <span class="num">۰۴</span>
+        <div class="node">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M4 7h8v5H4zM12 12h8v5h-8z" />
+            <path d="M8 12v5M16 7v5M4 17h16" />
+          </svg>
+        </div>
+        <h3>{% if LANGUAGE_CODE == 'fa' %}اجرای حمل{% else %}Transport Execution{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'fa' %}جابجایی بار با روش انتخابی{% else %}Cargo movement with chosen method{% endif %}</p>
+      </div>
+      <div class="process-step">
+        <span class="num">۰۵</span>
+        <div class="node">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M20 12a8 8 0 11-16 0 8 8 0 0116 0z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+        </div>
+        <h3>{% if LANGUAGE_CODE == 'fa' %}تحویل بار{% else %}Delivery{% endif %}</h3>
+        <p>{% if LANGUAGE_CODE == 'fa' %}تحویل سالم در مقصد{% else %}Safe delivery at destination{% endif %}</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  if (burgerBtn) burgerBtn.addEventListener("click", openDrawer);
-  if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
-  if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeDrawer();
-  });
-
-  // ====== دراپ‌داون‌های موبایل (تریگرها) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav .nav-item > .nav-link")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        if (this.querySelector(".caret")) {
-          e.preventDefault(); // فقط برای آیتم‌های دارای کرت جلوی هدایت گرفته می‌شود
-          const parentItem = this.closest(".nav-item");
-          if (parentItem) {
-            document
-              .querySelectorAll(".mobile-drawer-nav .nav-item.open")
-              .forEach((item) => {
-                if (item !== parentItem) item.classList.remove("open");
-              });
-            parentItem.classList.toggle("open");
-          }
-        }
-        // اگر کرت نداشت (لینک ساده) کاری نمی‌کنیم و اجازه هدایت می‌دهیم
-      });
-    });
-
-  // ====== لینک‌های فرعی موبایل (بدون preventDefault) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav .dropdown a")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        // ✅ بدون preventDefault – لینک هدایت می‌کند
-        closeDrawer();
-      });
-    });
-
-  // ====== لینک‌های ساده موبایل (بدون کرت) ======
-  document
-    .querySelectorAll(".mobile-drawer-nav > a.nav-link")
-    .forEach((link) => {
-      link.addEventListener("click", function (e) {
-        if (!this.querySelector(".caret")) {
-          // ✅ بدون preventDefault – هدایت می‌کند
-          closeDrawer();
-        }
-      });
-    });
-
-  // ====== منوهای دسکتاپ ======
-  const transportItem = document.getElementById("transportItem");
-  const transportTrigger = document.getElementById("transportTrigger");
-  const servicesItem = document.getElementById("servicesItem");
-  const servicesTrigger = document.getElementById("servicesTrigger");
-
-  if (transportTrigger) {
-    transportTrigger.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      transportItem.classList.toggle("open");
-      if (servicesItem) servicesItem.classList.remove("open");
-    });
-  }
-
-  if (servicesTrigger) {
-    servicesTrigger.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      servicesItem.classList.toggle("open");
-      transportItem.classList.remove("open");
-    });
-  }
-
-  // ====== لینک‌های فرعی دسکتاپ (بدون preventDefault) ======
-  document.querySelectorAll(".dropdown-link").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      // ✅ بدون preventDefault – لینک هدایت می‌کند
-      const parentItem = this.closest(".nav-item");
-      if (parentItem) parentItem.classList.remove("open");
-    });
-  });
-
-  // بستن دراپ‌داون با کلیک بیرون
-  document.addEventListener("click", function (e) {
-    if (!e.target.closest(".nav-item")) {
-      document
-        .querySelectorAll(".nav-item.open")
-        .forEach((item) => item.classList.remove("open"));
-    }
-  });
-
-  // دکمه بازگشت به بالا
-  const backToTop = document.getElementById("backToTop");
-  if (backToTop) {
-    backToTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-});
-    </script>
+{% include 'footer.html' %}
   </body>
 </html>

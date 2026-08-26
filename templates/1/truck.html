@@ -1519,6 +1519,33 @@
     </section>
 
     {% include 'footer.html' %}
+    .float-btn {
+        position: fixed;
+        bottom: 26px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+        z-index: 50;
+        transition: transform 0.25s var(--ease);
+        text-decoration: none; /* اگر لینک است */
+        border: none; /* اگر دکمه است */
+        cursor: pointer;
+      }
+
+      .float-btn:hover {
+        transform: translateY(-4px) scale(1.05);
+      }
+
+      /* واتساپ (چپ) */
+      .float-btn-wa {
+        left: 26px;
+        background: #25d366;
+        color: #fff;
+      }
 
     <a href="#" class="float-btn float-btn-wa"  aria-label="واتس‌اپ" target="_blank">
       <svg width="35px" height="45px" viewBox="0 1 24 24" fill="currentColor">

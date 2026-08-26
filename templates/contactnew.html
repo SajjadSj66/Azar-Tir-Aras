@@ -1431,7 +1431,7 @@
               d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
             />
           </svg>
-          <span>تماس با ما:</span>
+          <span>{% if LANGUAGE_CODE == 'fa' %}تماس با ما:{% else %}Contact us:{% endif %}</span>
           <span dir="ltr">+989141934301</span>
         </div>
 
@@ -1453,7 +1453,7 @@
             <div class="brand-name">
               <img
                 src="{% static 'img/logo.png' %}"
-                alt="لوگوی AZAR TIR ARAS"
+                alt="{% if LANGUAGE_CODE == 'fa' %}لوگوی آذر تیر ارس{% else %}Azar Tir Aras Logo{% endif %}"
                 class="brand-logo"
               />
             </div>
@@ -1464,7 +1464,7 @@
         <ul class="nav-menu" id="navMenu">
           <li class="nav-item">
             <a href="{% url 'international' %}" class="nav-link"
-              >حمل و نقل بین‌المللی</a
+              >{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transportation{% endif %}</a
             >
           </li>
 
@@ -1474,7 +1474,7 @@
               class="nav-link"
               id="transportTrigger"
             >
-              روش‌های حمل و نقل
+              {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transportation Methods{% endif %}
               <svg
                 class="caret"
                 viewBox="0 0 24 24"
@@ -1487,19 +1487,19 @@
             </a>
             <div class="dropdown">
               <a href="{% url 'tarkibi' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل ترکیبی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Multimodal Transportation{% endif %}</a
               >
               <a href="{% url 'ship' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل دریایی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transportation{% endif %}</a
               >
               <a href="{% url 'truck' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل جاده‌ای</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transportation{% endif %}</a
               >
               <a href="{% url 'airplane' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل هوایی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transportation{% endif %}</a
               >
               <a href="{% url 'train' %}" class="dropdown-link"
-                ><span class="dot"></span>حمل و نقل ریلی</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transportation{% endif %}</a
               >
             </div>
           </li>
@@ -1510,7 +1510,7 @@
               class="nav-link"
               id="servicesTrigger"
             >
-              خدمات ما
+              {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
               <svg
                 class="caret"
                 viewBox="0 0 24 24"
@@ -1523,31 +1523,31 @@
             </a>
             <div class="dropdown">
               <a href="{% url 'service_import' %}" class="dropdown-link"
-                ><span class="dot"></span>واردات کالا</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import Services{% endif %}</a
               >
               <a href="{% url 'service_export' %}" class="dropdown-link"
-                ><span class="dot"></span>صادرات کالا</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export Services{% endif %}</a
               >
               <a href="{% url 'service_tarkhis' %}" class="dropdown-link"
-                ><span class="dot"></span>ترخیص کالا از گمرک</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a
               >
               <a href="{% url 'service_umurgomroki' %}" class="dropdown-link"
-                ><span class="dot"></span>امور گمرکی و ترخیص</a
+                ><span class="dot"></span>{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs & Clearance{% endif %}</a
               >
             </div>
           </li>
 
           <li class="nav-item">
-            <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
+            <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
+            <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
           </li>
         </ul>
 
         <!-- 3. دکمه استعلام -->
         <a href="{% url 'contact' %}" class="quote-btn">
-          استعلام قیمت
+          {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
           <svg
             width="15"
             height="15"
@@ -1576,7 +1576,7 @@
         <button
           class="mobile-drawer-close"
           id="drawerClose"
-          aria-label="بستن منو"
+          aria-label="{% if LANGUAGE_CODE == 'fa' %}بستن منو{% else %}Close menu{% endif %}"
         >
           <svg
             viewBox="0 0 24 24"
@@ -1590,12 +1590,12 @@
       </div>
       <div class="mobile-drawer-nav">
         <a href="{% url 'international' %}" class="nav-link"
-          >حمل و نقل بین‌المللی</a
+          >{% if LANGUAGE_CODE == 'fa' %}حمل و نقل بین‌المللی{% else %}International Transportation{% endif %}</a
         >
 
         <div class="nav-item">
           <a href="#" class="nav-link">
-            روش‌های حمل و نقل
+            {% if LANGUAGE_CODE == 'fa' %}روش‌های حمل و نقل{% else %}Transportation Methods{% endif %}
             <svg
               class="caret"
               viewBox="0 0 24 24"
@@ -1607,17 +1607,17 @@
             </svg>
           </a>
           <div class="dropdown">
-            <a href="{% url 'tarkibi' %}">حمل و نقل ترکیبی</a>
-            <a href="{% url 'ship' %}">حمل و نقل دریایی</a>
-            <a href="{% url 'truck' %}">حمل و نقل جاده‌ای</a>
-            <a href="{% url 'airplane' %}">حمل و نقل هوایی</a>
-            <a href="{% url 'train' %}">حمل و نقل ریلی</a>
+            <a href="{% url 'tarkibi' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ترکیبی{% else %}Multimodal Transportation{% endif %}</a>
+            <a href="{% url 'ship' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transportation{% endif %}</a>
+            <a href="{% url 'truck' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transportation{% endif %}</a>
+            <a href="{% url 'airplane' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transportation{% endif %}</a>
+            <a href="{% url 'train' %}">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transportation{% endif %}</a>
           </div>
         </div>
 
         <div class="nav-item">
           <a href="{% url 'service_new' %}" class="nav-link">
-            خدمات ما
+            {% if LANGUAGE_CODE == 'fa' %}خدمات ما{% else %}Our Services{% endif %}
             <svg
               class="caret"
               viewBox="0 0 24 24"
@@ -1629,19 +1629,19 @@
             </svg>
           </a>
           <div class="dropdown">
-            <a href="{% url 'service_import' %}">واردات کالا</a>
-            <a href="{% url 'service_export' %}">صادرات کالا</a>
-            <a href="{% url 'service_tarkhis' %}">ترخیص کالا از گمرک</a>
-            <a href="{% url 'service_umurgomroki' %}">امور گمرکی و ترخیص</a>
+            <a href="{% url 'service_import' %}">{% if LANGUAGE_CODE == 'fa' %}واردات کالا{% else %}Import Services{% endif %}</a>
+            <a href="{% url 'service_export' %}">{% if LANGUAGE_CODE == 'fa' %}صادرات کالا{% else %}Export Services{% endif %}</a>
+            <a href="{% url 'service_tarkhis' %}">{% if LANGUAGE_CODE == 'fa' %}ترخیص کالا از گمرک{% else %}Customs Clearance{% endif %}</a>
+            <a href="{% url 'service_umurgomroki' %}">{% if LANGUAGE_CODE == 'fa' %}امور گمرکی و ترخیص{% else %}Customs Affairs & Clearance{% endif %}</a>
           </div>
         </div>
 
-        <a href="{% url 'aboutus' %}" class="nav-link">درباره ما</a>
-        <a href="{% url 'contact' %}" class="nav-link">تماس با ما</a>
+        <a href="{% url 'aboutus' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</a>
+        <a href="{% url 'contact' %}" class="nav-link">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</a>
       </div>
 
       <a href="{% url 'contact' %}" class="quote-btn-mobile">
-        استعلام قیمت
+        {% if LANGUAGE_CODE == 'fa' %}استعلام قیمت{% else %}Get a Quote{% endif %}
 
         <svg
           width="15"
@@ -1661,12 +1661,11 @@
         <!-- HERO -->
         <header class="contact-hero">
             <div class="container">
-                <span class="tag-pill" style="color: var(--gold-light); border-color: rgba(230, 185, 77, 0.5); background: rgba(255,255,255,0.05);">تماس با ما</span>
-                <h1 class="contact-hero-title">ارتباط <span class="accent">مستقیم</span> با تیم حرفه‌ای آذر تیر ارس</h1>
+                <span class="tag-pill" style="color: var(--gold-light); border-color: rgba(230, 185, 77, 0.5); background: rgba(255,255,255,0.05);">{% if LANGUAGE_CODE == 'fa' %}تماس با ما{% else %}Contact Us{% endif %}</span>
+                <h1 class="contact-hero-title">{% if LANGUAGE_CODE == 'fa' %}ارتباط <span class="accent">مستقیم</span> با تیم حرفه‌ای آذر تیر ارس{% else %}Direct Contact with the Professional Azar Tir Aras Team{% endif %}</h1>
                 <span class="sec-bar"></span>
                 <p class="contact-hero-text">
-                    کارشناسان ما آماده‌اند تا در سریع‌ترین زمان ممکن به سوالات شما پاسخ دهند و
-                    بهترین راهکارهای لجستیکی را متناسب با نیاز کسب‌وکارتان ارائه کنند.
+                    {% if LANGUAGE_CODE == 'fa' %}کارشناسان ما آماده‌اند تا در سریع‌ترین زمان ممکن به سوالات شما پاسخ دهند و بهترین راهکارهای لجستیکی را متناسب با نیاز کسب‌وکارتان ارائه کنند.{% else %}Our experts are ready to answer your questions as quickly as possible and provide the best logistics solutions tailored to your business needs.{% endif %}
                 </p>
             </div>
         </header>
@@ -1676,62 +1675,62 @@
             <div class="container">
 
                 <div class="sec-head center">
-                    <h2 class="sec-title">درخواست <span class="accent">مشاوره و استعلام</span></h2>
+                    <h2 class="sec-title">{% if LANGUAGE_CODE == 'fa' %}درخواست <span class="accent">مشاوره و استعلام</span>{% else %}Request <span class="accent">Consultation &amp; Inquiry</span>{% endif %}</h2>
                     <span class="sec-bar"></span>
-                    <p class="sec-sub">با تکمیل فرم‌های زیر، کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت.</p>
+                    <p class="sec-sub">{% if LANGUAGE_CODE == 'fa' %}با تکمیل فرم‌های زیر، کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت.{% else %}By completing the forms below, our experts will contact you as soon as possible.{% endif %}</p>
                 </div>
 
                 <div class="contact-forms-wrapper">
 
                     <!-- فرم اول -->
                     <div class="form-card">
-                        <h3 class="form-card-title">دریافت مشاوره تخصصی و استعلام هزینه</h3>
-                        <p class="form-card-sub">لطفاً اطلاعات خود را وارد کنید تا کارشناسان ما با شما تماس بگیرند.</p>
+                        <h3 class="form-card-title">{% if LANGUAGE_CODE == 'fa' %}دریافت مشاوره تخصصی و استعلام هزینه{% else %}Specialized Consultation & Cost Estimate{% endif %}</h3>
+                        <p class="form-card-sub">{% if LANGUAGE_CODE == 'fa' %}لطفاً اطلاعات خود را وارد کنید تا کارشناسان ما با شما تماس بگیرند.{% else %}Please enter your information so our experts can contact you.{% endif %}</p>
 
                         <form>
                             <div class="form-row-2">
                                 <div class="form-group">
-                                    <label>نام و نام خانوادگی</label>
-                                    <input type="text" placeholder="نام و نام خانوادگی" />
+                                    <label>{% if LANGUAGE_CODE == 'fa' %}نام و نام خانوادگی{% else %}Full Name{% endif %}</label>
+                                    <input type="text" placeholder="{% if LANGUAGE_CODE == 'fa' %}نام و نام خانوادگی{% else %}Full Name{% endif %}" />
                                 </div>
                                 <div class="form-group">
-                                    <label>ایمیل</label>
-                                    <input type="email" placeholder="ایمیل" />
+                                    <label>{% if LANGUAGE_CODE == 'fa' %}ایمیل{% else %}Email{% endif %}</label>
+                                    <input type="email" placeholder="{% if LANGUAGE_CODE == 'fa' %}ایمیل{% else %}Email{% endif %}" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>شماره تماس</label>
-                                <input type="tel" placeholder="شماره تماس" />
+                                <label>{% if LANGUAGE_CODE == 'fa' %}شماره تماس{% else %}Phone Number{% endif %}</label>
+                                <input type="tel" placeholder="{% if LANGUAGE_CODE == 'fa' %}شماره تماس{% else %}Phone Number{% endif %}" />
                             </div>
                             <div class="form-group">
-                                <label>توضیحات</label>
-                                <textarea placeholder="توضیحات"></textarea>
+                                <label>{% if LANGUAGE_CODE == 'fa' %}توضیحات{% else %}Description{% endif %}</label>
+                                <textarea placeholder="{% if LANGUAGE_CODE == 'fa' %}توضیحات{% else %}Description{% endif %}"></textarea>
                             </div>
                             <button type="submit" class="submit-btn">
-                                ارسال
+                                {% if LANGUAGE_CODE == 'fa' %}ارسال{% else %}Send{% endif %}
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                             </button>
 
                             <div class="form-connect">
                                 <span class="form-connect-label">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                    ارسال پیام از طریق:
+                                    {% if LANGUAGE_CODE == 'fa' %}ارسال پیام از طریق:{% else %}Send a message via:{% endif %}
                                 </span>
 
                                 <div class="form-connect-buttons">
-                                    <a href="#" class="form-connect-telegram">
+                                    <a href="https://t.me/+989141934301" class="form-connect-telegram">
                                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                                        تلگرام
+                                        {% if LANGUAGE_CODE == 'fa' %}تلگرام{% else %}Telegram{% endif %}
                                     </a>
 
-                                    <a href="#" class="form-connect-whatsapp">
+                                    <a href="https://whatsapp.com/+989141934301" class="form-connect-whatsapp">
                                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                                        واتساپ
+                                        {% if LANGUAGE_CODE == 'fa' %}واتساپ{% else %}WhatsApp{% endif %}
                                     </a>
 
-                                    <a href="mailto:info@azartiraras.ir" class="form-connect-email">
+                                    <a href="mailto:info@azartiraras.com" class="form-connect-email">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-                                        ایمیل
+                                        {% if LANGUAGE_CODE == 'fa' %}ایمیل{% else %}Email{% endif %}
                                     </a>
                                 </div>
                             </div>
@@ -1740,49 +1739,49 @@
 
                     <!-- فرم دوم -->
                     <div class="form-card-dark">
-                        <h3 class="form-card-title">استعلام سریع هزینه</h3>
-                        <p class="form-card-sub">برای تسریع در استعلام قیمت، لطفاً اطلاعات زیر را وارد کنید.</p>
+                        <h3 class="form-card-title">{% if LANGUAGE_CODE == 'fa' %}استعلام سریع هزینه{% else %}Quick Cost Estimate{% endif %}</h3>
+                        <p class="form-card-sub">{% if LANGUAGE_CODE == 'fa' %}برای تسریع در استعلام قیمت، لطفاً اطلاعات زیر را وارد کنید.{% else %}To speed up your price inquiry, please enter the information below.{% endif %}</p>
 
                         <form>
                             <div class="form-row-2">
                                 <div class="form-group">
-                                    <label>نام و نام خانوادگی</label>
-                                    <input type="text" placeholder="نام و نام خانوادگی" />
+                                    <label>{% if LANGUAGE_CODE == 'fa' %}نام و نام خانوادگی{% else %}Full Name{% endif %}</label>
+                                    <input type="text" placeholder="{% if LANGUAGE_CODE == 'fa' %}نام و نام خانوادگی{% else %}Full Name{% endif %}" />
                                 </div>
                                 <div class="form-group">
-                                    <label>شماره تماس</label>
-                                    <input type="tel" placeholder="شماره تماس" />
-                                </div>
-                            </div>
-                            <div class="form-row-4">
-                                <div class="form-group">
-                                    <label>نوع بار</label>
-                                    <input type="text" placeholder="نوع بار" />
-                                </div>
-                                <div class="form-group">
-                                    <label>وزن (کیلوگرم)</label>
-                                    <input type="text" placeholder="وزن" />
+                                    <label>{% if LANGUAGE_CODE == 'fa' %}شماره تماس{% else %}Phone Number{% endif %}</label>
+                                    <input type="tel" placeholder="{% if LANGUAGE_CODE == 'fa' %}شماره تماس{% else %}Phone Number{% endif %}" />
                                 </div>
                             </div>
                             <div class="form-row-4">
                                 <div class="form-group">
-                                    <label>مبدأ</label>
-                                    <input type="text" placeholder="مبدأ" />
+                                    <label>{% if LANGUAGE_CODE == 'fa' %}نوع بار{% else %}Cargo Type{% endif %}</label>
+                                    <input type="text" placeholder="{% if LANGUAGE_CODE == 'fa' %}نوع بار{% else %}Cargo Type{% endif %}" />
                                 </div>
                                 <div class="form-group">
-                                    <label>مقصد</label>
-                                    <input type="text" placeholder="مقصد" />
+                                    <label>{% if LANGUAGE_CODE == 'fa' %}وزن (کیلوگرم){% else %}Weight (kg){% endif %}</label>
+                                    <input type="text" placeholder="{% if LANGUAGE_CODE == 'fa' %}وزن{% else %}Weight{% endif %}" />
+                                </div>
+                            </div>
+                            <div class="form-row-4">
+                                <div class="form-group">
+                                    <label>{% if LANGUAGE_CODE == 'fa' %}مبدأ{% else %}Origin{% endif %}</label>
+                                    <input type="text" placeholder="{% if LANGUAGE_CODE == 'fa' %}مبدأ{% else %}Origin{% endif %}" />
+                                </div>
+                                <div class="form-group">
+                                    <label>{% if LANGUAGE_CODE == 'fa' %}مقصد{% else %}Destination{% endif %}</label>
+                                    <input type="text" placeholder="{% if LANGUAGE_CODE == 'fa' %}مقصد{% else %}Destination{% endif %}" />
                                 </div>
                             </div>
                             <button type="submit" class="submit-btn-dark">
-                                ارسال
+                                {% if LANGUAGE_CODE == 'fa' %}ارسال{% else %}Send{% endif %}
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
                             </button>
 
                             <div class="form-connect-dark">
                                 <span class="form-connect-label">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                    راه‌های ارتباطی:
+                                    {% if LANGUAGE_CODE == 'fa' %}راه‌های ارتباطی:{% else %}Contact Information:{% endif %}
                                 </span>
                                 <div class="contact-info-items">
                                     <a href="tel:02188479138">
@@ -1812,27 +1811,27 @@
         <section class="map-section">
             <div class="container">
                 <div class="sec-head center" style="margin-bottom: 30px;">
-                    <h2 class="sec-title">موقعیت <span class="accent">دفتر مرکزی</span></h2>
+                    <h2 class="sec-title">{% if LANGUAGE_CODE == 'fa' %}موقعیت{% else %}Location{% endif %} <span class="accent">{% if LANGUAGE_CODE == 'fa' %}دفتر مرکزی{% else %}Head Office{% endif %}</span></h2>
                     <span class="sec-bar"></span>
                 </div>
                 <div class="map-container">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.948051175562!2d51.3681793!3d35.7269456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e078c8d0f3e6b%3A0x9a2b8e0f9e6f9a0f!2sTehran%2C%20Azadi%20St%2C%20Iran!5e0!3m2!1sen!2sus!4v1700000000000"
+                        src="https://www.google.com/maps/place/%D8%B4%D8%B1%DA%A9%D8%AA+%D8%A2%D8%B0%D8%B1+%D8%AA%DB%8C%D8%B1+%D8%A7%D8%B1%D8%B3%E2%80%AD/@35.7410006,51.4507972,20z/data=!4m9!1m2!2m1!1z2LPbjNivINiu2YbYr9in2YYg2K7bjNin2KjYp9mGINiv2KjYs9iq2KfZhg!3m5!1s0x3f8e03efb53a717f:0x58d6396e1990b838!8m2!3d35.7410039!4d51.4506774!16s%2Fg%2F11d_z2ybyb?entry=ttu&g_ep=EgoyMDI2MDgyMy4wIKXMDSoASAFQAw%3D%3D"
                         allowfullscreen=""
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
-                        title="موقعیت آذر تیر ارس روی نقشه">
+                        title="{% if LANGUAGE_CODE == 'fa' %}موقعیت آذر تیر ارس روی نقشه{% else %}Azar Tir Aras office location on the map{% endif %}">
                     </iframe>
 
                     <div class="map-overlay-info">
-                        <h4>آذر تیر ارس</h4>
+                        <h4>{% if LANGUAGE_CODE == 'fa' %}آذر تیر ارس{% else %}Azar Tir Aras{% endif %}</h4>
                         <div class="addr-line">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.2 7-12A7 7 0 1 0 5 9c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
-                            <span>تهران، خیابان آزادی، مجتمع خدمات حمل و نقل</span>
+                            <span>{% if LANGUAGE_CODE == 'fa' %}تهران، سید خندان، خیابان دبستان، کوچه آگاهی، پلاک ۸، طبقه سوم، واحد ۸{% else %}No. 8, Agahi Alley, Dabestan St., Seyed Khandan, Tehran, 3rd Floor, Unit 8{% endif %}</span>
                         </div>
                         <div class="addr-line">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3 a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7A2 2 0 0 1 22 16.9z"/></svg>
-                            <span dir="ltr">021-88479138 | 021-88479170</span>
+                            <span dir="ltr">021-88479151 | 021-88479170</span>
                         </div>
                     </div>
                 </div>
@@ -1847,10 +1846,9 @@
         <div class="site-footer__container">
           <!-- ستون درباره ما -->
           <div class="footer-column footer-about">
-            <h3 class="footer-title">درباره ما</h3>
+            <h3 class="footer-title">{% if LANGUAGE_CODE == 'fa' %}درباره ما{% else %}About Us{% endif %}</h3>
             <p>
-              آذر تیر ارس، شرکت حمل و نقل بین‌المللی با تمرکز بر ارائه خدمات حمل
-              و نقل، ترانزیت و خدمات گمرکی به مقصد ترکیه، اروپا و کشورهای CIS.
+              {% if LANGUAGE_CODE == 'fa' %}آذر تیر ارس، شرکت حمل و نقل بین‌المللی با تمرکز بر ارائه خدمات حمل و نقل، ترانزیت و خدمات گمرکی به مقصد ترکیه، اروپا و کشورهای CIS.{% else %}Azar Tir Aras is an international transportation company focused on providing transportation, transit, and customs services to Turkey, Europe, and CIS countries.{% endif %}
             </p>
             <div class="social-links">
               <a href="#" aria-label="LinkedIn">
@@ -1884,29 +1882,31 @@
 
           <!-- ستون خدمات (جدا از مسیرها) -->
           <div class="footer-column">
-            <h3 class="footer-title">خدمات</h3>
+            <a href="{% url 'service_new' %}">
+        <h3 class="footer-title">{% if LANGUAGE_CODE == 'fa' %}خدمات{% else %}Services{% endif %}</h3>
+        </a>
             <ul class="footer-links">
-              <li><a href="{% url 'international' %}">حمل بین‌المللی</a></li>
-              <li><a href="{% url 'hamle_asli' %}">ترانزیت</a></li>
-              <li><a href="{% url 'hamle_asli' %}">حمل داخلی</a></li>
-              <li><a href="{% url 'hamle_asli' %}">خدمات گمرکی</a></li>
+              <li><a href="{% url 'international' %}">{% if LANGUAGE_CODE == 'fa' %}حمل بین‌المللی{% else %}International Transport{% endif %}</a></li>
+              <li><a href="{% url 'hamle_asli' %}">{% if LANGUAGE_CODE == 'fa' %}ترانزیت{% else %}Transit{% endif %}</a></li>
+              <li><a href="{% url 'hamle_asli' %}">{% if LANGUAGE_CODE == 'fa' %}حمل داخلی{% else %}Domestic Transport{% endif %}</a></li>
+              <li><a href="{% url 'hamle_asli' %}">{% if LANGUAGE_CODE == 'fa' %}خدمات گمرکی{% else %}Customs Services{% endif %}</a></li>
             </ul>
           </div>
 
           <!-- ستون مسیرها -->
           <div class="footer-column">
-            <h3 class="footer-title">مسیرها</h3>
+            <h3 class="footer-title">{% if LANGUAGE_CODE == 'fa' %}مسیرها{% else %}Routes{% endif %}</h3>
             <ul class="footer-links">
-              <li><a href="{% url 'roads' %}">ایران به ترکیه</a></li>
-              <li><a href="{% url 'roads' %}">ایران به اروپا</a></li>
-              <li><a href="{% url 'roads' %}">ترکیه به ایران</a></li>
-              <li><a href="{% url 'roads' %}">سایر مسیرها</a></li>
+              <li><a href="{% url 'roads' %}">{% if LANGUAGE_CODE == 'fa' %}ایران به ترکیه{% else %}Iran to Turkey{% endif %}</a></li>
+              <li><a href="{% url 'roads' %}">{% if LANGUAGE_CODE == 'fa' %}ایران به اروپا{% else %}Iran to Europe{% endif %}</a></li>
+              <li><a href="{% url 'roads' %}">{% if LANGUAGE_CODE == 'fa' %}ترکیه به ایران{% else %}Turkey to Iran{% endif %}</a></li>
+              <li><a href="{% url 'roads' %}">{% if LANGUAGE_CODE == 'fa' %}سایر مسیرها{% else %}Other Routes{% endif %}</a></li>
             </ul>
           </div>
 
           <!-- ستون تماس -->
           <div class="footer-column footer-contact">
-            <h3 class="footer-title">اطلاعات تماس</h3>
+            <h3 class="footer-title">{% if LANGUAGE_CODE == 'fa' %}اطلاعات تماس{% else %}Contact Information{% endif %}</h3>
             <div class="contact-list">
               <a href="{% url 'contact' %}" class="contact-item">
                 <span class="contact-icon">
@@ -1918,8 +1918,7 @@
                   </svg>
                 </span>
                 <span>
-                  تهران, سید خندان خیابان<br />
-                  دبستان کوچه ،آگاهی پلاک ۸ طبقه سوم، واحد ۸
+                  {% if LANGUAGE_CODE == 'fa' %}تهران، سید خندان، خیابان<br />دبستان، کوچه آگاهی، پلاک ۸، طبقه سوم، واحد ۸{% else %}No. 8, Agahi Alley, Dabestan St., Seyed Khandan, Tehran<br />3rd Floor, Unit 8{% endif %}
                 </span>
               </a>
 
@@ -1954,12 +1953,12 @@
       <div class="site-footer__bottom">
         <div class="site-footer__bottom-inner">
           <p>
-            © 1405 تمامی حقوق محفوظ است | طراحی و توسعه توسط Sijeey
+            {% if LANGUAGE_CODE == 'fa' %}© 1405 تمامی حقوق محفوظ است | طراحی و توسعه توسط Sijeey{% else %}© 2026 All rights reserved | Designed & Developed by Sijeey{% endif %}
           </p>
           <button
             class="back-to-top"
             id="backToTop"
-            aria-label="بازگشت به بالا"
+            aria-label="{% if LANGUAGE_CODE == 'fa' %}بازگشت به بالا{% else %}Back to top{% endif %}"
           >
             <svg viewBox="0 0 24 24">
               <path d="M6 14l6-6 6 6" />
