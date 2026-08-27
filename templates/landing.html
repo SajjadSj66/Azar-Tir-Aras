@@ -2558,14 +2558,14 @@
         </div>
 
         <div class="methods-grid">
-          <a href="#" class="method-card">
+          <a href="{% url 'airplane' %}" class="method-card">
             <div class="method-media">
               <img src="{% static 'img/air.jpg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}" />
               <div class="overlay"></div>
             </div>
             <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل هوایی{% else %}Air Transport{% endif %}</span>
           </a>
-          <a href="#" class="method-card">
+          <a href="{% url 'truck' %}" class="method-card">
             <div class="method-media">
               <img
                 src="{% static 'img/tireyli.jpg' %}"
@@ -2575,21 +2575,21 @@
             </div>
             <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل جاده‌ای{% else %}Road Transport{% endif %}</span>
           </a>
-          <a href="#" class="method-card">
+          <a href="{% url 'ship' %}" class="method-card">
             <div class="method-media">
               <img src="{% static 'img/ship.jpg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}" />
               <div class="overlay"></div>
             </div>
             <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل دریایی{% else %}Sea Transport{% endif %}</span>
           </a>
-          <a href="#" class="method-card">
+          <a href="{% url 'train' %}" class="method-card">
             <div class="method-media">
               <img src="{% static 'img/train.jpg' %}" alt="{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}" />
               <div class="overlay"></div>
             </div>
             <span class="method-pill">{% if LANGUAGE_CODE == 'fa' %}حمل و نقل ریلی{% else %}Rail Transport{% endif %}</span>
           </a>
-          <a href="#" class="method-card">
+          <a href="{% url 'tarkibi' %}" class="method-card">
             <div class="method-media">
               <img
                 src="{% static 'img/tarkibi.webp' %}"
