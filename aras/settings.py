@@ -21,20 +21,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 import os
 
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# DEBUG = os.environ.get("DEBUG", "False") == "True"
-
-# ALLOWED_HOSTS = [
-#     ".onrender.com",
-# ]
-
-SECRET_KEY = 'django-insecure-ix06j$z49now3gx^@r#a364nc+x)9p1ir1x1iy7s_3ljp+im$q'
-
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
+    ".onrender.com",
 ]
+
+# SECRET_KEY = 'django-insecure-ix06j$z49now3gx^@r#a364nc+x)9p1ir1x1iy7s_3ljp+im$q'
+
+# DEBUG = True
+
+# ALLOWED_HOSTS = [
+# ]
 
 
 # Application definition
